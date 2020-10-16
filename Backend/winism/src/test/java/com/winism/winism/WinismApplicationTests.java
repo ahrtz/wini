@@ -1,10 +1,10 @@
-package com.winism.demo;
+package com.winism.winism;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class WinismApplicationTests {
 
 	@Test
 	void contextLoads() {
