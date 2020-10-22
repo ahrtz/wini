@@ -1,26 +1,12 @@
 <template>
-  <v-app id="app">
-  <div>
-      <Navbar/>
+  <div id="app">
+    <router-view name="header" />
+    <div class="wrapper">
+      <router-view />
     </div>
-    <v-main>
-      <router-view/>
-    </v-main>
-    
-  </v-app>
+    <router-view name="footer" />
+  </div>
 </template>
-
 <script>
-import Navbar from '@/components/Navbar.vue'
-export default {
-  name: 'App',
-
-  components: {
-    Navbar,
-  },
-
-  data: () => ({
-    //
-  }),
-};
+export default {};
 </script>

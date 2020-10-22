@@ -23,44 +23,48 @@
     </v-row>
 
 </div>
-
+<v-row>
+<v-col cols="12">
  <v-card
     class="mx-auto"
-    max-width="500"
+    max-width="500px"
   >
     <v-card-text>
-      <div>Word of the Day</div>
+
       <p class="display-1 text--primary">
-        be•nev•o•lent
+        GUIDE
       </p>
       <p>adjective</p>
       <div class="text--primary">
-        well meaning and kindly.<br>
-        "a benevolent smile"
+        와인 초보자를 위한 가이드
       </div>
     </v-card-text>
     <v-card-actions>
+    <i class="mdi mdi-arrow-right"></i>
       <v-btn
-        text
-        color="deep-purple accent-4"
-      >
-        Learn More
+        right
+        rounded
+        small
+        to="/guide"
+      >Go To Guide
+
       </v-btn>
+
     </v-card-actions>
   </v-card>
+  </v-col>
+  <v-col cols="12">
 <v-card
     class="mx-auto"
     max-width="500"
   >
     <v-card-text>
-      <div>Word of the Day</div>
       <p class="display-1 text--primary">
-        be•nev•o•lent
+        RECOMMEND
       </p>
       <p>adjective</p>
       <div class="text--primary">
-        well meaning and kindly.<br>
-        "a benevolent smile"
+        나만을 위한 와인 추천 받기
       </div>
     </v-card-text>
     <v-card-actions>
@@ -72,20 +76,19 @@
       </v-btn>
     </v-card-actions>
   </v-card>
-
+</v-col>
+<v-col cols="12">
   <v-card
     class="mx-auto"
     max-width="500"
   >
     <v-card-text>
-      <div>Word of the Day</div>
       <p class="display-1 text--primary">
-        be•nev•o•lent
+        INFO
       </p>
       <p>adjective</p>
       <div class="text--primary">
-        well meaning and kindly.<br>
-        "a benevolent smile"
+        와인 정보
       </div>
     </v-card-text>
     <v-card-actions>
@@ -97,20 +100,20 @@
       </v-btn>
     </v-card-actions>
   </v-card>
+</v-col>
 
+<v-col cols="12">
   <v-card
     class="mx-auto"
     max-width="500"
   >
     <v-card-text>
-      <div>Word of the Day</div>
       <p class="display-1 text--primary">
-        be•nev•o•lent
+        MYPAGE
       </p>
       <p>adjective</p>
       <div class="text--primary">
-        well meaning and kindly.<br>
-        "a benevolent smile"
+       마이페이지
       </div>
     </v-card-text>
     <v-card-actions>
@@ -122,6 +125,8 @@
       </v-btn>
     </v-card-actions>
   </v-card>
+  </v-col>
+  </v-row>
 </div>
 
 </template>
