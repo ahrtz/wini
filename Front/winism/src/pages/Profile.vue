@@ -10,52 +10,27 @@
         <div class="photo-container">
           <img src="img/ryan.jpg" alt="" />
         </div>
-        <h3 class="title">Ryan Scheinder</h3>
-        <p class="category">Photographer</p>
+        <h3 class="title">이메일</h3>
+        <p class="category">등급 개인정보?</p>
         <div class="content">
           <div class="social-description">
             <h2>26</h2>
-            <p>Comments</p>
+            <p>리뷰개수</p>
           </div>
           <div class="social-description">
             <h2>26</h2>
-            <p>Comments</p>
+            <p>찜개수</p>
           </div>
           <div class="social-description">
             <h2>48</h2>
-            <p>Bookmarks</p>
+            <p>Bookmarks 뭔가 넣을게 없나?</p>
           </div>
         </div>
       </div>
     </div>
     <div class="section">
       <div class="container">
-        <div class="button-container">
-          <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
-          <a
-            href="#button"
-            class="btn btn-default btn-round btn-lg btn-icon"
-            rel="tooltip"
-            title="Follow me on Twitter"
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a
-            href="#button"
-            class="btn btn-default btn-round btn-lg btn-icon"
-            rel="tooltip"
-            title="Follow me on Instagram"
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-        <h3 class="title">About me</h3>
-        <h5 class="description">
-          An artist of considerable range, Ryan — the name taken by
-          Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and
-          records all of his own music, giving it a warm, intimate feel with a
-          solid groove structure. An artist of considerable range.
-        </h5>
+        
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
             <h4 class="title text-center">My Portfolio</h4>
@@ -72,14 +47,27 @@
 
               <div class="col-md-10 ml-auto mr-auto">
                 <div class="row collections">
-                  <div class="col-md-6">
+                  <div class="col-md-4" v-for="item in dummy" :key="item.id">
                     <img src="img/bg6.jpg" class="img-raised" />
-                    <img src="img/bg11.jpg" alt="" class="img-raised" />
+                    <b-card
+                      title="Card Title"
+                      img-src="img/bg6.jpg"
+                      img-alt="Image"
+                      img-top
+                      tag="article"
+                      style="max-width: 20rem;"
+                      class="img-raised"
+                    >
+                      <b-card-text>
+                        {{item.content}}
+                      </b-card-text>
+                    </b-card>
+                    <!-- <img src="img/bg11.jpg" alt="" class="img-raised" /> -->
                   </div>
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     <img src="img/bg7.jpg" alt="" class="img-raised" />
                     <img src="img/bg8.jpg" alt="" class="img-raised" />
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </tab-pane>
@@ -132,6 +120,28 @@ export default {
   components: {
     Tabs,
     TabPane
+  },
+  data(){
+    return{
+      dummy:[
+        {
+          id:1,
+          content:21
+        },
+        {
+          id:2,
+          content:22
+        },
+        {
+          id:3,
+          content:23
+        },
+        {
+          id:4,
+          content:24
+        },
+      ]
+    }
   }
 };
 </script>
