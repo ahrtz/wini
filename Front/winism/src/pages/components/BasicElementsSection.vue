@@ -130,7 +130,7 @@
             off-text="OFF"
           ></n-switch>
         </div>
-        <div class="col-sm-6 col-lg-3">
+        <div class="col-sm-6 col-lg-3"> 
           <p class="category">Sliders</p>
           <slider v-model="sliders.simple"> </slider>
           <br />
