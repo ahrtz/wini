@@ -19,36 +19,45 @@
 
           <h3>Wine site for wine newbie</h3>
         </div>
-        <h6 class="category category-absolute">
-          Designed by
-          <a href="http://invisionapp.com/" target="_blank">
-            <img src="img/invision-white-slim.png" class="invision-logo" /> </a
-          >. Coded by
-          <a href="https://www.creative-tim.com" target="_blank">
-            <img
-              src="img/creative-tim-white-slim2.png"
-              class="creative-tim-logo"
-            /> </a
-          >.
-        </h6>
+       
       </div>
     </div>
     <div class="main">
       <div class="section section-images">
         <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="hero-images-container">
-                <img src="img/hero-image-1.png" alt="" />
-              </div>
-              <div class="hero-images-container-1">
-                <img src="img/hero-image-2.png" alt="" />
-              </div>
-              <div class="hero-images-container-2">
-                <img src="img/hero-image-3.png" alt="" />
-              </div>
-            </div>
+          
+    <div class="row">
+      <div
+       class="col-md-6 col-sm-6 col-xs-12"
+      >
+        <card class="card-signup" header-classes="text-center" color="orange">
+          <template slot="header">
+            <h3 class="card-title title-up">Guide</h3>
+            
+          </template>
+          
+          <div class="card-footer text-center">
+            <n-button type="neutral" round size="lg">Info</n-button>
           </div>
+        </card>
+      </div>
+       <div
+       class="col-md-6 col-sm-6 col-xs-12"
+      >
+        <card class="card-signup" header-classes="text-center" color="orange">
+          <template slot="header">
+            <h3 class="card-title title-up">Sign Up</h3>
+            
+          </template>
+          
+          <div class="card-footer text-center">
+            <n-button type="neutral" round size="lg">Get Started</n-button>
+          </div>
+        </card>
+      </div>
+ 
+     
+    </div>
         </div>
       </div>
     </div>
@@ -102,6 +111,7 @@ export default {
   bodyClass: 'index-page',
   components: {
     [FormGroupInput.name]: FormGroupInput,
+    Card,
     Parallax,
     BasicElements,
     Navigation,
