@@ -8,7 +8,7 @@
   >
     <template>
       <router-link v-popover:popover1 class="navbar-brand" to="/">
-        Now Ui Kit
+        WINISM
       </router-link>
       <el-popover
         ref="popover1"
@@ -29,13 +29,13 @@
           href="https://www.creative-tim.com/product/vue-now-ui-kit"
           target="_blank"
         >
-          <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-          <p>Download</p>
+          
+          <p>Guide</p>
         </a>
       </li>
       <drop-down
         tag="li"
-        title="Components"
+        title="Info"
         icon="now-ui-icons design_app"
         class="nav-item"
       >
