@@ -7,6 +7,14 @@
     <router-view name="footer" />
   </div>
 </template>
+
 <script>
-export default {};
+
+export default {
+  name: 'App',
+
+  data: () => ({
+    //
+  }),
+};
 </script>
