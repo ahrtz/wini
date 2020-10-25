@@ -1,6 +1,6 @@
 <template>
   <navbar position="fixed" type="primary" menu-classes="ml-auto">
-    <template slot-scope="{ toggle, isToggled }">
+    <template >
       <router-link v-popover:popover1 class="navbar-brand" to="/presentation">
         My Site Name
       </router-link>
@@ -35,7 +35,7 @@ export default {
   components: {
     DropDown,
     Navbar,
-    NavbarToggleButton,
+    
     NavLink,
     [Popover.name]: Popover
   }
