@@ -6,6 +6,9 @@ import Login from './pages/Login.vue';
 import Profile from './pages/Profile.vue';
 import MainNavbar from './layout/MainNavbar.vue';
 import MainFooter from './layout/MainFooter.vue';
+
+import SignUp from './pages/SignUp.vue'
+
 import Main from './pages/Main.vue';
 import List from './pages/component/List.vue'
 Vue.use(Router);
@@ -57,6 +60,15 @@ export default new Router({
         header: { colorOnScroll: 400 }
       }
     },
+    {
+      path: '/signup',
+      name: 'signup',
+      components:{ default : SignUp, header: MainNavbar},
+      props:{
+        header:{ colorOnScroll:400}
+      }
+    },
+
     {
       path: '/profile',
       name: 'profile',

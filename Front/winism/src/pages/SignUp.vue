@@ -15,14 +15,21 @@
             <fg-input
               class="no-border input-lg"
               addon-left-icon="now-ui-icons users_circle-08"
-              placeholder="First Name..."
+              placeholder="E-mail"
             >
             </fg-input>
 
             <fg-input
               class="no-border input-lg"
               addon-left-icon="now-ui-icons text_caps-small"
-              placeholder="Last Name..."
+              placeholder="Password"
+            >
+            </fg-input>
+
+            <fg-input
+              class="no-border input-lg"
+              addon-left-icon="now-ui-icons text_caps-small"
+              placeholder="Password Confirmation"
             >
             </fg-input>
 
@@ -31,14 +38,10 @@
                 <a
                   href="#pablo"
                   class="btn btn-primary btn-round btn-lg btn-block"
-                  >Get Started</a
+                  >Sign Up</a
                 >
               </div>
-              <div class="pull-left">
-                <h6>
-                  <a href="#pablo" class="link footer-link">Create Account</a>
-                </h6>
-              </div>
+              
               <div class="pull-right">
                 <h6>
                   <a href="#pablo" class="link footer-link">Need Help?</a>
@@ -49,18 +52,17 @@
         </div>
       </div>
     </div>
-    <main-footer></main-footer>
+    
   </div>
 </template>
 <script>
 import { Card, Button, FormGroupInput } from '@/components';
 
 export default {
-  name: 'login-page',
-  bodyClass: 'login-page',
+  name: 'signup-page',
+  bodyClass: 'signup-page',
   components: {
     Card,
-
     [Button.name]: Button,
     [FormGroupInput.name]: FormGroupInput
   }
