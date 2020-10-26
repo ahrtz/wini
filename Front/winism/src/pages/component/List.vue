@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-app>
   <v-container class="pt-5">
       <div class="row">
         <div
@@ -195,7 +195,7 @@
     </v-container>
 
  
-  </div>
+  </v-app>
 </template>
 <script>
 export default {
