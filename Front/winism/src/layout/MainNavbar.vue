@@ -33,32 +33,43 @@
           <p>Guide</p>
         </a>
       </li>
-      <drop-down
-        tag="li"
-        title="Info"
-        icon="now-ui-icons design_app"
-        class="nav-item"
-      >
-        <nav-link to="/">
-          <i class="now-ui-icons business_chart-pie-36"></i> All components
-        </nav-link>
+       <li class="nav-item">
         <a
-          href="https://demos.creative-tim.com/vue-now-ui-kit/documentation"
+          class="nav-link"
+          href="https://www.creative-tim.com/product/vue-now-ui-kit"
           target="_blank"
-          class="dropdown-item"
         >
-          <i class="now-ui-icons design_bullet-list-67"></i> Documentation
+          
+          <p>Info</p>
         </a>
-      </drop-down>
+      </li>
+       <li class="nav-item">
+        <a
+          class="nav-link"
+          href="https://www.creative-tim.com/product/vue-now-ui-kit"
+          target="_blank"
+        >
+          
+          <p>News</p>
+        </a>
+      </li>
+       <li class="nav-item">
+        <a
+          class="nav-link"
+          href="https://www.creative-tim.com/product/vue-now-ui-kit"
+          target="_blank"
+        >
+          
+          <p>Recommend</p>
+        </a>
+      </li>
+      
       <drop-down
               tag="li"
-              title="Examples"
+              title="My Cellar"
               icon="now-ui-icons design_image"
               class="nav-item"
       >
-        <nav-link to="/landing">
-          <i class="now-ui-icons education_paper"></i> Landing
-        </nav-link>
         <nav-link to="/login">
           <i class="now-ui-icons users_circle-08"></i> Login
         </nav-link>
