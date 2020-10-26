@@ -9,7 +9,6 @@
       <div class="container">
         <div class="content-center brand">
           <img class="n-logo" src="img/winelogo.png" alt="" />
-          <h1 class="h1-seo">Winism</h1>
    
          <fg-input
               addon-right-icon="now-ui-icons ui-1_zoom-bold"
@@ -119,7 +118,7 @@ import { Parallax } from '@/components';
 import { Card, FormGroupInput, Button } from '@/components';
 
 export default {
-  name: 'main',
+  name: 'Main',
   bodyClass: 'index-page',
   components: {
     [FormGroupInput.name]: FormGroupInput,
