@@ -27,7 +27,7 @@ export default new Router({
     },
     {
       path: '/main',
-      name: 'main',
+      name: 'Main',
       components: { default: Main, header: MainNavbar },
       props: {
         header: { colorOnScroll: 400 },
@@ -38,10 +38,8 @@ export default new Router({
       path: '/list',
       name: 'list',
       components: { default: List, header: MainNavbar },
-      props: {
-        header: { colorOnScroll: 400 },
-      
-      }
+  
+     
     },
     {
       path: '/landing',
