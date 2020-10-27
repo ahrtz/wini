@@ -9,12 +9,12 @@
       <div class="container">
         <div class="content-center brand">
           <img class="n-logo" src="img/winelogo.png" alt="" />
-   
-         <fg-input
-              addon-right-icon="now-ui-icons ui-1_zoom-bold"
-              placeholder="Wine Search"
-            >
-            </fg-input>
+   <v-text-field
+            solo
+            label="Search Wine"
+            append-icon="mdi-magnify"
+          ></v-text-field>
+
 
           <h3>Wine site for wine newbie</h3>
         </div>
