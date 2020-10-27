@@ -26,14 +26,14 @@
             </template>
             <v-divider></v-divider>
             <v-card-title>Price</v-card-title>
-            <v-slider
+            <v-range-slider
               v-model="range"
               :max="max"
               :min="min"
               :height="10"
               class="align-center"
               dense
-            ></v-slider>
+            ></v-range-slider>
             <v-row class="pa-2" dense>
               <v-col cols="12" sm="5">
                 <v-text-field
@@ -152,7 +152,7 @@
     ></v-slider>
     <template>
   <slider class="slider-success"
-             v-model="simple" :disabled="true">
+             v-model="simple" :disabled="true" :label="ex1.label">
   </slider>
 </template>
                   <v-card-text class="text--primary">
@@ -251,8 +251,8 @@ export default {
             products:[
                 {
                     id:1,
-                    name:'BLACK TEE',
-                    type:'Jackets',
+                    name:'Alvaro Palacios Villa de Corullon',
+                    type:'Red',
                     price:'18.00',
                     src:require('../../../public/img/wine-bottle-grapes.jpg')
                 },
