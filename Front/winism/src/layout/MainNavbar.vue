@@ -40,7 +40,7 @@
           target="_blank"
         >
           
-          <p>Info</p>
+          <p>List</p>
         </a>
       </li>
        <li class="nav-item">
