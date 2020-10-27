@@ -26,7 +26,7 @@
       <li class="nav-item">
         <a
           class="nav-link"
-          href="https://www.creative-tim.com/product/vue-now-ui-kit"
+          href="/guide"
           target="_blank"
         >
           
@@ -36,7 +36,7 @@
        <li class="nav-item">
         <a
           class="nav-link"
-          href="https://www.creative-tim.com/product/vue-now-ui-kit"
+          href="/list"
           target="_blank"
         >
           
