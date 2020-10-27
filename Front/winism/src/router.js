@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp.vue'
 
 import Main from './pages/Main.vue';
 import List from './pages/component/List.vue'
+import Guide from './pages/component/Guide.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -36,8 +37,15 @@ export default new Router({
     },
     {
       path: '/list',
-      name: 'list',
+      name: 'List',
       components: { default: List, header: MainNavbar },
+  
+     
+    },
+    {
+      path: '/guide',
+      name: 'Guide',
+      components: { default: Guide, header: MainNavbar },
   
      
     },
