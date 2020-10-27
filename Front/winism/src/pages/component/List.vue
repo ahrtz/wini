@@ -66,41 +66,45 @@
               <v-checkbox append-icon="mdi-star" label="1 & above" hide-details dense></v-checkbox>
             </v-container>
             <v-divider></v-divider>
-            <v-card-title class="pb-0">Sweety</v-card-title>
+            <v-card-title class="pb-10">Sweetness</v-card-title>
             <v-slider
-        v-model="fruits"
-        :tick-labels="ticksLabels"
+        v-model="sweety"
+        :tick-labels="sweetness"
+        :max="5"
+        thumb-label="always"
+        step="1"
+
+        tick-size="4"
+      ></v-slider>
+      <v-card-title class="pb-10">Body</v-card-title>
+            <v-slider
+        v-model="bodyfeel"
+        :tick-labels="body"
         :max="5"
         step="1"
         ticks="always"
-        tick-size="5"
+        thumb-label="always"
+        tick-size="4"
       ></v-slider>
-      <v-card-title class="pb-0">Body</v-card-title>
+      <v-card-title class="pb-10">Acid</v-card-title>
             <v-slider
-        v-model="fruits"
-        :tick-labels="ticksLabels"
-        :max="3"
+        v-model="acid"
+        :tick-labels="acidity"
+        :max="5"
+        step="1"
+        ticks="always"
+        thumb-label="always"
+        tick-size="4"
+      ></v-slider>
+      <v-card-title class="pb-10">Tannin</v-card-title>
+            <v-slider
+        v-model="tanninfeel"
+        :tick-labels="tannin"
+        :max="5"
         step="1"
         ticks="always"
         tick-size="4"
-      ></v-slider>
-      <v-card-title class="pb-0">Acid</v-card-title>
-            <v-slider
-        v-model="fruits"
-        :tick-labels="ticksLabels"
-        :max="3"
-        step="1"
-        ticks="always"
-        tick-size="4"
-      ></v-slider>
-      <v-card-title class="pb-0">Tanin</v-card-title>
-            <v-slider
-        v-model="fruits"
-        :tick-labels="ticksLabels"
-        :max="3"
-        step="1"
-        ticks="always"
-        tick-size="4"
+        thumb-label="always"
       ></v-slider>
           </v-card>
         </div>
@@ -182,7 +186,7 @@
 <script>
 import {Slider} from '@/components'
 export default {
-  name: 'List   ',
+  name: 'List',
   components: {
  Slider
   },
@@ -190,6 +194,12 @@ export default {
       return{
         //wine list slider data
         simple:30,
+        //wine sweety
+        sweety:0,
+        bodyfeel:0,
+        acid:0,
+        tanninfeel:0,
+
             range: [0, 10000],
             select:'Popularity',
             options: [
@@ -259,12 +269,24 @@ export default {
                 
                
             ],
-             ticksLabels: [
-          'Low',
-          '',
-          '',
-          'High',
+       
+        sweetness:[
+          'Dry',
+          '','','','','Sweet'
         ],
+        body:[
+          'Light',
+          '','','','','Full'
+        ],
+        
+        acidity:[
+          'Low',
+          '','','','','High'
+        ],
+        tannin:[
+          'Low',
+          '','','','','High'
+        ]
       }
   }
 };
