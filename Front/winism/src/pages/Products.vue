@@ -3,7 +3,7 @@
        <div class="page-header clear-filter" filter-color="orange">
             <parallax
                 class="page-header-image"
-                style="background-image:url('img/bg5.jpg')"
+                style="background-image:url('img/bg_profile.png')"
             >
             </parallax>
             <p>임시 상단 이미지 작은걸로 혹은 그냥 투명배경 아무거나  </p>

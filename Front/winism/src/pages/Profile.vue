@@ -3,14 +3,12 @@
     <div class="page-header clear-filter" filter-color="orange">
       <parallax
         class="page-header-image"
-        style="background-image:url('img/bg5.jpg')"
+        style="background-image:url('img/bg_profile.png')"
       >
       </parallax>
       <div class="container">
-        <div class="photo-container">
-          <img src="img/ryan.jpg" alt="" />
-        </div>
-        <h3 class="title">이메일</h3>
+        
+        <h3 class="title">이메일 혹은 닉네임</h3>
         <p class="category">등급 개인정보?</p>
         <div class="content">
           <div class="social-description">
@@ -33,7 +31,7 @@
         
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
-            <h4 class="title text-center">My Portfolio</h4>
+            <h4 class="title text-center">My Wine Cellar</h4>
           </div>
           <tabs
             pills
@@ -49,7 +47,7 @@
                 <div class="row collections">
                   <div class="col-md-4" v-for="item in dummy" :key="item.id">
                     <img src="img/bg6.jpg" class="img-raised" />
-                    <b-card
+                    <v-card
                       title="Card Title"
                       img-src="img/bg6.jpg"
                       img-alt="Image"
@@ -58,10 +56,10 @@
                       style="max-width: 20rem;"
                       class="img-raised"
                     >
-                      <b-card-text>
+                      <v-card-text>
                         {{item.content}}
-                      </b-card-text>
-                    </b-card>
+                      </v-card-text>
+                    </v-card>
                     <!-- <img src="img/bg11.jpg" alt="" class="img-raised" /> -->
                   </div>
                   <!-- <div class="col-md-6">
