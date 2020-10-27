@@ -1,6 +1,15 @@
 <template>
-  <v-app>
+<div>
+<v-app>
   <v-container class="pt-5">
+  <v-row style='margin-top:60px'>
+  <v-col cols="12">
+  <v-text-field
+            label="Search Wine"
+            append-outer-icon="mdi-magnify"
+          ></v-text-field>
+  </v-col>
+  </v-row>
       <div class="row">
         <div
          class="col-md-3 col-sm-3 col-xs-12"
@@ -9,7 +18,11 @@
             <v-card-title>Filters</v-card-title>
             <v-divider></v-divider>
             <template>
-              <v-treeview :items="items" :open="[1]" :active="[5]" :selected-color="'#fff'" activatable open-on-click dense></v-treeview>
+              <v-treeview :items="items" :open="[1]" :selected-color="'#fff'" activatable open-on-click dense></v-treeview>
+            </template>
+            <v-divider></v-divider>
+            <template>
+              <v-treeview :items="pairings" :open="[1]" :selected-color="'#fff'" activatable open-on-click dense></v-treeview>
             </template>
             <v-divider></v-divider>
             <v-card-title>Price</v-card-title>
@@ -135,7 +148,13 @@
       v-model="ex1.val"
       :color="ex1.color"
       :label="ex1.label"
+      :readonly="true"
     ></v-slider>
+    <template>
+  <slider class="slider-success"
+             v-model="simple" :disabled="true">
+  </slider>
+</template>
                   <v-card-text class="text--primary">
                     <div><a href="/product" style="text-decoration: none">{{pro.name}}</a></div>
                     <div>${{pro.price}}</div>
@@ -144,46 +163,7 @@
               </v-hover>
             </div>
           </div>
-          <v-col cols="12">
-           <v-card
-
-          >
-            <div class="d-flex flex-no-wrap justify-space-between">
-              <div>
-                <v-card-title
-                  class="headline"
-    
-                ></v-card-title>
-
-                <v-card-subtitle></v-card-subtitle>
-
-                <v-card-actions>
-                  <v-btn
-
-                    class="ml-2 mt-3"
-                    fab
-                    icon
-                    height="40px"
-                    right
-                    width="40px"
-                  >
-                    <v-icon>mdi-play</v-icon>
-                  </v-btn>
-
-         
-                </v-card-actions>
-              </div>
-
-              <v-avatar
-                class="ma-3"
-                size="125"
-                tile
-              >
-  
-              </v-avatar>
-            </div>
-          </v-card>
-          </v-col>
+          
           <div class="text-center mt-12">
             <v-pagination
               v-model="page"
@@ -196,15 +176,20 @@
 
  
   </v-app>
+  </div>
+
 </template>
 <script>
+import {Slider} from '@/components'
 export default {
   name: 'List   ',
   components: {
- 
+ Slider
   },
   data(){
       return{
+        //wine list slider data
+        simple:30,
             range: [0, 10000],
             select:'Popularity',
             options: [
@@ -241,7 +226,23 @@ export default {
                     children: [
                         { id: 2, name: 'Red' },
                         { id: 3, name: 'White' },
-                        { id: 4, name: 'Sparkling' },
+                        { id: 4, name: 'Rose' },
+                        { id: 5, name: 'Sparkling' },
+                    ],
+                },
+           
+            ],
+            pairings: [
+                {
+                    id: 2,
+                    name: 'Pairing',
+                    children: [
+                        { id: 2, name: 'Beef' },
+                        { id: 3, name: 'Rich fish' },
+                        { id: 4, name: 'Lamb' },
+                        { id: 5, name: 'Vegetarian' },
+                        { id: 6, name: 'Pasta' },
+                        { id: 7, name: 'Pork' },
                     ],
                 },
            
@@ -268,7 +269,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
   .v-card--reveal {
     align-items: center;
     bottom: 0;
@@ -276,5 +277,12 @@ export default {
     opacity: .8;
     position: absolute;
     width: 100%;
+  }
+.v-slider--horizontal .v-slider__track-container{
+  width:100%;
+  height:20px;
+  left:0;
+  top:50%;
+  transform:translateY(-50%)
   }
 </style>
