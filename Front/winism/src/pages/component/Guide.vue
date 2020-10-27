@@ -16,9 +16,9 @@
     </div>
 <v-app>
   <v-container class="pt-5">
-  <div style="margin-top:160px">
+  <div style="margin-top:10px">
      <v-tabs
-
+     fixed-tabs
     background-color="#750049"
     centered
     dark
