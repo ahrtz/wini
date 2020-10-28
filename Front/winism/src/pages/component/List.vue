@@ -48,17 +48,26 @@
               </v-container>
               <v-divider></v-divider>
               <v-card-title class="pb-10">Sweetness</v-card-title>
-              <v-slider v-model="sweety" :tick-labels="sweetness" :max="5" thumb-label="always" step="1" thumb-size="25"
-                tick-size="4"></v-slider>
+              <v-slider v-model="sweetrange" :max="max" :min="min" :height="10" class="align-center" dense>
+               <template v-slot:append>
+                <v-text-field
+                  v-model="green"
+                  class="mt-0 pt-0"
+                  type="number"
+                  style="width: 60px"
+                ></v-text-field>
+              </template>
+              </v-slider>
+              
               <v-card-title class="pb-10">Body</v-card-title>
-              <v-slider v-model="bodyfeel" :tick-labels="body" :max="5" step="1" ticks="always" thumb-label="always"
-                thumb-size="25" tick-size="4"></v-slider>
+             <v-range-slider v-model="bodyrange" :max="max" :min="min" :height="10" class="align-center" dense>
+              </v-range-slider>
               <v-card-title class="pb-10">Acid</v-card-title>
-              <v-slider v-model="acid" :tick-labels="acidity" :max="5" step="1" ticks="always" thumb-label="always"
-                thumb-size="25" tick-size="4"></v-slider>
+             <v-range-slider v-model="acidrange" :max="max" :min="min" :height="10" class="align-center" dense>
+              </v-range-slider>
               <v-card-title class="pb-10">Tannin</v-card-title>
-              <v-slider v-model="tanninfeel" :tick-labels="tannin" :max="5" step="1" ticks="always" tick-size="4"
-                thumb-label="always" thumb-size="25"></v-slider>
+              <v-range-slider v-model="tanninrange" :max="max" :min="min" :height="10" class="align-center" dense>
+              </v-range-slider>
             </v-card>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-12">
@@ -74,43 +83,10 @@
 
             <v-divider></v-divider>
 
-            <div class="row text-center">
+<div class="row text-center">
               <div class="col-12" :key="pro.id" v-for="pro in products">
                 <v-hover v-slot:default="{ hover }">
-                  <v-card class="mx-auto v-flex" color="grey lighten-4" max-width="600">
 
-  
-                      <div>
-                        <v-img :aspect-ratio="16/9" height="200px" :src="pro.src">
-                        </v-img>
-                        <v-card-title>{{pro.type}} </v-card-title>
-                      </div>
-
-                      <v-expand-transition>
-                        <div v-if="hover"
-                          class="d-flex transition-fast-in-fast-out white darken-2 v-card--reveal display-3 white--text"
-                          style="height: 100%;">
-                          <v-btn v-if="hover" href="/detail" class="" outlined>VIEW</v-btn>
-                        </div>
-
-                      </v-expand-transition>
-
-
-
-                      <v-slider v-model="ex1.val" :color="ex1.color" :label="ex1.label" :readonly="true"></v-slider>
-                      <template>
-                        sweety<slider class="slider-success" v-model="simple" :disabled="false" :value="ex1.label">10
-                        </slider>
-                      </template>
-                      <v-card-text class="text--primary">
-                        <div><a href="/product" style="text-decoration: none">{{pro.name}}</a></div>
-                        <div>${{pro.price}}</div>
-                      </v-card-text>
-
-                  </v-card>
-                </v-hover>
-              </div>
-            </div>
 <v-card>
       <v-container
         fluid
@@ -118,7 +94,7 @@
       >
         <v-layout row wrap>
         <v-flex xs12>
-            <v-card color="grey lighten-4">
+          
               <v-layout>
                 <v-flex xs3>
                   <v-img
@@ -140,7 +116,7 @@
                   <v-card-text>
                     <div>
                     <template>
-                    sweety<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
+                    <n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
                   </template>
                   <template>
                     acidity<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
@@ -151,24 +127,33 @@
                   <template>
                     body<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
                   </template>
-                      <template>
-                        sweety<slider class="slider-success" v-model="simple" :disabled="false" :value="ex1.label">10
-                        </slider>
-                      </template>
+                      
                       
                     </div>
                   </v-card-text>
                 </v-flex>
 
               </v-layout>
-              <v-divider light></v-divider>
+
              
-            </v-card>
+           
           </v-flex>
 
         </v-layout>
       </v-container>
+       <v-expand-transition>
+                        <div v-if="hover"
+                          class="d-flex transition-fast-in-fast-out white darken-2 v-card--reveal display-3 white--text"
+                          style="height: 100%;">
+                          <v-btn v-if="hover" href="/detail" class="" outlined>VIEW</v-btn>
+                        </div>
+
+                      </v-expand-transition>
+
 </v-card>
+                </v-hover>
+              </div>
+</div>
             <div class="text-center mt-12">
               <v-pagination v-model="page" :length="6"></v-pagination>
             </div>
@@ -196,11 +181,12 @@ import {Progress} from '@/components'
       return {
         //wine list slider data
         simple: 30,
-        //wine sweety
-        sweety: 0,
-        bodyfeel: 0,
-        acid: 0,
-        tanninfeel: 0,
+
+        //wine taste
+        sweetrange: [1,5],
+        bodyrange: [1,5],
+        acidrange: [1,5],
+        tanninrange: [1,5],
 
         range: [0, 10000],
         select: 'Popularity',
