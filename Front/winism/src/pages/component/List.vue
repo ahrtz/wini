@@ -8,7 +8,7 @@
           </v-col>
         </v-row>
         <div class="row">
-          <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="col-md-4 col-sm-4 col-xs-12" id="app">
             <v-card outlined>
               <v-card-title>Filters</v-card-title>
               <v-divider></v-divider>
@@ -23,7 +23,7 @@
               </template>
               <v-divider></v-divider>
               <v-card-title>Price</v-card-title>
-              <v-range-slider v-model="range" :max="max" :min="min" :height="10" class="align-center" dense>
+              <v-range-slider v-model="range" :max="max" :min="min" :height="10" class="align-center some" dense>
               </v-range-slider>
               <v-row class="pa-2" dense>
                 <v-col cols="12" sm="5">
@@ -35,6 +35,23 @@
                 </v-col>
                 <v-col cols="12" sm="5">
                   <v-text-field :value="range[1]" label="Max" outlined dense @change="$set(range, 1, $event)">
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-divider></v-divider>
+              <v-card-title>Alcohol</v-card-title>
+              <v-range-slider v-model="alcoholrange" :max="20" :min="10" :height="10" class="align-center" dense>
+              </v-range-slider>
+              <v-row class="pa-2" dense>
+                <v-col cols="12" sm="5">
+                  <v-text-field :value="alcoholrange[0]" label="Min" outlined dense @change="$set(range, 0, $event)">
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12" sm="2">
+                  <p class="pt-2 text-center">TO</p>
+                </v-col>
+                <v-col cols="12" sm="5">
+                  <v-text-field :value="alcoholrange[1]" label="Max" outlined dense @change="$set(range, 1, $event)">
                   </v-text-field>
                 </v-col>
               </v-row>
@@ -217,6 +234,7 @@ import {Progress} from '@/components'
         body:0,
         tannin:0,
         acidity:0,
+        alcoholrange:[10,20],
 
         range: [0, 10000],
         select: 'Popularity',
@@ -272,13 +290,19 @@ import {Progress} from '@/components'
         pairings: [{
             id: 2,
             name: 'Pairing',
-            children: [{
+            children: [
+              {
+                id: 1,
+                name: 'Cheese'
+              },
+              {
+            
                 id: 2,
                 name: 'Beef'
               },
               {
                 id: 3,
-                name: 'Rich fish'
+                name: 'Fish'
               },
               {
                 id: 4,
@@ -286,15 +310,35 @@ import {Progress} from '@/components'
               },
               {
                 id: 5,
-                name: 'Vegetarian'
+                name: 'Vegetable'
               },
               {
                 id: 6,
-                name: 'Pasta'
+                name: 'Pork'
               },
               {
                 id: 7,
-                name: 'Pork'
+                name: 'Western'
+              },
+              {
+                id: 8,
+                name: 'Duck'
+              },
+              {
+                id: 9,
+                name: 'Dessert'
+              },
+              {
+                id: 10,
+                name: 'Poultry'
+              },
+               {
+                id: 11,
+                name: 'Instant'
+              },
+              {
+                id: 12,
+                name: 'Etc'
               },
             ],
           },
@@ -336,5 +380,5 @@ import {Progress} from '@/components'
     position: absolute;
     width: 100%;
   }
-
+  
 </style>
