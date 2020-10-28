@@ -6,7 +6,6 @@ WINIEY
 gantt
 dateFormat  YYYY-MM-DD
 title SULTONG
-excludes weekends
 
 section Front
 
