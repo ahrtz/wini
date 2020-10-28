@@ -42,8 +42,6 @@ export default new Router({
       path: '/list',
       name: 'List',
       components: { default: List, header: MainNavbar },
-  
-     
     },
     {
       path: '/guide',
@@ -54,6 +52,10 @@ export default new Router({
       path: '/recommend',
       name: 'Recommend',
       components: { default: Recommend, header: MainNavbar },
+      props: {
+        header: { colorOnScroll: 50 },
+      
+      }
     },
     {
       path: '/landing',
