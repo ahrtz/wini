@@ -6,7 +6,7 @@ WINIEY
 gantt
 dateFormat  YYYY-MM-DD
 title SULTONG
-excludes weekdays 2020-10-28
+excludes weekends saturday,sunday
 
 section Front
 
