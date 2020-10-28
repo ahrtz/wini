@@ -17,19 +17,25 @@
 <v-app>
   <v-container class="pt-5">
   <div style="margin-top:10px">
-     <v-tabs
-     fixed-tabs
-    background-color="#750049"
-    centered
-    dark
-  >
-    <v-tab>
-      For Beginner
-    </v-tab>
-    <v-tab>
-      For Pro
-    </v-tab>
-  <v-tab-item
+    
+  </div>
+   <v-tabs
+      v-model="tab"
+      background-color=#750049
+      color="white"
+      grow
+    >
+      <v-tab
+        
+      >
+        For Beginner
+      </v-tab>
+      <v-tab
+        
+      >
+        For Pro
+      </v-tab>
+       <v-tab-item
       >
         <v-card flat>
           <v-card-text>
@@ -60,8 +66,7 @@
          
         </v-card>
       </v-tab-item>
-  </v-tabs>
-  </div>
+    </v-tabs>
     </v-container>
 
  
@@ -80,7 +85,7 @@ export default {
   data(){
       return{
         //wine list slider data
-       
+        tab: null,
       }
   }
 };
