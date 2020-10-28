@@ -4,7 +4,7 @@
 
     & + .progress-container,
     & ~ .progress-container{
-        margin-top: $margin-base-vertical;
+        margin-top: 1px;
     }
     .progress-badge{
         color: $default-color;
@@ -18,7 +18,7 @@
         border-radius: 0;
         box-shadow: none;
         background: $opacity-gray-8;
-        margin-top: 14px;
+        margin-top: 1px;
 
         .progress-bar {
             box-shadow: none;
@@ -52,10 +52,12 @@
     &.progress-primary{
         .progress{
             background: $primary-color-opacity;
+            border-radius: 30px;
         }
 
         .progress-bar{
             background: $brand-primary;
+
         }
 
         .progress-value,
