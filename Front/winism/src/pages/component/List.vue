@@ -380,9 +380,5 @@ import {Progress} from '@/components'
     position: absolute;
     width: 100%;
   }
-  .v-application .v-slider__thumb{
-    width:16px !important;
-    height:16px;
-  }
-
+  
 </style>
