@@ -47,10 +47,10 @@
                 <v-checkbox append-icon="mdi-star" label="1 & above" hide-details dense></v-checkbox>
               </v-container>
               <v-divider></v-divider>
-              <v-card-title class="pb-0 pt-0">Sweetness</v-card-title>
+              <v-card-title class="pb-0">Sweetness</v-card-title>
               <v-slider
             v-model="sweetness"
-            class="align-center pb-1"
+            class="align-center pb-5"
             :max=5
             :min=0
              :tick-labels="sweetlabel"
@@ -64,7 +64,7 @@
               <v-card-title class="pb-0">Body</v-card-title>
             <v-slider
             v-model="body"
-            class="align-center"
+            class="align-center pb-5"
             :max=5
             :min=0
              :tick-labels="bodylabel"
@@ -77,7 +77,7 @@
               <v-card-title class="pb-0">Acidity</v-card-title>
              <v-slider
             v-model="acidity"
-            class="align-center"
+            class="align-center pb-5"
             :max=5
             :min=0
              :tick-labels="acidlabel"
@@ -90,7 +90,7 @@
               <v-card-title class="pb-0">Tannin</v-card-title>
               <v-slider
             v-model="tannin"
-            class="align-center"
+            class="align-center pb-10"
             :max=5
             :min=0
              :tick-labels="acidlabel"
@@ -148,10 +148,10 @@
                   <v-card-text>
                     <div>
                     <template>
-                    <n-progress :value="60" type="primary" :height="15" show-value>{{sweetness}}</n-progress>
+                    sweetness<n-progress :value="60" type="primary" :height="15" show-value>{{sweetness}}</n-progress>
                   </template>
                   <template>
-                    acidity<n-progress :value="60" type="primary" :height="15" show-value>{{acidity}}</n-progress>
+                    acidity<n-progress :value="acidity" type="primary" :height="15" show-value>{{acidity}}</n-progress>
                   </template>
                   <template>
                     tannin<n-progress :value="60" type="primary" :height="15" show-value>{{tannin}}</n-progress>
