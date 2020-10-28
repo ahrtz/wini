@@ -290,13 +290,19 @@ import {Progress} from '@/components'
         pairings: [{
             id: 2,
             name: 'Pairing',
-            children: [{
+            children: [
+              {
+                id: 1,
+                name: 'Cheese'
+              },
+              {
+            
                 id: 2,
                 name: 'Beef'
               },
               {
                 id: 3,
-                name: 'Rich fish'
+                name: 'Fish'
               },
               {
                 id: 4,
@@ -304,15 +310,35 @@ import {Progress} from '@/components'
               },
               {
                 id: 5,
-                name: 'Vegetarian'
+                name: 'Vegetable'
               },
               {
                 id: 6,
-                name: 'Pasta'
+                name: 'Pork'
               },
               {
                 id: 7,
-                name: 'Pork'
+                name: 'Western'
+              },
+              {
+                id: 8,
+                name: 'Duck'
+              },
+              {
+                id: 9,
+                name: 'Dessert'
+              },
+              {
+                id: 10,
+                name: 'Poultry'
+              },
+               {
+                id: 11,
+                name: 'Instant'
+              },
+              {
+                id: 12,
+                name: 'Etc'
               },
             ],
           },
