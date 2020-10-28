@@ -39,6 +39,23 @@
                 </v-col>
               </v-row>
               <v-divider></v-divider>
+              <v-card-title>Alcohol</v-card-title>
+              <v-range-slider v-model="alcoholrange" :max="20" :min="10" :height="10" class="align-center" dense>
+              </v-range-slider>
+              <v-row class="pa-2" dense>
+                <v-col cols="12" sm="5">
+                  <v-text-field :value="alcoholrange[0]" label="Min" outlined dense @change="$set(range, 0, $event)">
+                  </v-text-field>
+                </v-col>
+                <v-col cols="12" sm="2">
+                  <p class="pt-2 text-center">TO</p>
+                </v-col>
+                <v-col cols="12" sm="5">
+                  <v-text-field :value="alcoholrange[1]" label="Max" outlined dense @change="$set(range, 1, $event)">
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-divider></v-divider>
               <v-card-title class="pb-0">Customer Rating</v-card-title>
               <v-container class="pt-0" fluid>
                 <v-checkbox append-icon="mdi-star" label="4 & above" hide-details dense></v-checkbox>
@@ -217,6 +234,7 @@ import {Progress} from '@/components'
         body:0,
         tannin:0,
         acidity:0,
+        alcoholrange:[10,20],
 
         range: [0, 10000],
         select: 'Popularity',
