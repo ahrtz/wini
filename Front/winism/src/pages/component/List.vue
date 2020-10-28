@@ -8,7 +8,7 @@
           </v-col>
         </v-row>
         <div class="row">
-          <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="col-md-4 col-sm-4 col-xs-12" id="app">
             <v-card outlined>
               <v-card-title>Filters</v-card-title>
               <v-divider></v-divider>
@@ -23,7 +23,7 @@
               </template>
               <v-divider></v-divider>
               <v-card-title>Price</v-card-title>
-              <v-range-slider v-model="range" :max="max" :min="min" :height="10" class="align-center" dense>
+              <v-range-slider v-model="range" :max="max" :min="min" :height="10" class="align-center some" dense>
               </v-range-slider>
               <v-row class="pa-2" dense>
                 <v-col cols="12" sm="5">
@@ -379,6 +379,10 @@ import {Progress} from '@/components'
     opacity: .8;
     position: absolute;
     width: 100%;
+  }
+  .v-application .v-slider__thumb{
+    width:16px !important;
+    height:16px;
   }
 
 </style>
