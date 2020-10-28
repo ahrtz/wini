@@ -12,7 +12,7 @@
         role="progressbar"
         :aria-valuenow="value"
         aria-valuemin="0"
-        aria-valuemax="100"
+        aria-valuemax="5"
         :style="`width: ${value}%;`"
       >
         <slot>
