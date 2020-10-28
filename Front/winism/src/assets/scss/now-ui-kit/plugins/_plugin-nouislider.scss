@@ -76,15 +76,15 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 /* Slider size and handle placement;
  */
 .noUi-horizontal {
-  height: 1px;
+  height: 15px;
 }
 .noUi-horizontal .noUi-handle {
-  border-radius: 50%;
+  border-radius: 100%;
     background-color: #FFFFFF;
     box-shadow: 0 1px 13px 0 rgba(0, 0, 0, 0.2);
-    height: 15px;
-    width: 15px;
-    cursor: pointer;
+    // height: 15px;
+    // width: 15px;
+    // cursor: pointer;
     outline: 0;
 
     &:before,
@@ -96,8 +96,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   width: 18px;
 }
 .noUi-vertical .noUi-handle {
-  width: 28px;
-  height: 34px;
+  width: 0px;
+  height: 0px;
   left: -6px;
   top: -17px;
 }
@@ -110,10 +110,10 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
  */
 .noUi-target {
   background-color: rgba(182, 182, 182, 0.3);
-  border-radius: 3px;
+  border-radius: 30px;
 }
 .noUi-connects {
-  border-radius: 3px;
+  border-radius: 30px;
 }
 .noUi-connect {
   background: #3FB8AF;
@@ -349,11 +349,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     &.slider-success{
         & .noUi-connect,
         &.noUi-connect{
-            background-color: $brand-success;
+            background-color: #750049;
         }
 
         &.noUi-target{
-			background-color: $success-color-opacity;
+			background-color: #B8B8B8;
 		}
 
 		& .noUi-handle{

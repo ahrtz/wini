@@ -9,112 +9,141 @@
       <div class="container">
         <div class="content-center brand">
           <img class="n-logo" src="img/winelogo.png" alt="" />
-          <h1 class="h1-seo">Winism</h1>
-   
-         <fg-input
-              addon-right-icon="now-ui-icons ui-1_zoom-bold"
-              placeholder="Wine Search"
-            >
-            </fg-input>
+   <v-text-field
+            solo
+            label="Search Wine"
+            append-icon="mdi-magnify"
+          ></v-text-field>
+
 
           <h3>Wine site for wine newbie</h3>
         </div>
-        <h6 class="category category-absolute">
-          Designed by
-          <a href="http://invisionapp.com/" target="_blank">
-            <img src="img/invision-white-slim.png" class="invision-logo" /> </a
-          >. Coded by
-          <a href="https://www.creative-tim.com" target="_blank">
-            <img
-              src="img/creative-tim-white-slim2.png"
-              class="creative-tim-logo"
-            /> </a
-          >.
-        </h6>
+       
       </div>
     </div>
-    <div class="main">
-      <div class="section section-images">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="hero-images-container">
-                <img src="img/hero-image-1.png" alt="" />
-              </div>
-              <div class="hero-images-container-1">
-                <img src="img/hero-image-2.png" alt="" />
-              </div>
-              <div class="hero-images-container-2">
-                <img src="img/hero-image-3.png" alt="" />
-              </div>
+<v-app>
+ <div class="pl-4 pr-4 row">
+      <div
+       class="col-md-6 col-sm-6 col-xs-12"
+      >
+        <v-card>
+
+          <v-img
+            :src="require('../../public/img/wine-cheese-grapes.jpg')"
+            class="white--text align-center"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="400px"
+          >
+           <h1 class="text-center font-size">Guide</h1>
+            <div class="text-center">
+              <v-btn  href="/guide" class="white--text " outlined>Go</v-btn>
             </div>
-          </div>
-        </div>
+
+
+<!--            <v-expand-transition>-->
+<!--              <div-->
+<!--                v-if="hover"-->
+<!--                class="d-flex transition-fast-in-fast-out orange darken-2 v-card&#45;&#45;reveal display-3 white&#45;&#45;text"-->
+<!--                style="height: 100%;"-->
+<!--              >-->
+
+<!--                <h3>Top Picks</h3><br/>-->
+<!--                <h3>sdfs</h3>-->
+<!--              </div>-->
+<!--            </v-expand-transition>-->
+          </v-img>
+        </v-card>
+<!--        </v-hover>-->
+      </div>
+      <div
+        class="col-md-6 col-sm-6 col-xs-12"
+      >
+        <v-card>
+          <v-img
+            :src="require('../../public/img/wine-bottle-grapes.jpg')"
+            class="white--text align-center"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="400px"
+          >
+            <h1 class="text-center font-size">Info</h1>
+            <div class="text-center">
+              <v-btn  href="/list" class="white--text" outlined>Go</v-btn>
+            </div>
+          </v-img>
+        </v-card>
       </div>
     </div>
-    <basic-elements></basic-elements>
-    <navigation></navigation>
-    <tabs-section></tabs-section>
-    <progress-pagination></progress-pagination>
-    <notifications></notifications>
-    <typography></typography>
-    <javascript-components></javascript-components>
-    <carousel-section></carousel-section>
-    <nucleo-icons-section></nucleo-icons-section>
-    <div class="section">
-      <div class="container text-center">
-        <div class="row justify-content-md-center">
-          <div class="col-md-12 col-lg-8">
-            <h2 class="title">Completed with examples</h2>
-            <h5 class="description">
-              The kit comes with three pre-built pages to help you get started
-              faster. You can change the text and images and you're good to go.
-              More importantly, looking at them will give you a picture of what
-              you can built with this powerful Bootstrap 4 ui kit.
-            </h5>
-          </div>
-        </div>
+    <div class="pl-4 pr-4 row">
+      <div
+       class="col-md-4 col-sm-4 col-xs-12"
+      >
+        <v-card outlined>
+          <v-img
+            :src="require('../../public/img/wine-wine-glasses-bottle.jpg')"
+            class="white--text align-center"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="300px"
+          >
+            <h1 class="text-center font-size">Glasses</h1>
+            <div class="text-center mt-2">
+              <v-btn class="white--text caption"  href="/" text>Go <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
+            </div>
+          </v-img>
+        </v-card>
+      </div>
+      <div
+        class="col-md-4 col-sm-4 col-xs-12"
+      >
+        <v-card outlined>
+          <v-img
+            :src="require('../../public/img/wine-grapes-drink.jpg')"
+            class="white--text align-center"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="300px"
+          >
+            <h1 class="text-center font-size">News</h1>
+            <div class="text-center mt-2">
+              <v-btn class="white--text caption"  href="/news" text>Go <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
+            </div>
+          </v-img>
+        </v-card>
+      </div>
+      <div
+        class="col-md-4 col-sm-4 col-xs-12"
+      >
+        <v-card outlined>
+          <v-img
+            :src="require('../../public/img/wine-cheese-grapes.jpg')"
+            class="white--text align-center"
+            gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            height="300px"
+          >
+            <h1 class="text-center font-size">My Cellar</h1>
+            <div class="text-center mt-2">
+              <v-btn class="white--text caption"  href="/" text>Go <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
+            </div>
+          </v-img>
+        </v-card>
       </div>
     </div>
-    <signup-form></signup-form>
-    <examples-section></examples-section>
-    <download-section></download-section>
+</v-app>
+ 
   </div>
 </template>
 <script>
 import { Parallax } from '@/components';
-import BasicElements from './components/BasicElementsSection';
-import Navigation from './components/Navigation';
-import TabsSection from './components/Tabs';
-import ProgressPagination from './components/ProgressPagination';
-import Notifications from './components/Notifications';
-import Typography from './components/Typography';
-import JavascriptComponents from './components/JavascriptComponents';
-import CarouselSection from './components/CarouselSection';
-import NucleoIconsSection from './components/NucleoIconsSection';
-import SignupForm from './components/SignupForm';
-import ExamplesSection from './components/ExamplesSection';
-import DownloadSection from './components/DownloadSection';
-import { Card, FormGroupInput, Button } from '@/components';
+
+import {  FormGroupInput, Button } from '@/components';
 
 export default {
-  name: 'main',
+  name: 'Main',
   bodyClass: 'index-page',
   components: {
     [FormGroupInput.name]: FormGroupInput,
+    [Button.name]: Button,
+
     Parallax,
-    BasicElements,
-    Navigation,
-    TabsSection,
-    ProgressPagination,
-    Notifications,
-    Typography,
-    JavascriptComponents,
-    CarouselSection,
-    NucleoIconsSection,
-    SignupForm,
-    ExamplesSection,
-    DownloadSection
+ 
   }
 };
 </script>
