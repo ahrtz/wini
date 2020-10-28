@@ -47,27 +47,95 @@
                 <v-checkbox append-icon="mdi-star" label="1 & above" hide-details dense></v-checkbox>
               </v-container>
               <v-divider></v-divider>
-              <v-card-title class="pb-10">Sweetness</v-card-title>
-              <v-slider v-model="sweetrange" :max="max" :min="min" :height="10" class="align-center" dense>
-               <template v-slot:append>
-                <v-text-field
-                  v-model="green"
-                  class="mt-0 pt-0"
-                  type="number"
-                  style="width: 60px"
-                ></v-text-field>
-              </template>
-              </v-slider>
+              <v-card-title class="pb-0">Sweetness</v-card-title>
+              <v-slider
+            v-model="sweetness"
+            class="align-center"
+            :max=5
+            :min=0
+             :tick-labels="sweetlabel"
+              step="1"
+              tick-size="0"
+            hide-details
+          >
+            <template v-slot:append>
+              <v-text-field
+                v-model="sweetness"
+                class="mt-0 pt-0"
+                hide-details
+                single-line
+                type="number"
+                style="width: 60px"
+              ></v-text-field>
+            </template>
+          </v-slider>
               
-              <v-card-title class="pb-10">Body</v-card-title>
-             <v-range-slider v-model="bodyrange" :max="max" :min="min" :height="10" class="align-center" dense>
-              </v-range-slider>
-              <v-card-title class="pb-10">Acid</v-card-title>
-             <v-range-slider v-model="acidrange" :max="max" :min="min" :height="10" class="align-center" dense>
-              </v-range-slider>
-              <v-card-title class="pb-10">Tannin</v-card-title>
-              <v-range-slider v-model="tanninrange" :max="max" :min="min" :height="10" class="align-center" dense>
-              </v-range-slider>
+              <v-card-title class="pb-0">Body</v-card-title>
+            <v-slider
+            v-model="body"
+            class="align-center"
+            :max=5
+            :min=0
+             :tick-labels="bodylabel"
+              step="1"
+              tick-size="0"
+            hide-details
+          >
+            <template v-slot:append>
+              <v-text-field
+                v-model="body"
+                class="mt-0 pt-0"
+                hide-details
+                single-line
+                type="number"
+                style="width: 60px"
+              ></v-text-field>
+            </template>
+          </v-slider>
+              <v-card-title class="pb-0">Acidity</v-card-title>
+             <v-slider
+            v-model="acidity"
+            class="align-center"
+            :max=5
+            :min=0
+             :tick-labels="acidlabel"
+              step="1"
+              tick-size="0"
+            hide-details
+          >
+            <template v-slot:append>
+              <v-text-field
+                v-model="acidity"
+                class="mt-0 pt-0"
+                hide-details
+                single-line
+                type="number"
+                style="width: 60px"
+              ></v-text-field>
+            </template>
+          </v-slider>
+              <v-card-title class="pb-0">Tannin</v-card-title>
+              <v-slider
+            v-model="tannin"
+            class="align-center"
+            :max=5
+            :min=0
+             :tick-labels="acidlabel"
+              step="1"
+              tick-size="0"
+            hide-details
+          >
+            <template v-slot:append>
+              <v-text-field
+                v-model="tannin"
+                class="mt-0 pt-0"
+                hide-details
+                single-line
+                type="number"
+                style="width: 60px"
+              ></v-text-field>
+            </template>
+          </v-slider>
             </v-card>
           </div>
           <div class="col-md-9 col-sm-9 col-xs-12">
@@ -116,16 +184,16 @@
                   <v-card-text>
                     <div>
                     <template>
-                    <n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
+                    <n-progress :value="60" type="primary" :height="15" show-value>{{sweetness}}</n-progress>
                   </template>
                   <template>
-                    acidity<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
+                    acidity<n-progress :value="60" type="primary" :height="15" show-value>{{acidity}}</n-progress>
                   </template>
                   <template>
-                    tannin<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
+                    tannin<n-progress :value="60" type="primary" :height="15" show-value>{{tannin}}</n-progress>
                   </template>
                   <template>
-                    body<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
+                    body<n-progress :value="60" type="primary" :height="15" show-value>{{body}}</n-progress>
                   </template>
                       
                       
@@ -179,14 +247,12 @@ import {Progress} from '@/components'
     },
     data() {
       return {
-        //wine list slider data
-        simple: 30,
 
         //wine taste
-        sweetrange: [1,5],
-        bodyrange: [1,5],
-        acidrange: [1,5],
-        tanninrange: [1,5],
+        sweetness:0,
+        body:0,
+        tannin:0,
+        acidity:0,
 
         range: [0, 10000],
         select: 'Popularity',
@@ -270,11 +336,7 @@ import {Progress} from '@/components'
           },
 
         ],
-        ex1: {
-          label: 'sweety',
-          val: 25,
-          color: '#750049'
-        },
+
         products: [{
             id: 1,
             name: 'Alvaro Palacios Villa de Corullon',
@@ -282,27 +344,21 @@ import {Progress} from '@/components'
             price: '18.00',
             src: require('../../../public/img/wine-bottle-grapes.jpg')
           },
-
-
         ],
-
-        sweetness: [
+        sweetlabel: [
           'Dry',
           '', '', '', '', 'Sweet'
         ],
-        body: [
+        bodylabel: [
           'Light',
           '', '', '', '', 'Full'
         ],
 
-        acidity: [
+        acidlabel: [
           'Low',
           '', '', '', '', 'High'
         ],
-        tannin: [
-          'Low',
-          '', '', '', '', 'High'
-        ]
+    
       }
     }
   };
