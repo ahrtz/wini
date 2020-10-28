@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app>
+    <v-app >
       <v-container class="pt-5">
         <v-row style='margin-top:60px'>
           <v-col cols="12">

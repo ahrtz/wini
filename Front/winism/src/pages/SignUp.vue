@@ -32,7 +32,36 @@
               placeholder="Password Confirmation"
             >
             </fg-input>
-
+            <fg-input
+              class="no-border input-lg"
+              addon-left-icon="now-ui-icons text_caps-small"
+              placeholder="Age"
+            >
+            </fg-input>
+            <!-- <v-radio-group row v-model="signupData.gender" class="radio">
+              <v-radio
+                value='남'
+                style="color:white"
+                color='red'
+              >
+                <template v-slot:label>
+                  <div style="color:white">남</div>
+                </template>
+              </v-radio>
+              <v-radio
+                
+                value='여'
+                style="color:white"
+              >
+                <template v-slot:label>
+                  <div style="color:white">여</div>
+                </template>
+              </v-radio>
+            </v-radio-group> -->
+            <div class="row">
+              <n-radio v-model="signupData.gender" label='male' class="col-6">남</n-radio>
+              <n-radio v-model="signupData.gender" label='female' class="col-6">여</n-radio>
+            </div>
             <template slot="raw-content">
               <div class="card-footer text-center">
                 <a
@@ -56,7 +85,7 @@
   </div>
 </template>
 <script>
-import { Card, Button, FormGroupInput } from '@/components';
+import { Card, Button, FormGroupInput, Radio } from '@/components';
 
 export default {
   name: 'signup-page',
@@ -64,8 +93,23 @@ export default {
   components: {
     Card,
     [Button.name]: Button,
-    [FormGroupInput.name]: FormGroupInput
+    [FormGroupInput.name]: FormGroupInput,
+    [Radio.name]:Radio
+  },
+  data(){
+    return{
+      signupData:{
+        email:"",
+        password:"",
+        gender:null,
+        age:""
+      }
+    }
   }
 };
 </script>
-<style></style>
+<style>
+.radio label{
+  color: aliceblue;
+}
+</style>

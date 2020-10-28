@@ -21,6 +21,7 @@ import router from './router';
 import NowUiKit from './plugins/now-ui-kit';
 import vuetify from './plugins/vuetify';
 
+require('./assets/demo/demo.css');
 Vue.config.productionTip = false;
 
 Vue.use(NowUiKit);

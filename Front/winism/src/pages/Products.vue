@@ -6,7 +6,6 @@
                 style="background-image:url('img/bg_profile.png')"
             >
             </parallax>
-            <p>임시 상단 이미지 작은걸로 혹은 그냥 투명배경 아무거나  </p>
       
         </div>
         <v-container>
@@ -42,15 +41,35 @@
                         color="warning" dense></v-rating> -->
               <span class="body-2	font-weight-thin"> 앞에 별점? 25 REVIEWS</span>
             </v-card-actions>
-            <!-- <p class="subtitle-1 font-weight-thin">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Tincidunt arcu non sodales neque sodales ut etiam. Lectus arcu bibendum at varius vel pharetra. Morbi tristique senectus et netus et malesuada.
-            </p> -->
-            <!-- <p class="title">SIZE</p>
-            
-            <p class="title">ITEMS</p> -->
 
-            
-            <v-btn class="primary white--text " outlined tile dense><v-icon>mdi-cart</v-icon> 리뷰 남기기</v-btn>
+            <v-app id="app" class="override">
+              <v-dialog v-model="dialog" persistent>
+                <template v-slot:activator="{on,attrs}">
+                  <v-btn class="primary white--text " v-bind="attrs" v-on="on" outlined tile dense ><v-icon>mdi-cart</v-icon> 리뷰 남기기</v-btn>
+                </template>
+                <v-card>
+                  <v-card-title>
+                    <v-text-field></v-text-field>
+                  </v-card-title>
+
+                </v-card>
+                <v-card-actions>
+                  <v-btn
+                    color="green darken-1"
+                    text
+                    @click="dialog = false"
+                  >
+                    Agree
+                  </v-btn>
+
+                </v-card-actions>
+
+              </v-dialog>
+            </v-app>
+
+
+
+
             <v-btn class="ml-4" outlined tile>ADD TO WISHLIST</v-btn>
 
           </div>
@@ -153,6 +172,7 @@ export default {
     bodyClass: 'product-page',
     data(){
         return {
+            dialog:false,
             items:'',
             item: [
           {
@@ -190,13 +210,21 @@ export default {
             content:'내용2',
             rate:4
           },
-        ]
+        ],
+        reviewData:{
+          title:'',
+          content:'',
+          rating:0
+        },
         }
     }
 
 }
 </script>
 
-<style>
+<style scoped>
+
+
+  
 
 </style>
