@@ -133,7 +133,7 @@ export default {
         {
           color: 'green lighten-1',
           icon: 'mdi-airballoon',
-          title:'Choose your Wine Type',
+          title:'Choose your Price',
           content:'가격대를 정하세요. 자신의 예산에 맞추어 그에 맞는 와인을 선택하세요.'
         },
         {
@@ -147,7 +147,7 @@ export default {
         {
           color: 'red lighten-2',
           icon: 'mdi-star',
-          title:'딜콤한 화이트 와인',
+          title:'달콤한 화이트 와인',
           content:'독일 모젤지방의 리슬링 와인종류와 같은 달콤한 화이트 와인을 먼저 도전해보세요. 향기로운 과일 향에 매료되면서 맛있다고 생각하게 될 것입니다.'
         },
         {
@@ -169,8 +169,8 @@ export default {
           content:'호주산 쉬라즈나 까베르네 소비뇽, 미국산 진판델이나 멜로종류 혹은 멜로 포도품종이 많이 들어간 프랑스의 쌩떼밀리용지역에서 생산되는 와인을 시도해보세요.'
         },
          {
-          color: 'violet',
-          icon: 'mdi-food-variant',
+          color: 'pink',
+          icon: 'mdi-glass-tulip',
           title:'타닌 맛이 강한 와인',
           content:'프랑스 보르도 와인이나 까베르네 소비뇽과 같은 포도 품종이 많이 사용된 와인들을 접해보세요. 이런 종류의 와인에 익숙해지게 된다면 you are not beginner anymore'
         },
