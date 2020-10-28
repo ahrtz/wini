@@ -1,5 +1,7 @@
 WINIEY
 
+
+
 ```mermaid
 gantt
 dateFormat  YYYY-MM-DD
@@ -8,10 +10,10 @@ excludes weekdays 2020-10-28
 
 section Front
 
-User Page               :done  		front1, 2020-10-26, 2d
-Product Detail Page 	:active		front2, after font1, 5d
-Main Page               :active  	front3, 2020-10-26, 7d
-Product List page       :active     front4, 2020-10-26, 7d
+User Page               :done,  		front1, 2020-10-26, 2d
+Product Detail Page 	:active,		front2, after font1, 5d
+Main Page               :active,  	front3, 2020-10-26, 7d
+Product List page       :active,     front4, 2020-10-26, 7d
 
 
 section Backend
@@ -23,5 +25,5 @@ Contents-based Filtering    :active,  back3, 2020-10-26, 5d
 crawling               		:active,  back2, 2020-10-26, 10d
 Wine Function 				:         back6, after back2, 5d
 
-
 ```
+
