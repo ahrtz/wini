@@ -13,7 +13,7 @@
         :aria-valuenow="value"
         aria-valuemin="0"
         aria-valuemax="5"
-        :style="`width: ${value}%;`"
+        :style="`width: ${(value/5)*100}%;`"
       >
         <slot>
           <span class="progress-value" v-if="showValue"> {{ value }}% </span>
