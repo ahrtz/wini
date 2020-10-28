@@ -120,22 +120,46 @@
         <v-flex xs12>
             <v-card color="grey lighten-4">
               <v-layout>
-                <v-flex xs5>
+                <v-flex xs3>
                   <v-img
-                    src="../../../public/img/wine-bottle-grapes.jpg"
+                    src="../../../public/img/pngegg.png"
                     height="125px"
                     contain
                   ></v-img>
                 </v-flex>
-                <v-flex xs7>
+                <v-flex xs5>
                   <v-card-title primary-title>
                     <div>
-                      <div class="headline">Supermodel</div>
-                      <div>Foster the People</div>
-                      <div>(2014)</div>
+                      <div class="headline">Alvaro Palacios Villa de Corullon</div>
+                      <div>꿀레레레레레레레레레레</div>
+                      <div>(Red)</div>
                     </div>
                   </v-card-title>
                 </v-flex>
+                <v-flex xs4>
+                  <v-card-text>
+                    <div>
+                    <template>
+                    sweety<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
+                  </template>
+                  <template>
+                    acidity<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
+                  </template>
+                  <template>
+                    tannin<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
+                  </template>
+                  <template>
+                    body<n-progress :value="60" type="primary" :height="15" show-value>{{sweety}}</n-progress>
+                  </template>
+                      <template>
+                        sweety<slider class="slider-success" v-model="simple" :disabled="false" :value="ex1.label">10
+                        </slider>
+                      </template>
+                      
+                    </div>
+                  </v-card-text>
+                </v-flex>
+
               </v-layout>
               <v-divider light></v-divider>
              
@@ -161,11 +185,12 @@
   import {
     Slider
   } from '@/components'
-
+import {Progress} from '@/components'
   export default {
     name: 'List',
     components: {
-      [Slider.name]: Slider
+      [Slider.name]: Slider,
+       [Progress.name]: Progress
     },
     data() {
       return {
