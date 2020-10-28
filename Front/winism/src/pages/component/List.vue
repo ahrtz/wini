@@ -148,16 +148,16 @@
                   <v-card-text>
                     <div>
                     <template>
-                    sweetness<n-progress :value="60" type="primary" :height="15" show-value>{{sweetness}}</n-progress>
+                    sweetness<n-progress :value="sweetness" type="primary" :height="15" show-value>{{sweetness}}</n-progress>
                   </template>
                   <template>
                     acidity<n-progress :value="acidity" type="primary" :height="15" show-value>{{acidity}}</n-progress>
                   </template>
                   <template>
-                    tannin<n-progress :value="60" type="primary" :height="15" show-value>{{tannin}}</n-progress>
+                    tannin<n-progress :value="tannin" type="primary" :height="15" show-value>{{tannin}}</n-progress>
                   </template>
                   <template>
-                    body<n-progress :value="60" type="primary" :height="15" show-value>{{body}}</n-progress>
+                    body<n-progress :value="body" type="primary" :height="15" show-value>{{body}}</n-progress>
                   </template>
                       
                       
