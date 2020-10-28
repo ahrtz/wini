@@ -13,6 +13,8 @@ import Product from './pages/Products.vue'
 import Main from './pages/Main.vue';
 import List from './pages/component/List.vue'
 import Guide from './pages/component/Guide.vue'
+import Recommend from './pages/component/Recommend.vue'
+
 Vue.use(Router);
 
 export default new Router({
@@ -47,8 +49,11 @@ export default new Router({
       path: '/guide',
       name: 'Guide',
       components: { default: Guide, header: MainNavbar },
-  
-     
+    },
+    {
+      path: '/recommend',
+      name: 'Recommend',
+      components: { default: Recommend, header: MainNavbar },
     },
     {
       path: '/landing',
