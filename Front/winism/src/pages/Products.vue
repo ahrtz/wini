@@ -43,23 +43,36 @@
             </v-card-actions>
             <div class="row">
             <v-btn class=" col-6" outlined tile>ADD TO WISHLIST</v-btn>
-            <v-app id="app" class="col-6">
+            <v-app id="app" class="col-6 p-0">
               <v-dialog v-model="dialog" persistent>
                 <template v-slot:activator="{on,attrs}">
                   <v-btn  v-bind="attrs" v-on="on" outlined tile dense ><v-icon>mdi-cart</v-icon> 리뷰 남기기</v-btn>
                 </template>
-                <v-card>
+                <v-card class="mx-auto">
                   <v-card-title>
-                    <v-text-field></v-text-field>
+                    <v-text-field label="제목"  hide-details="auto" v-model="reviewData.title"></v-text-field>
                   </v-card-title>
-
-                <v-card-actions>
+                  <v-divider></v-divider>
+                  <v-card-actions> 
+                    <v-spacer></v-spacer>
+                    <v-rating v-model="reviewData.rating"></v-rating> 
+                  </v-card-actions>
+                  <v-card-text>
+                    <v-text-field label="내용" v-model="reviewData.content"></v-text-field>
+                  </v-card-text>
+                  <v-card-actions>
+                  <v-spacer></v-spacer>
                   <v-btn
-                    color="green darken-1"
                     text
                     @click="dialog = false"
                   >
-                    Agree
+                    리뷰 등록
+                  </v-btn>
+                  <v-btn
+                    text
+                    @click="dialog = false"
+                  >
+                    취소
                   </v-btn>
 
                 </v-card-actions>
