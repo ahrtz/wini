@@ -37,6 +37,89 @@
       </v-tab>
        <v-tab-item
       >
+      <p>와인 종류에 따른 포도 품종을 선택해보세요!</p>
+      <v-row>
+      <v-col cols="12" sm="6">
+      <v-card
+    class="mx-auto"
+    max-width="344"
+  >
+    <v-img
+      src="../../../public/img/pngwing.com.png"
+
+    ></v-img>
+ <v-card-actions>
+   
+
+      <v-spacer></v-spacer>
+    <v-card-title>
+      Red Wine
+    </v-card-title>
+
+    
+
+   
+
+      <v-btn
+        icon
+        @click="show = !show"
+      >
+        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>
+
+        <v-card-text>
+         
+        </v-card-text>
+      </div>
+    </v-expand-transition>
+  </v-card>
+  </v-col>
+   <v-col cols="12" sm="6">
+      <v-card
+    class="mx-auto"
+    max-width="344"
+  >
+    <v-img
+      src="../../../public/img/pngwing.com.png"
+
+    ></v-img>
+ <v-card-actions>
+   
+
+      <v-spacer></v-spacer>
+    <v-card-title>
+      Red Wine
+    </v-card-title>
+
+    
+
+   
+
+      <v-btn
+        icon
+        @click="show = !show"
+      >
+        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+      </v-btn>
+    </v-card-actions>
+
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider></v-divider>
+
+        <v-card-text>
+         
+        </v-card-text>
+      </div>
+    </v-expand-transition>
+  </v-card>
+  </v-col>
+  </v-row>
         <v-card flat>
          
           <v-timeline
@@ -116,6 +199,7 @@ export default {
   data(){
       return{
         //wine list slider data
+        show: false,
         tab: null,
         items: [
         {
@@ -127,7 +211,7 @@ export default {
         {
           color: 'purple darken-1',
           icon: 'mdi-book-variant',
-          title:'Choose your Wine Type',
+          title:'Choose your Pairing',
           content:'와인과 곁들일 음식 종류를 선택하세요. 음식 종류에 따라 어울리는 와인이 달라집니다.'
         },
         {
