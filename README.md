@@ -2,7 +2,7 @@
 
 
 
-# 1. Etch Stack
+# 1. Tech Stack
 
 <img src="https://ifh.cc/g/8HI9WE.jpg" />
 
