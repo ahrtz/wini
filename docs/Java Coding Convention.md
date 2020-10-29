@@ -1,3 +1,6 @@
+# Java Coding Convention
+> 출처: [네이버 캠퍼스 핵데이 코딩 컨벤션 자료](https://naver.github.io/hackday-conventions-java/)
+
 ## 1. 파일 공통 요건
 
 ### 1.1. 파일 인코딩은 UTF-8
