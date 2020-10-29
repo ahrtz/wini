@@ -20,6 +20,7 @@ import App from './App.vue';
 import router from './router';
 import NowUiKit from './plugins/now-ui-kit';
 import vuetify from './plugins/vuetify';
+import store from './store'
 require('@/assets/demo/demo.css')
 
 require('./assets/demo/demo.css');
@@ -30,5 +31,6 @@ Vue.use(NowUiKit);
 new Vue({
  router,
  vuetify,
+ store,
  render: h => h(App)
 }).$mount('#app');
