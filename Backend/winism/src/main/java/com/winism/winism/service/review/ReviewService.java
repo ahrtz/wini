@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.winism.winism.dao.review.ReviewDAO;
 import com.winism.winism.model.review.ReviewEntity;
+import com.winism.winism.util.WinismDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,15 @@ public class ReviewService {
     @Autowired
     ReviewDAO reviewdao;
 
+    
+    WinismDate winismdate = new WinismDate();
+
     public List<ReviewEntity> findAllByUserid(String userid){
         return reviewdao.findAllByUserid(userid);
     }
 
     public void register(ReviewEntity entity){
+        entity.setDate(winismdate.getToday());
         reviewdao.save(entity);
     }
 
