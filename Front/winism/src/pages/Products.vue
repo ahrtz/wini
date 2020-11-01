@@ -33,45 +33,54 @@
           </v-carousel>
         </div>
         <div class="col-md-7 col-sm-12 col-xs-12">
-          <div class="pl-6">
+          <div class="pl-6 ">
             <p class="display-1 mb-0">Modern Black T-Shirt</p>
             <v-card-actions class="pa-0">
               <v-spacer></v-spacer>
               <!-- <v-rating v-model="rating" class="" background-color="warning lighten-3"
                         color="warning" dense></v-rating> -->
-              <span class="body-2	font-weight-thin"> 앞에 별점? 25 REVIEWS</span>
+              <span class="body-2	font-weight-thin "> 앞에 별점? 25 REVIEWS</span>
             </v-card-actions>
-
-            <v-app id="app" class="override">
+            <div class="row">
+            <v-btn class=" col-6" outlined tile>ADD TO WISHLIST</v-btn>
+            <v-app id="app" class="col-6 p-0">
               <v-dialog v-model="dialog" persistent>
                 <template v-slot:activator="{on,attrs}">
-                  <v-btn class="primary white--text " v-bind="attrs" v-on="on" outlined tile dense ><v-icon>mdi-cart</v-icon> 리뷰 남기기</v-btn>
+                  <v-btn  v-bind="attrs" v-on="on" outlined tile dense ><v-icon>mdi-cart</v-icon> 리뷰 남기기</v-btn>
                 </template>
-                <v-card>
+                <v-card class="mx-auto">
                   <v-card-title>
-                    <v-text-field></v-text-field>
+                    <v-text-field label="제목"  hide-details="auto" v-model="reviewData.title"></v-text-field>
                   </v-card-title>
-
-                </v-card>
-                <v-card-actions>
+                  <v-divider></v-divider>
+                  <v-card-actions> 
+                    <v-spacer></v-spacer>
+                    <v-rating v-model="reviewData.rating"></v-rating> 
+                  </v-card-actions>
+                  <v-card-text>
+                    <v-text-field label="내용" v-model="reviewData.content"></v-text-field>
+                  </v-card-text>
+                  <v-card-actions>
+                  <v-spacer></v-spacer>
                   <v-btn
-                    color="green darken-1"
                     text
                     @click="dialog = false"
                   >
-                    Agree
+                    리뷰 등록
+                  </v-btn>
+                  <v-btn
+                    text
+                    @click="dialog = false"
+                  >
+                    취소
                   </v-btn>
 
                 </v-card-actions>
+                </v-card>
 
               </v-dialog>
             </v-app>
-
-
-
-
-            <v-btn class="ml-4" outlined tile>ADD TO WISHLIST</v-btn>
-
+            </div>
           </div>
 
         </div>
