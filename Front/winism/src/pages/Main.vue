@@ -65,7 +65,7 @@
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             height="400px"
           >
-            <h1 class="text-center font-size">Info</h1>
+            <h1 class="text-center font-size">List</h1>
             <div class="text-center">
               <v-btn  href="/list" class="white--text" outlined>Go</v-btn>
             </div>
@@ -84,7 +84,7 @@
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             height="300px"
           >
-            <h1 class="text-center font-size">Glasses</h1>
+            <h1 class="text-center font-size">Info</h1>
             <div class="text-center mt-2">
               <v-btn class="white--text caption"  href="/" text>Go <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
             </div>
@@ -101,7 +101,7 @@
             gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
             height="300px"
           >
-            <h1 class="text-center font-size">News</h1>
+            <h1 class="text-center font-size">Recommend</h1>
             <div class="text-center mt-2">
               <v-btn class="white--text caption"  href="/news" text>Go <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
             </div>
