@@ -50,7 +50,7 @@
           target="_blank"
         >
           
-          <p>News</p>
+          <p>Info</p>
         </a>
       </li>
        <li class="nav-item">
