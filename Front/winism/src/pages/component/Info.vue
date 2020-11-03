@@ -103,16 +103,21 @@
         :aspect-ratio="16/9"
         src="../../../public/img/winelabel_france.png"
       >
-        <v-expand-transition>
+        
+      </v-img>
+      <v-expand-transition>
           <div
             v-if="hover"
             class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
             style="height: 100%;"
           >
-            $14.99
+            <v-list>
+            <v-list-item>
+            
+            </v-list-item>
+            </v-list>
           </div>
         </v-expand-transition>
-      </v-img>
       <v-card-text
         class="pt-6"
         style="position: relative;"
@@ -169,6 +174,15 @@
       </v-card-text>
     </v-list>
   </v-hover>
+ <div>
+    <span
+      @mouseover="hover = true"
+      @mouseleave="hover = false"
+      :class="{ active: hover }"
+    >
+      Hover me to change the background!
+    </span>
+  </div>
       </v-tab-item>
     </v-tabs>
     </v-container>
@@ -192,6 +206,7 @@ export default {
         show: false,
         tab: null,
         expand: false,
+        hover: false,
        
       }
   }
@@ -205,5 +220,8 @@ export default {
   opacity: .5;
   position: absolute;
   width: 100%;
+}
+.active {
+  background: green;
 }
 </style>
