@@ -349,30 +349,7 @@
     </v-timeline-item>
   </v-timeline>
         </v-card>
-        <v-col class="shrink">
-      <v-btn
-        class="ma-2"
-        color="#750049"
-        dark
-        @click="expand = !expand"
-      >
-        관리자 PICK
-      </v-btn>
-
-      <v-expand-transition>
-        <v-card
-          v-show="expand"
-          height="100"
-          width="100"
-          class="mx-auto secondary"
-        >
-        
-        
-        
-        
-        </v-card>
-      </v-expand-transition>
-    </v-col>
+      
       </v-tab-item>
     <v-tab-item
       >
