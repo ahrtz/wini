@@ -22,6 +22,11 @@
       >
         How to read label
       </v-tab>
+        <v-tab
+        
+      >
+        와인별 음식 조합
+      </v-tab>
        <v-tab-item
       >
 <v-row>
@@ -37,6 +42,8 @@
           solo
         ></v-select>
       </v-col>
+      <h2>Red Wine</h2>
+      <h2>White Wine</h2>
  <v-menu offset-y :close-on-content-click="false">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -382,6 +389,18 @@
       Hover me to change the background!
     </span>
   </div>
+      </v-tab-item>
+      <v-tab-item>
+      <v-row>
+      <v-col cols="6" md="3">
+      <v-card>
+      
+      
+      </v-card>
+      </v-col>
+      </v-row>
+      
+      
       </v-tab-item>
     </v-tabs>
     </v-container>
