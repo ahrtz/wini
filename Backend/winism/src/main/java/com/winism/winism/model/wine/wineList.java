@@ -82,4 +82,7 @@ public class wineList{
     @Column(name = "YEAR")
     private String YEAR;
 
+    @Column(name = "SPLITNAME")
+    private String SPLITNAME;
+
 }

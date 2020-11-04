@@ -1,5 +1,7 @@
 package com.winism.winism.service.wine;
 
+import java.util.List;
+
 import com.winism.winism.dao.wine.WineDAO;
 import com.winism.winism.model.wine.wineList;
 
@@ -13,5 +15,17 @@ public class WineService {
 
     public wineList getbyid(int wid){
         return winedao.findByWid(wid);
+    }
+
+    public List<wineList> findTop10ByEnnameLike(String keyword){
+        return winedao.findTop10ByENNAMELike(keyword);
+    }
+
+    public List<wineList> findall(){
+        return winedao.findAll();
+    }
+
+    public void update(wineList wl){
+        winedao.save(wl);
     }
 }
