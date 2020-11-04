@@ -37,6 +37,201 @@
       </v-tab>
        <v-tab-item
       >
+      <p>와인 종류에 따른 포도 품종을 선택해보세요!</p>
+      <v-row>
+      <v-col cols="6">
+ <v-menu transition="scroll-x-transition" :close-on-content-click="false">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="#750049"
+          v-bind="attrs"
+          v-on="on"
+          dark
+        >
+          Red Wine
+        </v-btn>
+      </template>
+        <v-tabs vertical >
+      <v-tab>
+        까베르네 쇼비뇽
+      </v-tab>
+      <v-tab>
+
+        말벡
+      </v-tab>
+      <v-tab>
+        
+        까르미네르
+      </v-tab>
+ <v-tab>
+        
+        멜롯
+      </v-tab>
+       <v-tab>
+        
+        쉬라즈
+      </v-tab>
+       <v-tab>
+        
+        피노누아
+      </v-tab>
+       <v-tab>
+        
+        산지오베제
+      </v-tab>
+       <v-tab>
+        
+        템쁘라니요
+      </v-tab>
+      <v-tab-item>
+
+          <v-card-text>
+            <p>
+              Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam feugiat lorem non metus. Sed a libero.
+            </p>
+
+          
+          </v-card-text>
+  
+      </v-tab-item>
+      <v-tab-item >
+        <v-card flat>
+          <v-card-text>
+            <p>
+              Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.
+            </p>
+
+            <p>
+              Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.
+            </p>
+
+            <p>
+              Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.
+            </p>
+
+            <p>
+              Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.
+            </p>
+
+            <p class="mb-0">
+              Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+            <p>
+              Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
+            </p>
+
+            <p class="mb-0">
+              Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs>
+    </v-menu>
+      </v-col>
+       <v-col cols="6">
+<v-menu transition="scroll-x-transition" :close-on-content-click="false">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          color="#750049"
+          v-bind="attrs"
+          v-on="on"
+          dark
+        >
+          White Wine
+        </v-btn>
+      </template>
+        <v-tabs vertical>
+      <v-tab>
+        까베르네 쇼비뇽
+      </v-tab>
+      <v-tab>
+
+        말벡
+      </v-tab>
+      <v-tab>
+        
+        까르미네르
+      </v-tab>
+ <v-tab>
+        
+        멜롯
+      </v-tab>
+       <v-tab>
+        
+        쉬라즈
+      </v-tab>
+       <v-tab>
+        
+        피노누아
+      </v-tab>
+       <v-tab>
+        
+        산지오베제
+      </v-tab>
+       <v-tab>
+        
+        템쁘라니요
+      </v-tab>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+            <p>
+              Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam feugiat lorem non metus. Sed a libero.
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+            <p>
+              Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.
+            </p>
+
+            <p>
+              Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.
+            </p>
+
+            <p>
+              Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.
+            </p>
+
+            <p>
+              Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.
+            </p>
+
+            <p class="mb-0">
+              Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+      <v-tab-item>
+        <v-card flat>
+          <v-card-text>
+            <p>
+              Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
+            </p>
+
+            <p class="mb-0">
+              Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs>
+    </v-menu>
+       </v-col>
+
+  
+  </v-row>
         <v-card flat>
          
           <v-timeline
@@ -116,6 +311,7 @@ export default {
   data(){
       return{
         //wine list slider data
+        show: false,
         tab: null,
         items: [
         {
@@ -127,13 +323,13 @@ export default {
         {
           color: 'purple darken-1',
           icon: 'mdi-book-variant',
-          title:'Choose your Wine Type',
+          title:'Choose your Pairing',
           content:'와인과 곁들일 음식 종류를 선택하세요. 음식 종류에 따라 어울리는 와인이 달라집니다.'
         },
         {
           color: 'green lighten-1',
           icon: 'mdi-airballoon',
-          title:'Choose your Wine Type',
+          title:'Choose your Price',
           content:'가격대를 정하세요. 자신의 예산에 맞추어 그에 맞는 와인을 선택하세요.'
         },
         {
@@ -147,7 +343,7 @@ export default {
         {
           color: 'red lighten-2',
           icon: 'mdi-star',
-          title:'딜콤한 화이트 와인',
+          title:'달콤한 화이트 와인',
           content:'독일 모젤지방의 리슬링 와인종류와 같은 달콤한 화이트 와인을 먼저 도전해보세요. 향기로운 과일 향에 매료되면서 맛있다고 생각하게 될 것입니다.'
         },
         {
@@ -169,8 +365,8 @@ export default {
           content:'호주산 쉬라즈나 까베르네 소비뇽, 미국산 진판델이나 멜로종류 혹은 멜로 포도품종이 많이 들어간 프랑스의 쌩떼밀리용지역에서 생산되는 와인을 시도해보세요.'
         },
          {
-          color: 'violet',
-          icon: 'mdi-food-variant',
+          color: 'pink',
+          icon: 'mdi-glass-tulip',
           title:'타닌 맛이 강한 와인',
           content:'프랑스 보르도 와인이나 까베르네 소비뇽과 같은 포도 품종이 많이 사용된 와인들을 접해보세요. 이런 종류의 와인에 익숙해지게 된다면 you are not beginner anymore'
         },

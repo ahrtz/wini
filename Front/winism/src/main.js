@@ -23,7 +23,6 @@ import vuetify from './plugins/vuetify';
 import store from './store'
 require('@/assets/demo/demo.css')
 
-require('./assets/demo/demo.css');
 Vue.config.productionTip = false;
 
 Vue.use(NowUiKit);
