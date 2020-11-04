@@ -1,5 +1,24 @@
 [TOC]
 
+# 1. USER
+
+# 2.WINE
+
+## 2.1 키워드 검색 (get/search/)
+
+| Parameter | Type   | Description                    |
+| --------- | ------ | ------------------------------ |
+| keyword   | String | 검색어 (null일 경우 전체 검색) |
+| page      | String | 페이지 (null일 경우 0페이지)   |
+
+## 2.2 상세 검색(당도,산도,온도) - (post/search/)
+
+## 2.3 상세 정보 (get/search/detail)
+
+## 2.4 자동 완성 (get/search/auto)
+
+
+
 # 3. REVIEW
 
 

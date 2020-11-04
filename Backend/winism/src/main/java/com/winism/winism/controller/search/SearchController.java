@@ -22,7 +22,22 @@ import com.winism.winism.model.wine.wineList;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@EnableSwagger2
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import com.winism.winism.model.BasicResponse;
+
+@ApiResponses(value = {
+    @ApiResponse(
+        code = 401,
+        message = "Unauthorized",
+        response = BasicResponse.class
+    ),
+    @ApiResponse(code = 403, message = "Forbidden", response = BasicResponse.class),
+    @ApiResponse(code = 404, message = "Not Found", response = BasicResponse.class),
+    @ApiResponse(code = 500, message = "Failure", response = BasicResponse.class)
+})
+
 @CrossOrigin(origins = { "*" })
 @RestController
 public class SearchController {
