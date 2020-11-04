@@ -31,27 +31,45 @@ public class WineController {
 
     @PostMapping("/search/auto")
     public ResponseEntity<List<wineList>> auto(String keyword){
-        keyword += "%";
+        System.out.println(keyword);
         List<wineList> result = new ArrayList<>();
-        if (keyword.charAt(0)>='가' && keyword.charAt(0)<='힣'){
-            System.out.println("한글");
-            keyword = uh.splitHangeulToConsonant(keyword) + "%";
+        if (keyword.charAt(0)>='ㄱ' && keyword.charAt(0)<='힣'){
+            keyword = uh.splitHangeulToConsonant(keyword).replace(" ", ".") + "%";
             System.out.println(keyword);
+            result = wineservice.findTop10BySPLITNAMELike(keyword);
         }
         else{
-            result = wineservice.findTop10ByEnnameLike(keyword);
+            result = wineservice.findTop10ByEnnameLike(keyword+"%");
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("/search/test")
-    public void test(){
+    public void test(){//split 하기
         List<wineList> list = wineservice.findall();
 
+        int i = 0;
         for(wineList wine : list){
-            System.out.println(wine);
+            
+            wine.setSPLITNAME(uh.splitHangeulToConsonant(wine.getKONAME()).replaceAll(" ", ""));
+            wineservice.update(wine);
+            i++;
+
+            if(i%100 == 0){
+                System.out.println(i);
+            }
         }
     }
+
+    // @PostMapping("/search/test")
+    // public void test1(){//전처리 하기
+    //     List<wineList> list = wineservice.findall();
+
+    //     int i = 0;
+    //     for(wineList wine : list){
+    //         String 
+    //     }
+    // }
 
 
 

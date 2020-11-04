@@ -56,13 +56,9 @@ public class UnicodeHandler {
         StringBuilder sb = new StringBuilder();
         for(char c : list) {
             // System.out.println(c);
-            sb.append(c+" ");
+            sb.append(c+".");
         }
-
-
-
         return sb.toString();
-        
     }
  
 }

@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface WineDAO  extends JpaRepository<wineList, String> {
     wineList findByWid(int wid);
     List<wineList> findTop10ByENNAMELike(String keyword);
+    List<wineList> findTop10BySPLITNAMELike(String keyword);
 }

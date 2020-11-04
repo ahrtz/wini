@@ -21,6 +21,10 @@ public class WineService {
         return winedao.findTop10ByENNAMELike(keyword);
     }
 
+    public List<wineList> findTop10BySPLITNAMELike(String keyword){
+        return winedao.findTop10BySPLITNAMELike(keyword);
+    }
+
     public List<wineList> findall(){
         return winedao.findAll();
     }
