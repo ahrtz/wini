@@ -28,8 +28,36 @@ public class FavoritelistController {
 
     @PostMapping("/favorite/add")
     public ResponseEntity<String> add(FavoritelistEntity fl){
-        flservice.add(fl);
-        return new ResponseEntity<>("success", HttpStatus.OK);
+        System.out.println("1");
+        ArrayList<wineList> ar =  (ArrayList)flservice.findByUid(fl.getUid()).get("list");
+        System.out.println("1");
+        boolean flag = false;
+
+        if(!ar.isEmpty()){
+            System.out.println("1");
+            for(wineList arunit : ar){
+                System.out.println("들어감");
+                if(arunit.getWid() == fl.getWid()){
+                    flag = true;
+                    break;
+                }
+            }
+            if(flag){
+                return new ResponseEntity<>("fail", HttpStatus.OK);
+            }
+            else{
+                flservice.add(fl);
+                return new ResponseEntity<>("success", HttpStatus.OK);
+            }
+        }
+        else{
+            flservice.add(fl);
+            return new ResponseEntity<>("success", HttpStatus.OK);
+        }
+        
+
+        
+        
     }
 
     @PostMapping("/favorite/remove")

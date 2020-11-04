@@ -76,9 +76,6 @@ public class wineList{
     @Column(name = "TYPE")
     private String TYPE;
 
-    @Column(name = "FIELD20")
-    private String FIELD20;
-
     @Column(name = "COST")
     private String COST;
 
