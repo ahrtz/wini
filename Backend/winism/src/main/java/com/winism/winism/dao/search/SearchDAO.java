@@ -10,5 +10,6 @@ import com.winism.winism.model.wine.wineList;
 
 public interface SearchDAO extends JpaRepository<wineList, String> {
 	Page<wineList> findAll(Pageable pageable);
-	wineList findByWid(int wid);
+	Page<wineList> findByKONAMEContaining(Pageable pageable,String koname);
+
 }

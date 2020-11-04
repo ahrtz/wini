@@ -15,6 +15,17 @@
 
 ## 2.3 상세 정보 (get/search/detail)
 
+| Parameter | Type    | Description   |
+| --------- | ------- | ------------- |
+| wid     | String  | 와인 id     |
+
+
+`Response (Success)`
+
+| Field   | Type    | Description |
+| ------- | ------- | ----------- |
+| WineEntity | Object | 와인 정보(wine entity 확인) |
+
 ## 2.4 자동 완성 (get/search/auto)
 
 

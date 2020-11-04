@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.winism.winism.dao.favoritelist.FavoritelistDAO;
 import com.winism.winism.dao.search.SearchDAO;
+import com.winism.winism.dao.wine.WineDAO;
 import com.winism.winism.model.favoritelist.FavoritelistEntity;
 import com.winism.winism.model.wine.wineList;
 
@@ -18,7 +19,7 @@ public class FavoritelistService {
     FavoritelistDAO favodao;
 
     @Autowired
-    SearchDAO searchservice;
+    WineDAO searchservice;
 
     public void add(FavoritelistEntity fl){
         favodao.save(fl);

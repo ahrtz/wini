@@ -54,10 +54,6 @@ public class FavoritelistController {
             flservice.add(fl);
             return new ResponseEntity<>("success", HttpStatus.OK);
         }
-        
-
-        
-        
     }
 
     @PostMapping("/favorite/remove")
