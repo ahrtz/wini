@@ -102,6 +102,7 @@
       <v-img
         :aspect-ratio="16/9"
         src="../../../public/img/winelabel_france.png"
+        class="slick-slide"
       >
         
       </v-img>
@@ -136,45 +137,31 @@
       </v-card-text>
     </v-card>
   </v-hover>
-  <v-hover v-slot="{ hover }">
-    <v-list
-      class="mx-auto"
-      color="grey lighten-4"
-      max-width="600"
-    >
-      <v-list-item
-        
-      >
-      <p>우와</p>
-        <v-expand-transition>
-          <div
-            v-if="hover"
-            class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-            style="height: 100%;"
-          >
-            $14.99
-          </div>
-        </v-expand-transition>
-      </v-list-item>
-      <v-card-text
-        class="pt-6"
-        style="position: relative;"
-      >
-        
-        <div class="font-weight-light grey--text title mb-2">
-          For the perfect meal
-        </div>
-        <h3 class="display-1 font-weight-light orange--text mb-2">
-          QW cooking utensils
-        </h3>
-        <div class="font-weight-light title mb-2">
-          Our Vintage kitchen utensils delight any chef.<br>
-          Made of bamboo by hand
-        </div>
-      </v-card-text>
-    </v-list>
-  </v-hover>
+ 
  <div>
+ <v-card
+    class="mx-auto"
+    max-width="300"
+    tile
+  >
+    <v-list>
+      <v-subheader>REPORTS</v-subheader>
+      <v-list-item-group
+        v-model="selectedItem"
+        color="primary"
+      >
+        <v-list-item
+          v-for="item in items"
+          :key="item.id"
+        >
+
+          <v-list-item-content>
+            <v-list-item-title v-text="item"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+    </v-list>
+  </v-card>
     <span
       @mouseover="hover = true"
       @mouseleave="hover = false"
@@ -207,6 +194,11 @@ export default {
         tab: null,
         expand: false,
         hover: false,
+
+        selectedItem: 1,
+      items: [
+          "와이너리","생산지", "포도 품종", "빈티지"
+      ],    
        
       }
   }
@@ -224,4 +216,5 @@ export default {
 .active {
   background: green;
 }
+
 </style>
