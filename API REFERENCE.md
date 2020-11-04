@@ -8,13 +8,14 @@
 
 `Request parameters`
 
-| Parameter | Type   | Description   |
-| --------- | ------ | ------------- |
-| title     | String | 리뷰 제목     |
-| content   | String | 리뷰 내용     |
-| rating    | String | 별점          |
-| winename  | String | 와인 이름     |
-| userid    | String | 사용자 아이디 |
+| Parameter | Type    | Description   |
+| --------- | ------- | ------------- |
+| title     | String  | 리뷰 제목     |
+| content   | String  | 리뷰 내용     |
+| rating    | String  | 별점          |
+| userid    | String  | 사용자 아이디 |
+| winename  | String  | 와인 이름     |
+| wid       | Integer | 와인 번호     |
 
 `Response (Success)`
 
