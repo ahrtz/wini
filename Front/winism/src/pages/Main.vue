@@ -10,9 +10,11 @@
         <div class="content-center brand">
           <img class="n-logo" src="img/winelogo.png" alt="" />
    <v-text-field
+   v-model="input"
             solo
             label="Search Wine"
             append-icon="mdi-magnify"
+            @keyup.enter="submit"
           ></v-text-field>
 
 
@@ -134,8 +136,10 @@
 import { Parallax } from '@/components';
 
 import {  FormGroupInput, Button } from '@/components';
-
+import axios from 'axios'
+  const SERVER='http://k3a208.p.ssafy.io/'
 export default {
+  
   name: 'Main',
   bodyClass: 'index-page',
   components: {
@@ -144,6 +148,20 @@ export default {
 
     Parallax,
  
+  },
+  data(){
+    return{
+      input:'',
+
+    }
+  },
+  methods:{
+    submit(){
+      axios.get(`${SERVER}get/search/`,{"keyword":this.input})
+      .then(res=>console.log(res.data))
+      .catch(err=>console.log(err))
+
+    }
   }
 };
 </script>
