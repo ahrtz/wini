@@ -231,6 +231,7 @@ import axios from 'axios'
     data() {
       return {
         input:'',
+        winelist:[],
 
         //wine taste
         sweetness:0,
@@ -374,12 +375,12 @@ import axios from 'axios'
     },
     methods:{
     submit(){
-      axios.get(`${SERVER}get/search/`,{"keyword":this.input})
+      axios.get(`${SERVER}get/search/${this.input}`)
       .then(res=>console.log(res))
       .catch(err=>console.log(err))
 
     }
-  }
+  },
   };
 </script>
 <style scoped>
