@@ -4,7 +4,7 @@
       <v-container class="pt-5">
         <v-row style='margin-top:60px'>
           <v-col cols="12">
-            <v-text-field label="Search Wine" append-outer-icon="mdi-magnify"></v-text-field>
+            <v-text-field @keyup.enter.prevent="submit" v-model="input" label="Search Wine" append-outer-icon="mdi-magnify"></v-text-field>
           </v-col>
         </v-row>
         <div class="row">
@@ -220,6 +220,8 @@
     Slider
   } from '@/components'
 import {Progress} from '@/components'
+import axios from 'axios'
+  const SERVER='http://k3a208.p.ssafy.io/'
   export default {
     name: 'List',
     components: {
@@ -228,6 +230,7 @@ import {Progress} from '@/components'
     },
     data() {
       return {
+        input:'',
 
         //wine taste
         sweetness:0,
@@ -368,7 +371,15 @@ import {Progress} from '@/components'
         ],
     
       }
+    },
+    methods:{
+    submit(){
+      axios.get(`${SERVER}get/search/`,{"keyword":this.input})
+      .then(res=>console.log(res))
+      .catch(err=>console.log(err))
+
     }
+  }
   };
 </script>
 <style scoped>
