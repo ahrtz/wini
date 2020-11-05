@@ -28,7 +28,16 @@
 
 ## 2.4 자동 완성 (get/search/auto)
 
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| keyword   | String | 검색어      |
 
+
+`Response (Success)`
+
+| Field | Type | Description                        |
+| ----- | ---- | ---------------------------------- |
+| list  | List | 와인 정보(wine entity 확인) 리스트 |
 
 # 3. REVIEW
 
