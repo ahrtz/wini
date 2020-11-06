@@ -9,13 +9,6 @@
       <div class="container">
         <div class="content-center brand">
           <img class="n-logo" src="img/winelogo.png" alt="" />
-   <v-text-field
-   v-model="input"
-            solo
-            label="Search Wine"
-            append-icon="mdi-magnify"
-            @keyup.enter="submit"
-          ></v-text-field>
 
 
           <h3>Wine site for wine newbie</h3>
