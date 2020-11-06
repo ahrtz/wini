@@ -387,7 +387,11 @@ import axios from 'axios'
       .catch(err=>console.log(err))
 
     },
-    accept(){
+    
+ 
+  },
+  watch: {
+    input: function () {
       axios.post(`${SERVER}search/auto`,{keyword:this.input},{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
@@ -396,9 +400,8 @@ import axios from 'axios'
     })
       .then(res=>console.log(res))
       .catch(err=>console.log(err))
-    },
- 
-  },
+    }
+  }
   };
 </script>
 <style scoped>
