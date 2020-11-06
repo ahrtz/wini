@@ -4,7 +4,7 @@
 <v-app>
   <v-container class="pt-5">
   <div style="margin-top:100px">
-    
+    <h2>와인 상식</h2>
   </div>
    <v-tabs
       v-model="tab"
@@ -44,6 +44,23 @@
       </v-col>
       <h2>Red Wine</h2>
       <h2>White Wine</h2>
+      <div>
+      <v-btn   color="#750049" dark @click.native="modals.classic = true">
+        Classic modal
+      </v-btn>
+      <modal :show.sync="modals.classic" headerClasses="justify-content-center">
+        <h4 slot="header" class="title title-up">Modal title</h4>
+        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+          the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+          language ocean. A small river named Duden flows by their place and supplies it with the necessary
+          regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your
+          mouth.</p>
+        <template slot="footer">
+          <v-btn>Nice Button</v-btn>
+          <v-btn type="danger" @click.native="modals.classic = false">Close</v-btn>
+        </template>
+      </modal>
+    </div>
  <v-menu offset-y :close-on-content-click="false">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -391,16 +408,38 @@
   </div>
       </v-tab-item>
       <v-tab-item>
-      <v-row>
-      <v-col cols="6" md="3">
-      <v-card>
-      
-      
-      </v-card>
-      </v-col>
-      </v-row>
-      
-      
+       <v-btn
+      depressed
+      color="error"
+    >
+      Red Wine
+    </v-btn>
+
+       <v-btn
+      depressed
+      color="error"
+    >
+      The best 안주
+    </v-btn>
+      <h1>진한 레드 와인</h1>
+      <p>등심·안심·갈비·철판구이 등 쇠고기 요리, 생등심 불고기</p>
+      <h1>미디엄 레드 와인</h1>
+      <p>양념 불고기, 주물럭 등 약간 단맛이 나는 쇠고기 요리</p>
+      <h1>라이트 레드 와인</h1>
+      <p>닭, 오리, 삼겹살</p>
+      <v-btn
+      depressed
+      color="primary"
+    >
+      White Wine
+    </v-btn>
+    <h1>드라이 화이트 와인</h1>
+      <p>생선회, 생선구이, 조개요리, 갑각류, 야채버섯 등 나물류</p>
+       <h1>스위트 화이트 와인</h1>
+      <p>떡, 과자 등 단맛이 많은 음식</p>
+
+      <h1>드라이 화이트 와인</h1>
+      <p>생선회, 생선구이, 조개요리, 갑각류, 야채버섯 등 나물류</p>
       </v-tab-item>
     </v-tabs>
     </v-container>
@@ -411,13 +450,15 @@
 
 </template>
 <script>
-
+import {Modal} from '@/components'
+import {Button} from '@/components'
 export default {
   name: 'Info',
   bodyClass: 'index-page',
   components: {
-
-  },
+   Modal,
+     [Button.name]: Button
+ },
   data(){
       return{
         //wine list slider data
@@ -434,7 +475,10 @@ export default {
       select:[
           'Red Wine', 'White Wine'
       ]
-       
+       ,
+       modals: {
+            classic: false
+          }
       }
   }
 };
