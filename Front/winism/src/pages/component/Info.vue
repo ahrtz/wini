@@ -36,28 +36,85 @@
         cols="12"
         sm="6"
       >
-        <v-select
-          :items="select"
-          label="Solo field"
-          solo
-        ></v-select>
+
       </v-col>
       <h2>Red Wine</h2>
       <h2>White Wine</h2>
       <div>
-      <v-btn   color="#750049" dark @click.native="modals.classic = true">
-        Classic modal
+      <v-btn   color="#750049" dark @click.native="modals.cabernet = true">
+        까베르네 소비뇽(Cabernet Sauvignon)
       </v-btn>
-      <modal :show.sync="modals.classic" headerClasses="justify-content-center">
-        <h4 slot="header" class="title title-up">Modal title</h4>
-        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-          the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
-          language ocean. A small river named Duden flows by their place and supplies it with the necessary
-          regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your
-          mouth.</p>
+      <modal :show.sync="modals.cabernet" headerClasses="justify-content-center">
+        <h4 slot="header" class="title title-up">Cabernet Sauvignon</h4>
+         <strong>떫고, 농도감 있음</strong>
+          <p>
+              와인을 만들 때 가장 많이 사용하는 포도 품종이 바로 까베르네 소비뇽이다. 
+              초심자의 입장에서 너무 드라이하거나 떫지 않고 또 너무 묽지도 않은 우리가 생각하는 스탠더드를 찾고자 한다면 까베르네 소비뇽을 선택하면 된다.
+            </p>
+              <p>
+            실제로도 모든 레드와인 중에서 가장 많은 생산량을 차지하고 있다.
+             어떠한 기후에서도 잘 견디는 특징 때문에 전 세계 어디에서나 재배되면서 다양한 맛을 보여주고 가장 많은 사랑을 받는 와인이다.
+
+이 포도 품종의 가장 큰 특징은 바로 껍질이 두껍고 씨앗이 많다는 것이다. 
+우리가 그냥 포도를 먹는다면 이건 별로 좋지 않은 포도다. 
+그러나 포도주를 만들 때는 아주 큰 장점이 된다. 두꺼운 껍질이 포도가 빨리 썩지 않게 만들어서 오랜 기간 동안 숙성과 발효를 거칠 수 있게 만든다. 
+            </p>
+            <p>
+            그래서 까베르네 소비뇽 품종은 오크통에 아주 오랫동안 숙성시킬 수 있는 포도다. 
+            두꺼운 껍질과 많은 포도씨는 탄닌을 포함하고 있어서 떫은맛을 낼 수도 있는데 오랫동안 숙성할수록 이러한 떫은맛들이 
+            부드러워지고 색상에서는 다양한 과일의 맛과 향을 낼 수 있는 향기로운 와인이 될 수 있다. 
+            </p>
         <template slot="footer">
-          <v-btn>Nice Button</v-btn>
-          <v-btn type="danger" @click.native="modals.classic = false">Close</v-btn>
+         
+          <v-btn type="danger" @click.native="modals.cabernet = false">Close</v-btn>
+        </template>
+      </modal>
+    </div>
+    <div>
+      <v-btn   color="#750049" dark @click.native="modals.malbec = true">
+        말벡(Malbec)
+      </v-btn>
+      <modal :show.sync="modals.malbec" headerClasses="justify-content-center">
+        <h4 slot="header" class="title title-up">Malbec</h4>
+         <strong>떫고, 진하고 풍부한 맛 </strong>
+          <p>
+              보르도가 원산지이며 프랑스 까오르, 아르헨티나, 칠레가 주목할 만한 재배지역이다.
+              1956년대 프랑스 보르도에서 수확률의 75%를 전멸시켰던 서리 피해 이후, 인기 없는 품종이 되었으며, 현재 아르헨티나 품종으로 점점 알려지게 되었다.
+옅은 껍질을 가지고 있어, 까베르네 소비뇽, 멜롯의 숙성보다 더 많은 일조량이 필요하다.
+블랙와인이라 불릴만큼 매우 짙은 색상과 풍부한 탄닌을 가진다.
+ 플럼과 같은 풍미의 보르도 클라레에 복잡함을 주기 위하여 혼합한다.
+검은 베리향과 서양자두와 약간의 계피향 및 나무향이 난다.
+            </p>
+          
+        <template slot="footer">
+         
+          <v-btn type="danger" @click.native="modals.malbec = false">Close</v-btn>
+        </template>
+      </modal>
+    </div>
+    <div>
+      <v-btn   color="#750049" dark @click.native="modals.Carmenere = true">
+        까르메네르(Carmenere)
+      </v-btn>
+      <modal :show.sync="modals.Carmenere" headerClasses="justify-content-center">
+        <h4 slot="header" class="title title-up">Carmenere</h4>
+         <strong>적당한 농도감과 부드러움 </strong>
+          <p>
+              프랑스 보르도 메독이 원산지이며, 까베르네계열의 품종이다. 필록세라 병이 유럽 거의 모든포도원을 파괴하고 난 이후, 오늘날 프랑스에서 까르메네르 품종을 발견하는 것은 거의 불가능하다.
+
+가장 널리 재배되고 있는 곳은 남미 칠레이며 주로 품종 와인을 생산한다.
+
+깊은 레드 색상과 붉은 과일에서 발견되는 아로마, 방향성, 베리향을 가진다.
+ 탄닌은 까베르네 소비뇽보다 더 순하고 부드럽고, 와인은 미디엄바디이다.
+
+숙성이 잘 되었을 때 체리향과 신선한 과일향, 탄내, 향신료와 흙내음, 깊은 심홍색의 와인이 된다.
+
+다크초콜릿, 담배, 가죽냄새를 생각나게 하는 풍미가 있다.
+            </p>
+          
+        <template slot="footer">
+         
+          <v-btn type="danger" @click.native="modals.Carmenere = false">Close</v-btn>
         </template>
       </modal>
     </div>
@@ -73,16 +130,10 @@
         </v-btn>
       </template>
         <v-tabs vertical >
-      <v-tab>
-        까베르네 쇼비뇽
-      </v-tab>
-      <v-tab>
-
-        말벡
-      </v-tab>
+      
       <v-tab>
         
-        까르미네르
+        까르메네르(Carmenere)
       </v-tab>
  <v-tab>
         
@@ -104,30 +155,7 @@
         
         템쁘라니요
       </v-tab>
-      <v-tab-item>
-
-          <v-card-text>
-            <v-card-text>
-            <p>
-              떫음, 농도감 있음
-            </p>
-            <p>
-              와인을 만들 때 가장 많이 사용하는 포도 품종이 바로 까르베네 소비뇽입니다. 까르베네 쇼비뇽 품종은 숙성 정도와 원산지에 따라서 맛이 천차만별이기 때문에 어떻다!라고 말씀드릴 수는 없습니다. 그러나 초심자의 입장에서 너무 드라이하거나 떫지 않고 또 너무 묽지도 않은 우리가 생각하는 스탠더드를 찾고자 한다면 까르베네 쇼비뇽을 선택하시면 그 확률이 높아집니다.
-            </p>
-            <p>
-            실제로도 모든 레드와인 중에서 가장 많은 생산량을 차지하고 있습니다. 어떠한 기후에서도 잘 견디는 특징 때문에 전 세계 어디에서나 재배되면서 다양한 맛을 보여주고 가장 많은 사랑을 받는 와인입니다.
-
-이 포도 품종의 가장 큰 특징은 바로 껍질이 두껍고 씨앗이 많다는 것입니다. 우리가 그냥 포도를 먹는다면 이건 별로 좋지 않은 포도입니다. 그러나 포도주를 만들 때는 아주 큰 장점이 되기도 합니다. 두꺼운 껍질이 포도가 빨리 썩지 않게 만들어서 오랜 기간 동안 숙성과 발효를 거칠 수 있게 만듭니다. 
-            </p>
-            <p>
-            그래서 까르베네 소비뇽 품종은 오크통에 아주 오랫동안 숙성시킬 수 있는 포도입니다. 두꺼운 껍질과 많은 포도씨는 탄닌을 포함하고 있어서 떫은맛을 낼 수도 있는데요 그러나 오랫동안 숙성할수록 이러한 떫은맛들이 부드러워지고 색상에서는 다양한 과일의 맛과 향을 낼 수 있는 향기로운 와인이 될 수 있습니다. 
-            </p>
-          </v-card-text>
-
-          
-          </v-card-text>
-  
-      </v-tab-item>
+      
       <v-tab-item >
         <v-card flat>
           <v-card-text>
@@ -477,7 +505,10 @@ export default {
       ]
        ,
        modals: {
-            classic: false
+            classic: false,
+            cabernet:false,
+            malbec:false,
+            Carmenere:false,
           }
       }
   }
