@@ -29,18 +29,13 @@
       </v-tab>
        <v-tab-item
       >
-<v-row>
-      <v-col cols="6">
-       <v-col
-        class="d-flex"
-        cols="12"
-        sm="6"
-      >
-
-      </v-col>
       <h2>Red Wine</h2>
-      <h2>White Wine</h2>
-      <div>
+<v-row>
+
+      
+      <br>
+      <v-col cols="3"
+        md="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.cabernet = true">
         까베르네 소비뇽(Cabernet Sauvignon)
       </v-btn>
@@ -69,8 +64,9 @@
           <v-btn type="danger" @click.native="modals.cabernet = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-    <div>
+      </v-col>
+    <v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.malbec = true">
         말벡(Malbec)
       </v-btn>
@@ -91,8 +87,9 @@
           <v-btn type="danger" @click.native="modals.malbec = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-    <div>
+    </v-col>
+    <v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Carmenere = true">
         까르메네르(Carmenere)
       </v-btn>
@@ -117,8 +114,9 @@
           <v-btn type="danger" @click.native="modals.Carmenere = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-    <div>
+    </v-col>
+    <v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Merlot = true">
        멜롯(Merlot)
       </v-btn>
@@ -140,8 +138,9 @@
           <v-btn type="danger" @click.native="modals.Merlot = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-    <div>
+    </v-col>
+    <v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Syrah = true">
        시라(Syrah) / 쉬라즈(Shiraz)
       </v-btn>
@@ -164,8 +163,9 @@
           <v-btn type="danger" @click.native="modals.Syrah = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-     <div>
+    </v-col>
+     <v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Pinot = true">
        피노 누아(Pinot Noir)
       </v-btn>
@@ -192,8 +192,9 @@
           <v-btn type="danger" @click.native="modals.Pinot = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-    <div>
+    </v-col>
+    <v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Sangiovese = true">
        산지오베제(Sangiovese)
       </v-btn>
@@ -214,8 +215,9 @@
           <v-btn type="danger" @click.native="modals.Sangiovese = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-     <div>
+    </v-col>
+     <v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Tempranillo = true">
        템프라니요(Tempranillo)
       </v-btn>
@@ -236,8 +238,9 @@
           <v-btn type="danger" @click.native="modals.Tempranillo = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-<div>
+    </v-col>
+<v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Grenache = true">
        그르나슈(Grenache)
       </v-btn>
@@ -257,8 +260,9 @@
           <v-btn type="danger" @click.native="modals.Grenache = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-<div>
+    </v-col>
+<v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Zinfandel = true">
        진판델(Zinfandel)
       </v-btn>
@@ -277,8 +281,9 @@
           <v-btn type="danger" @click.native="modals.Zinfandel = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-<div>
+    </v-col>
+<v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Nebbiolo = true">
        네비올로(Nebbiolo)
       </v-btn>
@@ -303,8 +308,9 @@
           <v-btn type="danger" @click.native="modals.Nebbiolo = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-    <div>
+    </v-col>
+    <v-col cols="3"
+        sm="6" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Barbera = true">
        바르베라(Barbera)
       </v-btn>
@@ -328,104 +334,134 @@
           <v-btn type="danger" @click.native="modals.Barbera = false">Close</v-btn>
         </template>
       </modal>
-    </div>
-      </v-col>
-       <v-col cols="6">
-<v-menu offset-y :close-on-content-click="false">
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="#750049"
-          v-bind="attrs"
-          v-on="on"
-          dark
-        >
-          White Wine
-        </v-btn>
-      </template>
-        <v-tabs vertical>
-      <v-tab>
-        샤르도네
-      </v-tab>
-      <v-tab>
-
-        리슬링
-      </v-tab>
-      <v-tab>
-        
-        쇼비뇽 블랑
-      </v-tab>
- <v-tab>
-        
-        멜롯
-      </v-tab>
-       <v-tab>
-        
-        쉬라즈
-      </v-tab>
-       <v-tab>
-        
-        피노누아
-      </v-tab>
-       <v-tab>
-        
-        산지오베제
-      </v-tab>
-       <v-tab>
-        
-        템쁘라니요
-      </v-tab>
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text>
-            <p>
-              달지 않고, 탄산 없고 산미가 느껴짐
-            </p>
-            <p>
-              먼저 가장 대중적인 화이트 와인으로는 샤르도네가 있습니다. 샤도네이라고도 불리지요. 보통 신선한 과일향이 좋은 품종인데 프랑스 부르고뉴와 샹파뉴 지역, 미국 캘리포니아, 호주, 그리고 남아공을 포함하여 세계 여러 지역에서 재배되는 와인 품종입니다. 
-            </p>
-            <p>
-            샤르도네 품종에서는 주로 멜론, 복숭아, 풋사과 향들이 나며 오크 숙성된 경우에는 부드러운 맛에 바닐라와 오크향을 함께 갖기도 합니다. 샤르도네가 가장 대중적으로 사랑받는 품종인 이유에는 맛도 맛이지만 이 포도 품종이 어느 지역에서나 잘 적응하고 살아남는 이유이기도 합니다. 
-            </p>
-            <p>
-            병충해에 강하고 기후적 응력이 높아 농가에서 선호되며 싹이 또 빨리 튼다는 장점이 있습니다. 다 익었을 시에는 숙성도가 굉장히 높은 품종 중에 하나입니다.
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text>
-            <p>
-              정말 조금 달다. 신맛이 강한 편이며 도수는 보통 11도, 도수 좀 낮고 단맛이 강한 경우도 있다.
-            </p>
-
-            <p>
-             리슬링은 독일을 대표하는 화이트 와인입니다. 다양한 스타일로 생산되는 것이 가능한 리슬링 와인은 부드러우면서도 복합적인 맛과 함께 향신료와 복숭아, 살구 같은 과일향, 그리고 꽃향기까지 납니다. 긴 뒷맛과 여운을 갖고 있어 가벼운 것 같으면서도 장기간 숙성이 가능하며 오래될수록 깊이가 있는 풍미가 느껴지는 신비로운 품종입니다.
-            </p>
-
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
-      <v-tab-item>
-        <v-card flat>
-          <v-card-text>
-            <p>
-              단맛은 없으나 청량감이 있어서 상큼하게 가볍게 먹기 좋다. 달지 않은 화이트 와인은 보통 산미가 느껴지는데, 뉴질랜드 쇼비뇽블랑은 산미가 없어 더 먹기가 좋다.
-            </p>
-
-            <p class="mb-0">
-              소비뇽 블랑은 루아르 강 상류, 프랑스의 보르도, 뉴질랜드에서 재배되는 화이트 와인 품종입니다. 이 품종으로 만든 와인에서는 오렌지 향이 나는 것이 가장 큰 특징입니다. 보르도 지역에서는 세미용과 블렌딩 되고 가끔 오크 숙성을 시키지만 강하게 느껴지지는 않습니다. 풀향이 강하게 나고 비교적 가벼운 편이라 잘 만들면 장기 숙성도 가능합니다.
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-tab-item>
-    </v-tabs>
-    </v-menu>
-       </v-col>
+    </v-col>
 
   
   </v-row>
-  
+   <h2>White Wine</h2>
+  <v-row>
+   <v-col cols="3"
+        sm="6" xs="12">
+      <v-btn   color="#750049" dark @click.native="modals.Chardonnay = true">
+       샤르도네(Chardonnay)
+      </v-btn>
+      <modal :show.sync="modals.Chardonnay" headerClasses="justify-content-center">
+        <h4 slot="header" class="title title-up">Chardonnay</h4>
+         <strong>달지 않고 탄산 없고 산미가 느껴지는 맛</strong>
+          <p>
+ 샤도네이라고도 불리며, 보통 신선한 과일향이 좋은 품종인데 프랑스 부르고뉴와 샹파뉴 지역, 미국 캘리포니아, 호주, 그리고 남아공을 포함하여 세계 여러 지역에서 재배되는 와인 품종이다. 
+샤르도네 품종에서는 주로 멜론, 복숭아, 풋사과 향들이 나며 오크 숙성된 경우에는 부드러운 맛에 바닐라와 오크향을 함께 갖기도 한다. 
+샤르도네가 가장 대중적으로 사랑받는 품종인 이유에는 맛도 맛이지만 이 포도 품종이 어느 지역에서나 잘 적응하고 살아남는 이유이기도 하다. 
+병충해에 강하고 기후적 응력이 높아 농가에서 선호되며 싹이 또 빨리 튼다는 장점이 있다. 다 익었을 시에는 숙성도가 굉장히 높은 품종 중에 하나다.
+다양한 샐러드, 생선요리, 오래 숙성되지 않은 각종 치즈 등과 잘 어울린다. 
+
+            </p>
+          
+        <template slot="footer">
+         
+          <v-btn type="danger" @click.native="modals.Chardonnay = false">Close</v-btn>
+        </template>
+      </modal>
+    </v-col>
+  <v-col cols="3"
+        sm="6" xs="12">
+      <v-btn   color="#750049" dark @click.native="modals.Riesling = true">
+       리슬링(Riesling)
+      </v-btn>
+      <modal :show.sync="modals.Riesling" headerClasses="justify-content-center">
+        <h4 slot="header" class="title title-up">Riesling</h4>
+         <strong>정말 조금 단 맛</strong>
+          <p>
+독일 라인가우, 모젤, 프랑스 알자스가 주요지역이다. 리슬링 와인은 프리티하고 향기로우며 그린 또는 다른 사과향, 자몽향, 복숭아향, 꿀향, 라임향, 장미꽃향 또는 푸른 풀향을 가지고 있다.
+발아가 늦은 만생종이며 포도껍질이 얇아 귀부현상을 일으켜 훌륭한 스위트 와인을 만든다. 
+높은 산도 때문에 파삭파삭한 맛을 내지만, 자연히 높은 산도와 풍미들은 숙성이 진행됨에 따라 부드러워진다. 
+일반적으로 리슬링 와인의 드라이 타입은 5~15년, 세미 스위트 타입은 10~20년, 스위트 버전은 10~30년 동안 숙성시킬 수 있다. 
+시간이 지나면 리슬링 와인은 등유, 윤활유, 고무로 설명되는 가솔린 향이 나는 경향이 있다. 
+
+신선한 계절과일, 달콤한 푸딩, 케이크 등과 잘 어울린다.
+
+            </p>
+          
+        <template slot="footer">
+         
+          <v-btn type="danger" @click.native="modals.Riesling = false">Close</v-btn>
+        </template>
+      </modal>
+    </v-col>
+    <v-col cols="3"
+        sm="6" xs="12">
+      <v-btn   color="#750049" dark @click.native="modals.Blanc = true">
+       소비뇽 블랑(Sauvignon Blanc)
+      </v-btn>
+      <modal :show.sync="modals.Blanc" headerClasses="justify-content-center">
+        <h4 slot="header" class="title title-up">Sauvignon Blanc</h4>
+         <strong>단 맛은 없지만 청량감이 있음</strong>
+          <p>
+프랑스 보르도 지역이 원산지이며, 소비뇽 블랑 포도나무의 싹은 늦게 돋으나, 햇볕이 잘 드는 기후에서는 일찍 익는다. 
+높은 열을 받기 쉬운 지역에서 포도는 너무 익게 되고, 뚜렷하지 않은 맛과 활기 없는 산도의 와인을 생산한다. 
+소비뇽 블랑은 파삭파삭하고 드라이하며, 상쾌한 화이트 품종 와인을 생산한다.  
+프랑스 보르도 소테른과 바르삭에서는 유명한 귀부 와인을 만드는 품종 중 하나다.
+기후에 따라 다르지만 프루티한 열대과일 풍미가 있다.
+뉴질랜드 생산자들에 의하여 소비뇽 블랑느 리슬링과 더불어 스크류 캡으로 병입된 최초의 와인 중 하나이다.
+화이트 와인을 마시는 사람들이 샤르도네에 대한 대체와인을 찾으면서 소비뇽 블랑의 인기는 꾸준히 증가하고 잇다.
+신세계 와인 메이커들이 더 많은 과일과 열대과일 풍미를 더하기 위하여 약간 더 서늘한 발효온도를 선호한다.
+신선한 사과, 레몬, 라임, 청포도 등의 과일향과 아스파라거스, 풀 등의 아로마를 지닌다.
+싱싱한 사시미, 갑각류, 각종 생선류, 해산물 등과 매우 잘 어울린다.
+            </p>
+          
+        <template slot="footer">
+         
+          <v-btn type="danger" @click.native="modals.Blanc = false">Close</v-btn>
+        </template>
+      </modal>
+    </v-col>
+     <v-col cols="3"
+        sm="6" xs="12">
+      <v-btn   color="#750049" dark @click.native="modals.Semillon = true">
+       세미용(Semillon)
+      </v-btn>
+      <modal :show.sync="modals.Semillon" headerClasses="justify-content-center">
+        <h4 slot="header" class="title title-up">Semillon</h4>
+         <strong>부드러운 산미로 입안을 부드럽게 하는 훌륭하고 복잡한 풍미를 나타냄</strong>
+          <p>
+프랑스와 호주에서 가장 주목할 만한 드라이 또는 스위트 와인을 만드는 데 사용되는 황금색의 껍질을 가진 포도이다. 
+따뜻한 기후에서 일찍 익고, 핑크색을 띤 빛깔을 얻으며, 포도껍질이 얇기 때문에 무더운 기후에서는 타는 위험이 있다.
+햇볕이 잘 드는 낮과 서늘한 밤 지역이 재배에 가장 적합하다.
+보트리티스 시네리아 곰팡이균으로 인해 귀부 현상이 일어나 포도의 당도를 높여 건포도 형태로 이르게 하여 고급스러운 스위트 화이트 와인을 생산한다.​
+프랑스 보르도 지역에서는 소비뇽 블랑, 무스카델, 세미용의 3가지 품종이 재배 허가를 받았다.
+포도는 프랑스 보르도 소테른과 바르삭에서와 같이 스위트 와인을 위하여 기본품종으로 사용되고 있다.
+프랑스에서 세미용은 소비뇽 블랑과 무스카델과 혼합하는 보르도에서 대부분 재배된다.
+새우, 홍합, 치즈 및 생선류 등과 잘 어울린다. 
+            </p>
+          
+        <template slot="footer">
+         
+          <v-btn type="danger" @click.native="modals.Semillon = false">Close</v-btn>
+        </template>
+      </modal>
+    </v-col>
+    <v-col cols="3"
+        sm="6" xs="12">
+      <v-btn   color="#750049" dark @click.native="modals.Trebbiano = true">
+       트레비아노(Trebbiano)
+      </v-btn>
+      <modal :show.sync="modals.Trebbiano" headerClasses="justify-content-center">
+        <h4 slot="header" class="title title-up">Trebbiano</h4>
+         <strong>신선하고 과일 같은 향이 느껴짐</strong>
+          <p>
+드라이하고 가벼운 트레비아노는 이탈리아 북부와 중부에서 주로 재배되며 이탈리아에서 가장 많이 재배되는 화이트 품종이다. 
+ 가벼운 테이블 와인에 주로 사용되고 프랑스에서는 위니 블랑으로 불리기도 한다. 
+ 우리가 잘 알고 있는 코냑 지방에서는 브랜디의 원료로 쓰이기도 한다.
+            </p>
+          
+        <template slot="footer">
+         
+          <v-btn type="danger" @click.native="modals.Trebbiano = false">Close</v-btn>
+        </template>
+      </modal>
+    </v-col>
+  </v-row>
+ 
       </v-tab-item>
     <v-tab-item class="ma-3"
       >
@@ -591,6 +627,11 @@ export default {
             Zinfandel:false,
             Nebbiolo:false,
             Barbera:false,
+            Chardonnay:false,
+            Riesling:false,
+            Blanc:false,
+            Semillon:false,
+            Trebbiano:false,
 
 
           }
