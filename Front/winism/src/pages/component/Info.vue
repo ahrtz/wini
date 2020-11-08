@@ -465,83 +465,36 @@
       </v-tab-item>
     <v-tab-item class="ma-3"
       >
-        <v-hover v-slot="{ hover }">
-    <v-card
-      class="mx-auto"
-      color="grey lighten-4"
-      max-width="600"
-    >
-      <v-img
-        :aspect-ratio="16/9"
+      <h2>프랑스 와인</h2>
+        <v-img
         src="../../../public/img/winelabel_france.png"
         class="slick-slide"
       >
         
       </v-img>
-      <v-expand-transition>
-          <div
-            v-if="hover"
-            class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-            style="height: 100%;"
-          >
-            <v-list>
-            <v-list-item>
-            
-            </v-list-item>
-            </v-list>
-          </div>
-        </v-expand-transition>
-      <v-card-text
-        class="pt-6"
-        style="position: relative;"
+      <h2>미국 와인</h2>
+        <v-img
+        src="../../../public/img/winelabel_america.png"
+        class="slick-slide"
       >
         
-        <div class="font-weight-light grey--text title mb-2">
-          For the perfect meal
-        </div>
-        <h3 class="display-1 font-weight-light orange--text mb-2">
-          QW cooking utensils
-        </h3>
-        <div class="font-weight-light title mb-2">
-          Our Vintage kitchen utensils delight any chef.<br>
-          Made of bamboo by hand
-        </div>
-      </v-card-text>
-    </v-card>
-  </v-hover>
- 
- <div>
- <v-card
-    class="mx-auto"
-    max-width="300"
-    tile
-  >
-    <v-list>
-      <v-subheader>REPORTS</v-subheader>
-      <v-list-item-group
-        v-model="selectedItem"
-        color="primary"
+      </v-img>
+      <h2>독일 와인</h2>
+        <v-img
+        src="../../../public/img/winelabel_german.png"
+        class="slick-slide"
       >
-        <v-list-item
-          v-for="item in items"
-          :key="item.id"
-        >
-
-          <v-list-item-content>
-            <v-list-item-title v-text="item"></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-  </v-card>
-    <span
-      @mouseover="hover = true"
-      @mouseleave="hover = false"
-      :class="{ active: hover }"
-    >
-      Hover me to change the background!
-    </span>
-  </div>
+        
+      </v-img>
+       <h2>이탈리아 와인</h2>
+       <v-img
+        src="../../../public/img/winelabel_italy.png"
+        class="slick-slide"
+      >
+        
+      </v-img>
+       
+ 
       </v-tab-item>
       <v-tab-item>
        <v-btn
