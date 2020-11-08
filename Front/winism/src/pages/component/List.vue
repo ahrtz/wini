@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <v-app >
+
+    <v-app>
       <v-container class="pt-5">
         <v-row style='margin-top:60px'>
           <v-col cols="12">
-            <v-text-field @keyup.enter.prevent="accept" v-model="input" @click:append-outer="submit" label="Search Wine" append-outer-icon="mdi-magnify"></v-text-field>
+            <v-text-field v-model="input" @click:append-outer="submit" label="Search Wine" append-outer-icon="mdi-magnify"></v-text-field>
 
           </v-col>
         </v-row>
@@ -168,16 +168,16 @@
                   <v-card-text>
                     <div>
                     <template>sweetness
-                    <n-progress :value="pro.sweetness" type="primary" :height="15" show-value>{{pro.sweetness}}</n-progress>
+                    <n-progress :value="parseInt(pro.sweetness)" type="primary" :height="15" show-value>{{pro.sweetness}}</n-progress>
                   </template>
                   <template>
-                    acidity<n-progress :value="pro.acidity" type="primary" :height="15" show-value>{{pro.acidity}}</n-progress>
+                    acidity<n-progress :value="parseInt(pro.acidity)" type="primary" :height="15" show-value>{{pro.acidity}}</n-progress>
                   </template>
                   <template>
-                    tannin<n-progress :value="pro.tannin" type="primary" :height="15" show-value>{{pro.tannin}}</n-progress>
+                    tannin<n-progress :value="parseInt(pro.tannin)" type="primary" :height="15" show-value>{{pro.tannin}}</n-progress>
                   </template>
                   <template>
-                    body<n-progress :value="pro.body" type="primary" :height="15" show-value>{{pro.body}}</n-progress>
+                    body<n-progress :value="parseInt(pro.body)" type="primary" :height="15" show-value>{{pro.body}}</n-progress>
                   </template>
                       
                       
@@ -215,7 +215,7 @@
 
 
     </v-app>
-  </div>
+
 
 </template>
 <script>
@@ -380,9 +380,6 @@ import axios from 'axios'
       .then(res=>{
         console.log(res)
         this.winelist=res.data.content
-        
-        
-        
         })
       .catch(err=>console.log(err))
 
