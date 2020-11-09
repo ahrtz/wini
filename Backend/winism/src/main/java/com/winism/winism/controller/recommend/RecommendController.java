@@ -29,6 +29,7 @@ public class RecommendController {
     public ResponseEntity<List<wineList>> recommendbycontents(String userid){
 
         List<wineList> result = new ArrayList<wineList>();
+        System.out.println(1);
         
         try{
             // Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\test2.py TheLittlePrince 50");
@@ -58,6 +59,7 @@ public class RecommendController {
 
             
             stdInput.close();
+            System.out.println(2);
         }
         catch(Exception e){
 
