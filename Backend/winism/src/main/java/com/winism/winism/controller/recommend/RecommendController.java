@@ -53,6 +53,8 @@ public class RecommendController {
                 // System.out.println(s);
                 // wines = s.split(" ");
             }
+            System.out.println("after receive python");
+            System.out.println(s);
 
             // for(String wine :wines){
                 // System.out.println(wine);
