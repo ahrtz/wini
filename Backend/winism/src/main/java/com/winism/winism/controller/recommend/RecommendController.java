@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = { "*" },maxAge = 6000)
@@ -27,8 +29,8 @@ public class RecommendController {
     @Autowired
     WineService wineservice;
 
-    @PostMapping("/recommend/contents")
-    public ResponseEntity<List<Object>> recommendbycontents(String userid){
+    @GetMapping("/recommend/contents")
+    public ResponseEntity<List<Object>> recommendbycontents(@RequestParam(required = false)String userid){
 
         List<Object> result = new ArrayList<Object>();
         System.out.println(1);
