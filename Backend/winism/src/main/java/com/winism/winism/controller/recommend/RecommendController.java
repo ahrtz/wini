@@ -42,12 +42,11 @@ public class RecommendController {
 
             
             
-            String s = "";
-            String[] wines = new String[5];
-            while((s= stdInput.readLine()) != null) {
-                
-                wines = s.split(" ");
-            }
+            String s = s= stdInput.readLine().replaceAll("(", " ").replaceAll(")", "").replaceAll(",","");
+            System.out.println(s);
+            String[] wines = s.split(" ");
+            
+            
 
             while((s= stdError.readLine()) != null) {
                 System.out.println(s);
