@@ -42,7 +42,7 @@ public class RecommendController {
 
             
             
-            String s = s= stdInput.readLine().replaceAll("(", " ").replaceAll(")", "").replaceAll(",","");
+            String s = stdInput.readLine().replaceAll("(", " ").replaceAll(")", "").replaceAll(",","");
             System.out.println(s);
             String[] wines = s.split(" ");
             
