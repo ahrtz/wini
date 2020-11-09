@@ -56,7 +56,7 @@ public class RecommendController {
             }
             System.out.println("after receive python");
             System.out.println(sre);
-            sre = sre.replaceAll("(", "").replaceAll(")", "").replaceAll(",","");
+            sre = sre.replaceAll("\\(", "").replaceAll("\\)", "").replaceAll(",","");
             wines = sre.split(" ");
 
             System.out.println("after pretreaatment");
