@@ -4,7 +4,14 @@
       <v-container class="pt-5">
         <v-row style='margin-top:60px'>
           <v-col cols="12">
-            <v-text-field v-model="input" @click:append-outer="submit" label="Search Wine" append-outer-icon="mdi-magnify"></v-text-field>
+            
+            <v-autocomplete
+            :search-input.sync="input"
+            :items="namelist"
+            @click:append-outer="submit" label="Search Wine" append-outer-icon="mdi-magnify" 
+            dense
+    
+          ></v-autocomplete>
 
           </v-col>
         </v-row>
@@ -235,6 +242,7 @@ import axios from 'axios'
       return {
         input:'',
         winelist:[],
+        namelist:[],
 
         //wine taste
         sweetness:0,
@@ -389,13 +397,26 @@ import axios from 'axios'
   },
   watch: {
     input: function () {
-      axios.post(`${SERVER}search/auto`,{keyword:this.input},{
+      axios.get(`${SERVER}search/auto?keyword=${this.input}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
-      .then(res=>console.log(res))
+      .then(res=>{
+        this.namelist=[]
+        console.log(res.data)
+        for(var i in res.data){
+          var regexp =/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*/gi;
+          if(!this.input.match(regexp)){
+            this.namelist.push(res.data[i].koname)
+          }
+          else{
+ this.namelist.push(res.data[i].enname)
+        }
+          }
+         
+        })
       .catch(err=>console.log(err))
     }
   }
