@@ -31,7 +31,11 @@ public class RecommendController {
         List<wineList> result = new ArrayList<wineList>();
         
         try{
-            Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\test2.py TheLittlePrince 50");
+            // Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\test2.py TheLittlePrince 50");
+            Process process = Runtime.getRuntime().exec("python /home/ubuntu/s03p31a208/Backend/winism/test2.py");
+
+            
+
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream(),"MS949"));
             BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream(),"MS949"));
 
