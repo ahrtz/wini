@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import pandas as pd
 import numpy as np
 import math
@@ -44,7 +46,11 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo):
     
     
 
-    csv = pd.read_csv("C:/Users/git/ssafy_project3/s03p31a208/Backend/winism/wine3.csv")
+    # csv = pd.read_csv("C:/Users/git/ssafy_project3/s03p31a208/Backend/winism/wine3.csv")
+    csv = pd.read_csv("/home/ubuntu/s03p31a208/Backend/winism/wine3.csv")
+
+    
+
     
     
     winedf2 = csv.loc[:,['LAESTDEGREE','RECOMMANDATION','COST']]
