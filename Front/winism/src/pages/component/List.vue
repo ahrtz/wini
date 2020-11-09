@@ -386,7 +386,6 @@ import axios from 'axios'
     	}
     })
       .then(res=>{
-        console.log(res)
         this.winelist=res.data.content
         })
       .catch(err=>console.log(err))
@@ -405,7 +404,6 @@ import axios from 'axios'
     })
       .then(res=>{
         this.namelist=[]
-        console.log(res.data)
         for(var i in res.data){
           var regexp =/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*/gi;
           if(!this.input.match(regexp)){
