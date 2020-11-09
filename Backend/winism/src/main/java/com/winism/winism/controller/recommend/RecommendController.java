@@ -43,16 +43,14 @@ public class RecommendController {
             
             
             String s = "";
-            
+            String sre = "";
+            String[] wines = new String[5];
 
             while((s= stdInput.readLine()) != null) {
+                s = s.replaceAll("(", "").replaceAll(")", "").replaceAll(",","");
                 System.out.println(s);
+                wines = s.split(" ");
             }
-
-            s = s.replaceAll("(", "").replaceAll(")", "").replaceAll(",","");
-            System.out.println("s : "+s);  
-            String[] wines = s.split(" ");
-            
 
             for(String wine :wines){
                 System.out.println(wine);
