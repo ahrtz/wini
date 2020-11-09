@@ -87,8 +87,11 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo):
     dataset["sum"] = dataset["suger"] + dataset["body"] + dataset["acid"] + dataset["tanin"] + dataset["alco"] + dataset["food"] + dataset["price"]
     dataset = dataset.sort_values(by=["sum"],axis = 0,ascending=False)
     
+    datalist = dataset["wid"].tolist()
+    print(datalist[0],datalist[1],datalist[2],datalist[3],datalist[4])
     
-    print(dataset["wid"].head(5))
+    
+    
 
 
 readcsv(1,0.25,0.5,0.25,20000,"ee",19)

@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = { "*" })
@@ -32,8 +34,8 @@ public class WineController {
         return new ResponseEntity<>(wineservice.getbyid(wid), HttpStatus.OK);
     }
 
-    @PostMapping("/search/auto")
-    public ResponseEntity<List<wineList>> auto(String keyword){
+    @GetMapping("/search/auto")
+    public ResponseEntity<List<wineList>> auto(@RequestParam(required = false)String keyword){
         System.out.println(keyword);
         List<wineList> result = new ArrayList<>();
         if (keyword.charAt(0)>='ㄱ' && keyword.charAt(0)<='힣'){
