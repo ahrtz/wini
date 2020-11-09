@@ -13,7 +13,7 @@
 
 ## 2.2 상세 검색(당도,산도,온도) - (post/search/)
 
-## 2.3 상세 정보 (get/search/detail)
+## 2.3 상세 정보 (POST /search/detail)
 
 | Parameter | Type    | Description   |
 | --------- | ------- | ------------- |
@@ -26,7 +26,7 @@
 | ------- | ------- | ----------- |
 | WineEntity | Object | 와인 정보(wine entity 확인) |
 
-## 2.4 자동 완성 (get/search/auto)
+## 2.4 자동 완성 (POST /search/auto)
 
 | Parameter | Type   | Description |
 | --------- | ------ | ----------- |

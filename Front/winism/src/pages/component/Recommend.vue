@@ -88,6 +88,76 @@
                 </v-hover>
               </div>
 </div>
+<v-row>
+<v-col cols="12">
+<h4>가성비가 좋은 와인</h4>
+<v-carousel
+    cycle
+    height="400"
+    hide-delimiter-background
+    show-arrows-on-hover
+  >
+<v-container fluid>
+      <v-row dense>
+        <v-col
+          v-for="card in pick"
+          :key="card.title"
+          cols="12"
+          sm="6"
+          md="3"
+        >
+          <v-card max-width="374">
+            <v-img
+              :src="card.src"
+              class="white--text align-end"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              height="400px"
+            >
+              <v-card-title v-text="card.title"></v-card-title>
+            </v-img>
+
+            <v-card-text>
+      <v-chip-group
+        column
+      >
+         <v-chip v-if="card.type='red'" color="red"
+      text-color="white">Red</v-chip>
+      <v-chip v-else color="white"
+      text-color="black">White</v-chip>
+
+         <v-chip v-if="card.store='emart'" color="yellow"
+      text-color="black">emart</v-chip>
+      <v-chip v-else-if="card.store='gs25'" color="blue"
+      text-color="black">GS25</v-chip>
+
+        <v-chip>{{card.price}}</v-chip>
+      </v-chip-group>
+    </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+      </v-carousel>
+<v-card
+
+    class="mx-auto my-12"
+  
+  >
+
+
+    <v-img
+      src="../../../public/img/AlbertBichotBourgognePassetoutgrain.png"
+    ></v-img>
+
+
+
+\
+  </v-card>
+
+</v-col>
+
+
+</v-row>
   </div>
     </v-container>
 
@@ -121,6 +191,38 @@ export default {
             src: require('../../../public/img/wine-bottle-grapes.jpg')
           },
         ],
+        pick:[
+          {title:'알베르 비쇼 부르고뉴 파스투그랭 2018',
+          src:'../../../public/img/AlbertBichotBourgognePassetoutgrain.png',
+          price:'20,000',
+          store:'emart',
+          type:'red'
+          },
+          {title:'미켈레 키아를로 바르베라 다스티레 오르메 2016',
+          src:'../../../public/img/michele.jpg',
+          price:'20,000',
+          store:'emart',
+          type:'red'
+          },
+          {title:'핀카 엘 오리헨 말벡 그랑 리제르바 2016',
+          src:'../../../public/img/finca.jpg',
+          price:'20,000',
+          store:'emart',
+          type:'red'
+          },
+          {title:'샤또 뿌피유 2013',
+          src:'../../../public/img/poupille.jpg',
+          price:'25,800',
+          store:'emart',
+          type:'red'
+          },
+          {title:'하디스 빈 619 카베르네 소비뇽 2019',
+          src:'../../../public/img/poupille.jpg',
+          price:'25,800',
+          store:'emart',
+          type:'red'
+          },
+        ]
       }
   }
 };

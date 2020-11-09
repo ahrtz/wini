@@ -14,6 +14,7 @@ import Main from './pages/Main.vue';
 import List from './pages/component/List.vue'
 import Guide from './pages/component/Guide.vue'
 import Recommend from './pages/component/Recommend.vue'
+import Info from './pages/component/Info.vue'
 
 Vue.use(Router);
 
@@ -21,7 +22,7 @@ export default new Router({
   linkExactActiveClass: 'active',
   routes: [
     {
-      path: '/',
+      path: '/index',
       name: 'index',
       components: { default: Index, header: MainNavbar, footer: MainFooter },
       props: {
@@ -30,7 +31,7 @@ export default new Router({
       }
     },
     {
-      path: '/main',
+      path: '/',
       name: 'Main',
       components: { default: Main, header: MainNavbar },
       props: {
@@ -56,6 +57,11 @@ export default new Router({
         header: { colorOnScroll: 50 },
       
       }
+    },
+    {
+      path: '/info',
+      name: 'Info',
+      components: { default: Info, header: MainNavbar },
     },
     {
       path: '/landing',

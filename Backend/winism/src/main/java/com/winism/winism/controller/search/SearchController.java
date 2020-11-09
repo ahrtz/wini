@@ -2,6 +2,8 @@ package com.winism.winism.controller.search;
 
 import java.io.IOException;
 import java.util.List;
+
+import org.python.antlr.ast.keyword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -64,7 +66,7 @@ public class SearchController {
         if(keyword == null){
             list = searchDao.findAll(pageable);
         }else{
-            list = searchDao.findByKONAMEContaining(pageable,keyword);
+            list = searchDao.findByKONAMEContainingOrENNAMEContaining(pageable,keyword,keyword);
         }
         
         return new ResponseEntity<>(list, HttpStatus.OK);
