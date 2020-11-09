@@ -49,7 +49,7 @@ public class RecommendController {
                 System.out.println(s);
             }
 
-            s = s.replaceAll("(", " ").replaceAll(")", "").replaceAll(",","");
+            s = s.replaceAll("(", "").replaceAll(")", "").replaceAll(",","");
             String[] wines = s.split(" ");
             System.out.println(s);
             
