@@ -32,8 +32,8 @@ def alco(x,alcoo):
 def readcsv(suger,acid,body,tanin,price,food,alcoo):
 
 
-    # print("pandas version: ", pd.__version__)
-    # pd.set_option('display.max_columns', 100)
+    print("pandas version: ", pd.__version__)
+    pd.set_option('display.max_columns', 100)
 
 
 
@@ -43,7 +43,7 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo):
     # print(userdf)
     
 
-    csv = pd.read_csv("wine.csv")
+    csv = pd.read_csv("C:/Users/git/ssafy_project3/s03p31a208/Backend/winism/wine.csv")
     
     
     winedf2 = csv.loc[:,['알코올도수','추천음식','가격']]
@@ -59,7 +59,7 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo):
     #사용자 당산바타 가중치 곱하기
     result = winedf.to_numpy() * userdf.to_numpy()
     
-
+    print(winedf)
     
     
 
@@ -90,14 +90,7 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo):
     dataset = dataset.sort_values(by=["sum"],axis = 0,ascending=False)
     
     
-    print("=====")
     print(dataset.head(5))
-    print("=====")
-    
-    
-    
-    
-    return winedf
 
 
 readcsv(1,0.25,0.5,0.25,20000,"삼겹살",19)
