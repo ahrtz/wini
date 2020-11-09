@@ -13,10 +13,10 @@ public class practice {
     public static void main(String[] args){
 
         try{
-            Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\test.py TheLittlePrince 50");
+            Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\test2.py TheLittlePrince 50");
 
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream(),"MS949"));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream(),"MS949"));
+            // BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream(),"MS949"));
 
             ArrayList<String> arr = new ArrayList<String>();
             
@@ -25,6 +25,11 @@ public class practice {
            	    System.out.println(s);
                 arr.add(s);
             }
+           
+
+            System.out.println(arr);
+
+            stdInput.close();
 
 
         }
