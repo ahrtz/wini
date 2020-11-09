@@ -59,6 +59,9 @@ public class RecommendController {
             sre = sre.replaceAll("(", "").replaceAll(")", "").replaceAll(",","");
             wines = sre.split(" ");
 
+            System.out.println("after pretreaatment");
+            System.out.println(sre);
+
             for(String wine :wines){
                 System.out.println(wine);
                 result.add(wineservice.getbyid(Integer.parseInt(wine)));
