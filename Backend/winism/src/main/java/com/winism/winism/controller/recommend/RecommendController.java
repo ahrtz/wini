@@ -1,9 +1,11 @@
 package com.winism.winism.controller.recommend;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.winism.winism.model.wine.wineList;
@@ -26,9 +28,9 @@ public class RecommendController {
     WineService wineservice;
 
     @PostMapping("/recommend/contents")
-    public ResponseEntity<List<wineList>> recommendbycontents(String userid){
+    public ResponseEntity<List<Object>> recommendbycontents(String userid){
 
-        List<wineList> result = new ArrayList<wineList>();
+        List<Object> result = new ArrayList<Object>();
         System.out.println(1);
         
         try{
@@ -63,8 +65,19 @@ public class RecommendController {
             System.out.println(sre);
 
             for(String wine :wines){
+                HashMap hm = new HashMap<>();
+                
                 System.out.println(wine);
-                result.add(wineservice.getbyid(Integer.parseInt(wine)));
+                wineList winel = wineservice.getbyid(Integer.parseInt(wine));
+                hm.put("wine", winel);
+                File fi = new File("/home/ubuntu/data/images/"+winel.getENNAME()+".png");
+                if(fi.exists()){
+                    hm.put("image", "http://k3a208.p.ssafy.io/images/"+winel.getENNAME()+".png");
+                }
+                else{
+                    hm.put("image", null);
+                }
+                result.add(hm);
             }
 
 
