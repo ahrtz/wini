@@ -45,6 +45,7 @@ public class RecommendController {
             String s = "";
             String[] wines = new String[5];
             while((s= stdInput.readLine()) != null) {
+                
                 wines = s.split(" ");
             }
 
@@ -53,6 +54,7 @@ public class RecommendController {
             }
 
             for(String wine :wines){
+                System.out.println(wine);
                 result.add(wineservice.getbyid(Integer.parseInt(wine)));
             }
 
