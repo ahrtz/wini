@@ -42,9 +42,16 @@ public class RecommendController {
 
             
             
-            String s = stdInput.readLine().replaceAll("(", " ").replaceAll(")", "").replaceAll(",","");
-            System.out.println(s);
+            String s = "";
+            
+
+            while((s= stdInput.readLine()) != null) {
+                System.out.println(s);
+            }
+
+            s = s.replaceAll("(", " ").replaceAll(")", "").replaceAll(",","");
             String[] wines = s.split(" ");
+            System.out.println(s);
             
             
 
@@ -63,7 +70,7 @@ public class RecommendController {
             System.out.println(2);
         }
         catch(Exception e){
-
+            System.out.println(e.getMessage());
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
