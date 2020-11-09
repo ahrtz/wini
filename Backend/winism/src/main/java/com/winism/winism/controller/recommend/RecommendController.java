@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.winism.winism.model.wine.wineList;
+import com.winism.winism.service.wine.WineService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,10 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RecommendController {
-    @PostMapping("/recommend/contents")
-    public ResponseEntity<ArrayList<String>> recommendbycontents(String userid){
 
-        ArrayList<String> arr = new ArrayList<String>();
+
+    @Autowired
+    WineService wineservice;
+
+    @PostMapping("/recommend/contents")
+    public ResponseEntity<List<wineList>> recommendbycontents(String userid){
+
+        List<wineList> result = new ArrayList<wineList>();
         
         try{
             Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\test2.py TheLittlePrince 50");
@@ -29,15 +38,22 @@ public class RecommendController {
             
             
             String s = "";
+            String[] wines = new String[5];
             while((s= stdInput.readLine()) != null) {
-                arr.add(s);
+                wines = s.split(" ");
             }
+
+            for(String wine :wines){
+                result.add(wineservice.getbyid(Integer.parseInt(wine)));
+            }
+
+
             
             stdInput.close();
         }
         catch(Exception e){
 
         }
-        return new ResponseEntity<>(arr, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 }
