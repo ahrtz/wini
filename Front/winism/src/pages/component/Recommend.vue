@@ -91,12 +91,7 @@
 <v-row>
 <v-col cols="12">
 <h4>가성비가 좋은 와인</h4>
-<v-carousel
-    cycle
-    height="400"
-    hide-delimiter-background
-    show-arrows-on-hover
-  >
+
 <v-container fluid>
       <v-row dense>
         <v-col
@@ -137,23 +132,17 @@
         </v-col>
       </v-row>
     </v-container>
-      </v-carousel>
+  
 <v-card
 
     class="mx-auto my-12"
   
   >
-
-
     <v-img
       src="../../../public/img/AlbertBichotBourgognePassetoutgrain.png"
     ></v-img>
-
-
-
-\
   </v-card>
-
+<Map/>
 </v-col>
 
 
@@ -168,11 +157,13 @@
 </template>
 <script>
 import {Progress} from '@/components'
+import Map from './Map.vue'
 export default {
   name: 'Recommend',
   bodyClass: 'index-page',
   components: {
-      [Progress.name]: Progress
+      [Progress.name]: Progress,
+      Map
 
   },
   data(){

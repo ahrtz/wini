@@ -1,10 +1,17 @@
 <template>
-  <div>
-    <v-app >
+
+    <v-app>
       <v-container class="pt-5">
         <v-row style='margin-top:60px'>
           <v-col cols="12">
-            <v-text-field @keyup.enter.prevent="accept" v-model="input" @click:append-outer="submit" label="Search Wine" append-outer-icon="mdi-magnify"></v-text-field>
+            
+            <v-autocomplete
+            :search-input.sync="input"
+            :items="namelist"
+            @click:append-outer="submit" label="Search Wine" append-outer-icon="mdi-magnify" 
+            dense
+    
+          ></v-autocomplete>
 
           </v-col>
         </v-row>
@@ -168,16 +175,16 @@
                   <v-card-text>
                     <div>
                     <template>sweetness
-                    <n-progress :value="pro.sweetness" type="primary" :height="15" show-value>{{pro.sweetness}}</n-progress>
+                    <n-progress :value="parseInt(pro.sweetness)" type="primary" :height="15" show-value>{{pro.sweetness}}</n-progress>
                   </template>
                   <template>
-                    acidity<n-progress :value="pro.acidity" type="primary" :height="15" show-value>{{pro.acidity}}</n-progress>
+                    acidity<n-progress :value="parseInt(pro.acidity)" type="primary" :height="15" show-value>{{pro.acidity}}</n-progress>
                   </template>
                   <template>
-                    tannin<n-progress :value="pro.tannin" type="primary" :height="15" show-value>{{pro.tannin}}</n-progress>
+                    tannin<n-progress :value="parseInt(pro.tannin)" type="primary" :height="15" show-value>{{pro.tannin}}</n-progress>
                   </template>
                   <template>
-                    body<n-progress :value="pro.body" type="primary" :height="15" show-value>{{pro.body}}</n-progress>
+                    body<n-progress :value="parseInt(pro.body)" type="primary" :height="15" show-value>{{pro.body}}</n-progress>
                   </template>
                       
                       
@@ -215,7 +222,7 @@
 
 
     </v-app>
-  </div>
+
 
 </template>
 <script>
@@ -235,6 +242,7 @@ import axios from 'axios'
       return {
         input:'',
         winelist:[],
+        namelist:[],
 
         //wine taste
         sweetness:0,
@@ -378,11 +386,7 @@ import axios from 'axios'
     	}
     })
       .then(res=>{
-        console.log(res)
         this.winelist=res.data.content
-        
-        
-        
         })
       .catch(err=>console.log(err))
 
@@ -392,13 +396,25 @@ import axios from 'axios'
   },
   watch: {
     input: function () {
-      axios.post(`${SERVER}search/auto`,{keyword:this.input},{
+      axios.get(`${SERVER}search/auto?keyword=${this.input}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
-      .then(res=>console.log(res))
+      .then(res=>{
+        this.namelist=[]
+        for(var i in res.data){
+          var regexp =/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*/gi;
+          if(!this.input.match(regexp)){
+            this.namelist.push(res.data[i].koname)
+          }
+          else{
+ this.namelist.push(res.data[i].enname)
+        }
+          }
+         
+        })
       .catch(err=>console.log(err))
     }
   }
