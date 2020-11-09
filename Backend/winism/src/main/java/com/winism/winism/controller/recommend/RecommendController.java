@@ -46,16 +46,18 @@ public class RecommendController {
             String sre = "";
             String[] wines = new String[5];
 
+            System.out.println("receive python");
             while((s= stdInput.readLine()) != null) {
-                s = s.replaceAll("(", "").replaceAll(")", "").replaceAll(",","");
                 System.out.println(s);
-                wines = s.split(" ");
+                // s = s.replaceAll("(", "").replaceAll(")", "").replaceAll(",","");
+                // System.out.println(s);
+                // wines = s.split(" ");
             }
 
-            for(String wine :wines){
-                System.out.println(wine);
-                result.add(wineservice.getbyid(Integer.parseInt(wine)));
-            }
+            // for(String wine :wines){
+                // System.out.println(wine);
+                // result.add(wineservice.getbyid(Integer.parseInt(wine)));
+            // }
 
 
             
