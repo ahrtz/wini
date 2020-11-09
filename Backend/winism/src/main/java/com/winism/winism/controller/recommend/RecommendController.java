@@ -49,12 +49,13 @@ public class RecommendController {
             System.out.println("receive python");
             while((s= stdInput.readLine()) != null) {
                 System.out.println(s);
+                sre = s;
                 // s = s.replaceAll("(", "").replaceAll(")", "").replaceAll(",","");
                 // System.out.println(s);
                 // wines = s.split(" ");
             }
             System.out.println("after receive python");
-            System.out.println(s);
+            System.out.println(sre);
 
             // for(String wine :wines){
                 // System.out.println(wine);
