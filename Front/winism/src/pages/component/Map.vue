@@ -90,10 +90,12 @@ this.ps.categorySearch(this.currCategory, this.placesSearchCB, {useMapBounds:tru
     // 검색 결과 목록과 마커를 표출하는 함수입니다
     displayPlaces(places) {
         var order = document.getElementById(this.currCategory).getAttribute('data-order');
+        console.log(places)
+        console.log(order)
       for (var i = 0; i < places.length; i++) {
         // 마커를 생성하고 지도에 표시합니다
         var 
-          marker = this.addMarker(new kakao.maps.LatLng(places[i].y, places[i].x,order));
+          marker = this.addMarker(new kakao.maps.LatLng(places[i].y, places[i].x),order);
  
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해 LatLngBounds 객체에 좌표를 추가합니다
           (function(marker, place,abc) {
@@ -128,6 +130,7 @@ this.ps.categorySearch(this.currCategory, this.placesSearchCB, {useMapBounds:tru
 },
     // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
    addMarker(position, order) {
+    console.log(order)
     var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
         imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
         imgOptions =  {
