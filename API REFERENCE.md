@@ -39,6 +39,22 @@
 | ----- | ---- | ---------------------------------- |
 | list  | List | 와인 정보(wine entity 확인) 리스트 |
 
+## 2.5 와인 추천 (GET /recommend/contents)
+
+`Request parameters`
+
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| userid    | String | 사용자 ID   |
+
+
+`Response (Success)`
+
+| Field | Type   | Description                 |
+| ----- | ------ | --------------------------- |
+| image | String | 사진 있을시 url 없을시 null |
+| wine  | Object | 와인 object                 |
+
 # 3. REVIEW
 
 
