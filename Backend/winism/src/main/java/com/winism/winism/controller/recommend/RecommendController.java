@@ -8,9 +8,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.google.gson.Gson;
 import com.winism.winism.model.wine.wineList;
 import com.winism.winism.service.wine.WineService;
+import com.winism.winism.util.FileCheck;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,20 +34,28 @@ public class RecommendController {
     @Autowired
     WineService wineservice;
 
-    @GetMapping("/recommend/contents")
-    public ResponseEntity<List<Object>> recommendbycontents(@RequestParam(required = false)String userid){
+    
+
+    @GetMapping("/recommend/bywine")
+    public ResponseEntity<List<Object>> recommendbywine(@RequestParam(required = false)int wid){
 
         List<Object> result = new ArrayList<Object>();
-        System.out.println(1);
-        
+
         try{
-            // Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\test2.py TheLittlePrince 50");
-            Process process = Runtime.getRuntime().exec("python /home/ubuntu/s03p31a208/Backend/winism/test2.py");
+            
+            Gson gson = new Gson();
+            String po = gson.toJson(wineservice.getbyid(wid));
+            System.out.println(po);
+            
+
+
+            Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\productRecommend.py ");
+            // Process process = Runtime.getRuntime().exec("python /home/ubuntu/s03p31a208/Backend/winism/productRecommend.py");
 
             
 
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream(),"MS949"));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream(),"MS949"));
+            // BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream(),"MS949"));
 
             
             
@@ -50,42 +63,30 @@ public class RecommendController {
             String sre = "";
             String[] wines = new String[5];
 
-            System.out.println("receive python");
             while((s= stdInput.readLine()) != null) {
                 System.out.println(s);
                 sre = s;
-                // s = s.replaceAll("(", "").replaceAll(")", "").replaceAll(",","");
-                // System.out.println(s);
-                // wines = s.split(" ");
             }
-            System.out.println("after receive python");
-            System.out.println(sre);
+
             sre = sre.replaceAll("\\(", "").replaceAll("\\)", "").replaceAll(",","");
             wines = sre.split(" ");
 
-            System.out.println("after pretreaatment");
-            System.out.println(sre);
+
+            FileCheck fc = new FileCheck();
 
             for(String wine :wines){
-                HashMap hm = new HashMap<>();
+                HashMap<String,Object> hm = new HashMap<>();
                 
-                System.out.println(wine);
                 wineList winel = wineservice.getbyid(Integer.parseInt(wine));
                 hm.put("wine", winel);
-                File fi = new File("/home/ubuntu/data/images/"+winel.getENNAME()+".png");
-                if(fi.exists()){
-                    hm.put("image", "http://k3a208.p.ssafy.io/images/"+winel.getENNAME()+".png");
-                }
-                else{
-                    hm.put("image", null);
-                }
+                hm.put("image",fc.checkImage(winel.getENNAME()));
+
                 result.add(hm);
             }
 
 
             
             stdInput.close();
-            System.out.println(2);
         }
         catch(Exception e){
             System.out.println(e.getMessage());
