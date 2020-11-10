@@ -39,9 +39,9 @@ public class WineController {
 
         HashMap<String,Object> hm = new HashMap<>();
         hm.put("wine", wineservice.getbyid(wid));
-        hm.put("image", fc.checkImage(wineservice.getbyid(wid).getENNAME());
+        hm.put("image", fc.checkImage(wineservice.getbyid(wid).getENNAME()));
         
-        return new ResponseEntity<>(, HttpStatus.OK);
+        return new ResponseEntity<>(hm, HttpStatus.OK);
     }
 
     @GetMapping("/search/auto")
