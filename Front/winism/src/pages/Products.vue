@@ -41,8 +41,10 @@
                         color="warning" dense></v-rating> -->
               <span class="body-2	font-weight-thin "> 앞에 별점? 25 REVIEWS</span>
             </v-card-actions>
+            
             <div class="row">
-            <v-btn class=" col-6" outlined tile @click="addWishlist"> <v-icon>mdi-cart</v-icon>ADD TO WISHLIST</v-btn>
+            <v-btn v-if="this.wishTF==false" class=" col-6 m-0 p-1 " color="blue" outlined tile @click="addWishlist"> <v-icon>mdi-cart</v-icon>ADD TO WISHLIST></v-btn>
+            <n-button v-if="this.wishTF" class=" col-6 m-0 p-1" type='danger ' simple outlined tile @click="addWishlist"> <v-icon>mdi-cart</v-icon>remove from WISHLIST</n-button>
             <v-app id="app" class="col-6 p-0">
               <v-dialog v-model="dialog" persistent>
                 <template v-slot:activator="{on,attrs}">
@@ -63,13 +65,15 @@
                   <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn
-                    text
+                    
+                    outlined tile
                     @click="dialog = false;addReviewData()"
                   >
                     리뷰 등록
                   </v-btn>
                   <v-btn
-                    text
+                    
+                    outlined tile
                     @click="dialog = false"
                   >
                     취소
@@ -179,12 +183,23 @@
 import axios from 'axios'
   const SERVER='http://k3a208.p.ssafy.io/api/'
   
+import {
+  Button,
+
+} from '@/components';
+
+
 export default {
     name:'Product',
     bodyClass: 'product-page',
+    components: {
+    [Button.name]: Button,
+    
+  },
     data(){
         return {
           uid:'bonobono',
+          wishTF:null,
             wineid:null,
             dialog:false,
             items:'',
@@ -235,16 +250,29 @@ export default {
         }
     },
     methods:{
-      addWishlist(){
+      async addWishlist(){
         var form = new FormData();
         form.append('wid',this.wineid)
         form.append('uid',this.uid)
         //  uid 는 회원 완성되면 뷰엑스에서 받아와야 하고 이것도 if 절로 vuex 에서 처리해야함
-        axios.post(`${SERVER}favorite/add`,form,{headers: {
+        await axios.post(`${SERVER}favorite/add`,form,{headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'multipart/form-data; charset = utf-8'
-      }}).then(res=>
-      console.log(res))
+      }}).then(res=>{
+          var form = new FormData();
+          form.append("wid",this.wineid)
+          form.append('uid',this.uid)
+          //uid 추후 수정 필
+          axios.post(`${SERVER}/favorite/check`,form,{
+            headers:{
+              'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'multipart/form-data; charset = utf-8'
+            }
+          }).then(res=>{
+            console.log(res.data)
+            this.wishTF=res.data
+          })
+      })
       },
       //위시리스트 추가 끝
       addReviewData(){
@@ -272,15 +300,36 @@ export default {
       var form = new FormData();
       form.append("wid",this.wineid)
       console.log(this.wineid)
-      await axios.post(`${SERVER}search/detail`,form,{
-      
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
+        await axios.post(`${SERVER}search/detail`,form,{
+        
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'multipart/form-data; charset = utf-8'
+        }
+        }).then(res =>{
+          this.wineData=res.data
+        })
+      axios.post(`${SERVER}review/getbywine`,form,{
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'multipart/form-data; charset = utf-8'
+        }
+      }).then(res=>{
+        console.log(res.data)
+      })
+      var form = new FormData();
+      form.append("wid",this.wineid)
+      form.append('uid',this.uid)
+      //uid 추후 수정 필
+      await axios.post(`${SERVER}/favorite/check`,form,{
+        headers:{
+          'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'multipart/form-data; charset = utf-8'
-    	}
-    }).then(res =>{
-      this.wineData=res.data
-    })
+        }
+      }).then(res=>{
+        console.log(res.data)
+        this.wishTF=res.data
+      })
 
     // 와인 id로 리뷰 데이터 받아오기 
 
@@ -290,6 +339,5 @@ export default {
 <style scoped>
 
 
-  
 
 </style>

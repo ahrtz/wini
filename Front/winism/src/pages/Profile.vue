@@ -42,9 +42,10 @@
           >
             <tab-pane title="Profile">
               <i slot="label" class="now-ui-icons design_image"></i>
-
+              <h5 class="title text-center">리뷰리스트</h5>
               <div class="col-md-10 ml-auto mr-auto">
                 <div class="row collections">
+
                   <div class="col-md-4" v-for="item in dummy" :key="item.id">
                     <img src="img/bg6.jpg" class="img-raised" />
                     <v-card
@@ -72,7 +73,7 @@
 
             <tab-pane title="Home">
               <i slot="label" class="now-ui-icons location_world"></i>
-
+              <h5 class="title text-center">위시리스트</h5>
               <div class="col-md-10 ml-auto mr-auto">
                 <div class="row collections">
                   <div class="col-md-6">
@@ -155,6 +156,9 @@ export default {
       console.log(res.data)
       })
     // 찜 받아오기 
+    var form = new FormData()
+    form.append('uid','bonobono')
+    // uid 와 userid 통일 필요
     axios.post(`${SERVER}/favorite/getbyid`,form,{headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'multipart/form-data; charset = utf-8'
