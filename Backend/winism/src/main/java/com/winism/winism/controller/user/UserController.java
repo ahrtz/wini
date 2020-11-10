@@ -11,6 +11,7 @@ import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @Api(tags = {"2. User"})
@@ -21,6 +22,7 @@ public class UserController {
 
     private final UserJpaRepo userJpaRepo;
     private final ResponseService responseService; // 결과를 처리할 Service
+    private final PasswordEncoder passwordEncoder;
 
     @ApiImplicitParams({
             @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 access_token", required = true, dataType = "String", paramType = "header")
@@ -42,7 +44,7 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String id = authentication.getName();
         // 결과데이터가 단일건인경우 getSingleResult를 이용해서 결과를 출력한다.
-        return responseService.getSingleResult(userJpaRepo.findByUid(id).orElseThrow(CUserNotFoundException::new));
+        return responseService.getSingleResult(userJpaRepo.findByUserid(id).orElseThrow(CUserNotFoundException::new));
     }
 
     @ApiImplicitParams({
@@ -51,15 +53,16 @@ public class UserController {
     @ApiOperation(value = "화원 수정", notes = "회원정보를 수정한다.")
     @PutMapping(value = "/user")
     public SingleResult<User> modify(
-            @ApiParam(value = "회원번호", required = true) @RequestParam long msrl,
-            @ApiParam(value = "회원이름", required = true) @RequestParam String name,
+            @ApiParam(value = "회원번호", required = true) @RequestParam long uid,
+            @ApiParam(value = "비밀번호", required = true) @RequestParam String password,
             @ApiParam(value = "성별", required = true) @RequestParam String gender,
-            @ApiParam(value = "출생연도", required = true) @RequestParam int birth) {
+            @ApiParam(value = "나이", required = true) @RequestParam int age) {
+        System.out.println("수정 요청");
         User user = User.builder()
-                .msrl(msrl)
-                .name(name)
+                .uid(uid)
+                .password(passwordEncoder.encode(password))
                 .gender(gender)
-                .birth(birth)
+                .age(age)
                 .build();
         return responseService.getSingleResult(userJpaRepo.save(user));
     }

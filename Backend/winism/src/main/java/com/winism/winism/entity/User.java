@@ -24,18 +24,16 @@ import java.util.stream.Collectors;
 public class User implements UserDetails {
     @Id // primaryKey
     @GeneratedValue(strategy = GenerationType.IDENTITY) // pk생성전략을 DB에 위임한다는 의미. mysql로 보면 pk 필드를 auto_increment로 설정해 놓은 경우와 같다.
-    private long msrl;
-    @Column(nullable = false, unique = true, length = 30) // uid column을 명시. 필수이고 유니크한 필드이며 길이는 30.
-    private String uid;
+    private long uid;
+    @Column(nullable = false, unique = true, length = 100) // uid column을 명시. 필수이고 유니크한 필드이며 길이는 30.
+    private String userid;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(nullable = false, length = 100)
     private String password;
-    @Column(nullable = false, length = 100) // name column을 명시. 필수이고 길이는 100.
-    private String name;
     @Column(nullable = false, length = 100)
     private String gender;
     @Column(nullable = false, length = 30)
-    private int birth;
+    private int age;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
@@ -50,7 +48,7 @@ public class User implements UserDetails {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Override
     public String getUsername() {
-        return this.uid;
+        return this.userid;
     }
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
