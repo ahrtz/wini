@@ -11,7 +11,23 @@
 | keyword   | String | 검색어 (null일 경우 전체 검색) |
 | page      | String | 페이지 (null일 경우 0페이지)   |
 
-## 2.2 상세 검색(당도,산도,온도) - (post/search/)
+## 2.2 상세 검색(당도,산도,온도) - (POST/search/)
+| Parameter | Type   | Description                    |
+| --------- | ------ | ------------------------------ |
+| keyword   | String | 검색어 (null일 경우 전체 검색) |
+| page      | String | 페이지 (null일 경우 0페이지)	|
+| type	    | String | 레드,화이트,스파클링--옵션들, null일경우 무시 --	 |
+| pairing   | String | 추천음식 - fork,vagetable   |
+| price1    | String | 최소가격					   |
+| price2    | String | 최대가격					   |
+| alcohol1  | String | 최소 도수 				   |
+| alcohol2  | String | 최대 도수 				   |
+| rate      | String | 별점(아직)				  |
+| sweetness | String | 당  |
+| acidity   | String | 산|
+| tannin    | String | 탄   |
+| body      | String | 바 |
+
 
 ## 2.3 상세 정보 (POST /search/detail)
 
