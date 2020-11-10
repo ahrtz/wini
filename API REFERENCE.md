@@ -2,7 +2,91 @@
 
 # 1. USER
 
-## 2.1 회원가입 (POST )
+## 2.1 회원가입 (POST /signup)
+
+- Request Body
+
+  ```json
+  {
+    "email": "example@asd.com",
+    "password": "example123!",
+    "gender": "male",
+    "age": "27"
+  }
+  ```
+
+- Response
+
+  ```json
+  {
+      "success": true,
+      "code": 0,
+      "msg": "성공하였습니다."
+  }
+  ```
+
+
+
+## 2.2 로그인 (POST /signin)
+
+- Request Body
+
+  ```json
+  {
+    "email": "example@asd.com",
+    "password": "example123!"
+  }
+  ```
+
+- Response
+
+  ```json
+  {
+      "success": true,
+      "code": 0,
+      "msg": "성공하였습니다.",
+      "data": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0Iiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNTAwMTU0NiwiZXhwIjoxNjA1MDA1MTQ2fQ.aslIXCQhOAWrSoYsIrVojKFURAmGsFiomvXB6rrNAjI"
+  }
+  ```
+
+
+
+## 2.3 회원 정보 조회 (GET /user)
+
+- Request header
+
+  ```json
+  // 헤더에 토큰 정보 포함해서 요청
+  X-AUTH-TOKEN: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0Iiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTYwNTAwMTU0NiwiZXhwIjoxNjA1MDA1MTQ2fQ.aslIXCQhOAWrSoYsIrVojKFURAmGsFiomvXB6rrNAjI
+  ```
+
+- Response
+
+  ```json
+  {
+      "success": true,
+      "code": 0,
+      "msg": "성공하였습니다.",
+      "list": [
+          {
+              "uid": 1,
+              "userid": "test123@test.com",
+              "gender": "male",
+              "age": 27,
+              "roles": [
+                  "ROLE_USER"
+              ],
+              "authorities": [
+                  {
+                      "authority": "ROLE_USER"
+                  }
+              ]
+          }
+      ]
+  }
+  ```
+
+  
 
 # 2.WINE
 
