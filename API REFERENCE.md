@@ -2,6 +2,8 @@
 
 # 1. USER
 
+## 2.1 회원가입 (POST )
+
 # 2.WINE
 
 ## 2.1 키워드 검색 (get/search/)
