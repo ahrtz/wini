@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.google.gson.Gson;
 import com.winism.winism.model.wine.wineList;
 import com.winism.winism.service.wine.WineService;
+import com.winism.winism.util.FileCheck;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public class RecommendController {
 
     @Autowired
     WineService wineservice;
+
+    
 
     @GetMapping("/recommend/bywine")
     public ResponseEntity<List<Object>> recommendbywine(@RequestParam(required = false)int wid){
@@ -68,18 +71,16 @@ public class RecommendController {
             sre = sre.replaceAll("\\(", "").replaceAll("\\)", "").replaceAll(",","");
             wines = sre.split(" ");
 
+
+            FileCheck fc = new FileCheck();
+
             for(String wine :wines){
                 HashMap<String,Object> hm = new HashMap<>();
                 
                 wineList winel = wineservice.getbyid(Integer.parseInt(wine));
                 hm.put("wine", winel);
-                File fi = new File("/home/ubuntu/data/images/"+winel.getENNAME()+".png");
-                if(fi.exists()){
-                    hm.put("image", "http://k3a208.p.ssafy.io/images/"+winel.getENNAME()+".png");
-                }
-                else{
-                    hm.put("image", null);
-                }
+                hm.put("image",fc.checkImage(winel.getENNAME()));
+
                 result.add(hm);
             }
 

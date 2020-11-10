@@ -4,10 +4,12 @@ import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.winism.winism.model.wine.wineList;
 import com.winism.winism.service.wine.WineService;
+import com.winism.winism.util.FileCheck;
 import com.winism.winism.util.UnicodeHandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +33,15 @@ public class WineController {
     UnicodeHandler uh;
 
     @PostMapping("/search/detail")
-    public ResponseEntity<wineList> remove(int wid){
-        return new ResponseEntity<>(wineservice.getbyid(wid), HttpStatus.OK);
+    public ResponseEntity<Object> remove(int wid){
+
+        FileCheck fc = new FileCheck();
+
+        HashMap<String,Object> hm = new HashMap<>();
+        hm.put("wine", wineservice.getbyid(wid));
+        hm.put("image", fc.checkImage(wineservice.getbyid(wid).getENNAME());
+        
+        return new ResponseEntity<>(, HttpStatus.OK);
     }
 
     @GetMapping("/search/auto")

@@ -24,7 +24,8 @@
 
 | Field   | Type    | Description |
 | ------- | ------- | ----------- |
-| WineEntity | Object | 와인 정보(wine entity 확인) |
+| wine | Object | 와인 정보(wine entity 확인) |
+| image | String | 와인 사진 |
 
 ## 2.4 자동 완성 (POST /search/auto)
 
@@ -80,7 +81,7 @@
 
 
 
-## 3.2 리뷰 조회 POST /review/getbyid
+## 3.2 사용자 리뷰 조회 POST /review/getbyid
 
 `Request parameters`
 
@@ -92,17 +93,29 @@
 
 | Parameter | Type   | Description   |
 | --------- | ------ | ------------- |
-| rid     | int | 리뷰 고유번호     |
-| title     | String | 리뷰 제목     |
-| content   | String | 리뷰 내용     |
-| rating    | String | 별점          |
-| winename  | String | 와인 이름     |
-| userid    | String | 사용자 아이디 |
-| date    | String | 작성날짜(YYYY.MM.dd-HH.mm) |
+| review     | Object | 리뷰 엔티티     |
+| image     | String | 사진 url     |
+
+## 3.3 와인 리뷰 조회 POST /review/getbywine
+
+`Request parameters`
+
+| Field   | Type    | Description |
+| ------- | ------- | ----------- |
+| wid | int | 와인 아이디 |
+
+
+`Response (Success)`
+
+| Parameter | Type   | Description   |
+| --------- | ------ | ------------- |
+| review     | Object | 리뷰 엔티티     |
+| image     | String | 사진 url     |
 
 
 
-## 3.3 리뷰 수정 POST /review/update
+
+## 3.4 리뷰 수정 POST /review/update
 
 `Request parameters`
 
@@ -123,7 +136,7 @@
 
 
 
-## 3.4 리뷰 삭제 POST /review/delete
+## 3.5 리뷰 삭제 POST /review/delete
 
 `Request parameters`
 
@@ -185,14 +198,15 @@
 
 | Parameter | Type    | Description   |
 | --------- | ------- | ------------- |
-| uid     | String  | 사용자 아이디     |
+| userid | String  | 사용자 아이디     |
 
 
 `Response (Success)`
 
 | Field   | Type    | Description |
 | ------- | ------- | ----------- |
-| size | int | list크기        |
+| wine | Object | 와인 정보 |
+| image | String | 와인 사진 |
 
 
 
@@ -248,7 +262,17 @@
 
 
 
+## 2.REVIEW ENTITY
 
+| Parameter | Type   | Description                |
+| --------- | ------ | -------------------------- |
+| rid       | int    | 리뷰 고유번호              |
+| title     | String | 리뷰 제목                  |
+| content   | String | 리뷰 내용                  |
+| rating    | String | 별점                       |
+| winename  | String | 와인 이름                  |
+| userid    | String | 사용자 아이디              |
+| date      | String | 작성날짜(YYYY.MM.dd-HH.mm) |
 
 
 

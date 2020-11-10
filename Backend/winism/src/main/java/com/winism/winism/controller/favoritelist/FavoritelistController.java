@@ -10,6 +10,7 @@ import com.winism.winism.model.favoritelist.FavoritelistEntity;
 import com.winism.winism.model.wine.wineList;
 import com.winism.winism.service.favoritelist.FavoritelistService;
 import com.winism.winism.service.wine.WineService;
+import com.winism.winism.util.FileCheck;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -86,19 +87,24 @@ public class FavoritelistController {
     
     
     @PostMapping("/favorite/getbyid")
-    public ResponseEntity<HashMap<String,Object>  > getbyid(String uid){
+    public ResponseEntity<Object> getbyid(String userid){
         
-        HashMap<String,Object> hm = new HashMap<>();
-        List<FavoritelistEntity> flar = flservice.findByUid(uid);
+        
+        
+        List<FavoritelistEntity> flar = flservice.findByUid(userid);
         ArrayList<wineList> ar = new ArrayList<>();
+        List<Object> list = new ArrayList();
+        FileCheck fc = new FileCheck();
         for(FavoritelistEntity ff: flar){
-            ar.add(wineservice.getbyid(ff.getWid()));
+            HashMap<String,Object> hm = new HashMap<>();
+            hm.put("wine", wineservice.getbyid(ff.getWid()));
+            hm.put("image",fc.checkImage(wineservice.getbyid(ff.getWid()).getENNAME()));
+
+            list.add(hm);
         }
-        hm.put("list", ar);
-        hm.put("size",ar.size());
         
 
-        return new ResponseEntity<>(hm, HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     
