@@ -159,9 +159,9 @@
 
 `Response (Success)`
 
-| Field   | Type   | Description |
-| ------- | ------ | ----------- |
-| success | String | 성공        |
+| Field   | Type   | Description               |
+| ------- | ------ | ------------------------- |
+| success | String | 있으면 빠지고 없으면 추가 |
 
 ## 4.2 찜 삭제 POST /favorite/remove
 
@@ -193,7 +193,25 @@
 | Field   | Type    | Description |
 | ------- | ------- | ----------- |
 | size | int | list크기        |
-| list | ArrayList | WineEntity List |
+
+
+
+
+## 4.4 찜 확인 POST /favorite/check
+
+`Request parameters`
+
+| Parameter | Type    | Description   |
+| --------- | ------- | ------------- |
+| uid     | String  | 사용자 아이디     |
+| wid | int | 와인 아이디 |
+
+`Response (Success)`
+
+| Field   | Type    | Description |
+| ------- | ------- | ----------- |
+| result | Boolean | true : 이미 찜 목록에 있음 false :  찜 목록에 없음 |
+
 
 
 

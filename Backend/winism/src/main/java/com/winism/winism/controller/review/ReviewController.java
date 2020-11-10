@@ -39,7 +39,6 @@ public class ReviewController {
 
     @PostMapping("/review/delete")
     public ResponseEntity<Object> delete(int rid){
-        
         reviewservice.delete(rid);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
