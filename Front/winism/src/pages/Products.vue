@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-7 col-sm-12 col-xs-12">
           <div class="pl-6 ">
-            <p class="display-1 mb-0">Modern Black T-Shirt</p>
+            <p class="display-4 mb-0">{{wineData.koname}} <br> ({{wineData.enname}}) <br> {{wineData.year}}</p>
             <v-card-actions class="pa-0">
               <v-spacer></v-spacer>
               <!-- <v-rating v-model="rating" class="" background-color="warning lighten-3"
@@ -42,11 +42,11 @@
               <span class="body-2	font-weight-thin "> 앞에 별점? 25 REVIEWS</span>
             </v-card-actions>
             <div class="row">
-            <v-btn class=" col-6" outlined tile>ADD TO WISHLIST</v-btn>
+            <v-btn class=" col-6" outlined tile @click="addWishlist"> <v-icon>mdi-cart</v-icon>ADD TO WISHLIST</v-btn>
             <v-app id="app" class="col-6 p-0">
               <v-dialog v-model="dialog" persistent>
                 <template v-slot:activator="{on,attrs}">
-                  <v-btn  v-bind="attrs" v-on="on" outlined tile dense ><v-icon>mdi-cart</v-icon> 리뷰 남기기</v-btn>
+                  <v-btn  v-bind="attrs" v-on="on" outlined tile dense > 리뷰 남기기</v-btn>
                 </template>
                 <v-card class="mx-auto">
                   <v-card-title>
@@ -64,7 +64,7 @@
                   <v-spacer></v-spacer>
                   <v-btn
                     text
-                    @click="dialog = false"
+                    @click="dialog = false;addReviewData()"
                   >
                     리뷰 등록
                   </v-btn>
@@ -176,14 +176,21 @@
 </template>
 
 <script>
+import axios from 'axios'
+  const SERVER='http://k3a208.p.ssafy.io/api/'
+  
 export default {
     name:'Product',
     bodyClass: 'product-page',
     data(){
         return {
+          uid:'bonobono',
+            wineid:null,
             dialog:false,
             items:'',
+            wineData:null,
             item: [
+              // 이건 사진
           {
             text: 'Admin',
             href: '#'
@@ -226,9 +233,58 @@ export default {
           rating:0
         },
         }
+    },
+    methods:{
+      addWishlist(){
+        var form = new FormData();
+        form.append('wid',this.wineid)
+        form.append('uid',this.uid)
+        //  uid 는 회원 완성되면 뷰엑스에서 받아와야 하고 이것도 if 절로 vuex 에서 처리해야함
+        axios.post(`${SERVER}favorite/add`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>
+      console.log(res))
+      },
+      //위시리스트 추가 끝
+      addReviewData(){
+        var form = new FormData();
+        form.append('title',this.reviewData.title)
+        form.append('content',this.reviewData.content)
+        form.append('rating',this.reviewData.rating)
+        form.append('userid',this.uid)// uid 는 회원 완성되면 vuex 에서
+        form.append('winename',this.wineData.enname)
+        form.append('wid',this.wineData.wid)
+        axios.post(`${SERVER}review/register`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>
+      console.log(res)
+      )
+
+      }
+      //리뷰데이터 넣기
     }
 
-}
+    ,
+    async created(){
+      this.wineid = this.$route.params.wid;
+      var form = new FormData();
+      form.append("wid",this.wineid)
+      console.log(this.wineid)
+      await axios.post(`${SERVER}search/detail`,form,{
+      
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+    	}
+    }).then(res =>{
+      this.wineData=res.data
+    })
+
+    // 와인 id로 리뷰 데이터 받아오기 
+
+}}
 </script>
 
 <style scoped>
