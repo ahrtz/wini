@@ -29,7 +29,7 @@ public class FavoritelistService {
         favodao.delete(fl);
     }
 
-    public List<FavoritelistEntity>   findByUid(String uid){
+    public List<FavoritelistEntity>  findByUid(String uid){
 
         List<FavoritelistEntity> list = favodao.findByUid(uid);
 

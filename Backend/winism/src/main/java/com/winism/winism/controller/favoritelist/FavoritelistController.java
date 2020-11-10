@@ -9,6 +9,7 @@ import com.winism.winism.dao.search.SearchDAO;
 import com.winism.winism.model.favoritelist.FavoritelistEntity;
 import com.winism.winism.model.wine.wineList;
 import com.winism.winism.service.favoritelist.FavoritelistService;
+import com.winism.winism.service.wine.WineService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,9 @@ public class FavoritelistController {
     @Autowired
     FavoritelistService flservice;
 
+    @Autowired
+    WineService wineservice;
+
   
 
     @PostMapping("/favorite/add")
@@ -38,7 +42,7 @@ public class FavoritelistController {
         if(!list.isEmpty()){
             for(FavoritelistEntity arunit : list){
                 if(arunit.getWid() == fl.getWid()){
-                    
+
                     flservice.remove(arunit);
                     flag = true;
                     break;
@@ -59,20 +63,20 @@ public class FavoritelistController {
         }
     }
 
+
     @PostMapping("/favorite/check")
     public ResponseEntity<Boolean> check(String uid,int wid){
-        System.out.println(uid);
-        System.out.println(wid);
 
-        ArrayList<wineList> ar =  (ArrayList)flservice.findByUid(uid).get("list");
-        for(wineList arunit : ar){
+        List<FavoritelistEntity> ar =  flservice.findByUid(uid);
+        for(FavoritelistEntity arunit : ar){
             if(arunit.getWid() == wid){
                 return new ResponseEntity<>(true, HttpStatus.OK);
             }
         }
-        
+
         return new ResponseEntity<>(false, HttpStatus.OK);
     }
+
 
     @PostMapping("/favorite/remove")
     public ResponseEntity<String> remove(FavoritelistEntity fl){
@@ -83,7 +87,18 @@ public class FavoritelistController {
     
     @PostMapping("/favorite/getbyid")
     public ResponseEntity<HashMap<String,Object>  > getbyid(String uid){
-        return new ResponseEntity<>(flservice.findByUid(uid), HttpStatus.OK);
+        
+        HashMap<String,Object> hm = new HashMap<>();
+        List<FavoritelistEntity> flar = flservice.findByUid(uid);
+        ArrayList<wineList> ar = new ArrayList<>();
+        for(FavoritelistEntity ff: flar){
+            ar.add(wineservice.getbyid(ff.getWid()));
+        }
+        hm.put("list", ar);
+        hm.put("size",ar.size());
+        
+
+        return new ResponseEntity<>(hm, HttpStatus.OK);
     }
 
     
