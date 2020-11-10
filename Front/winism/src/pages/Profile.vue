@@ -111,7 +111,9 @@
 </template>
 <script>
 import { Tabs, TabPane } from '@/components';
-
+import axios from 'axios'
+import { Form } from 'element-ui';
+  const SERVER='http://k3a208.p.ssafy.io/api/'
 export default {
   name: 'profile',
   bodyClass: 'profile-page',
@@ -140,6 +142,26 @@ export default {
         },
       ]
     }
+  },
+  async created(){
+    var form = new FormData()
+    form.append('userid','bonobono')
+
+    //리뷰 받아 오기 
+    axios.post(`${SERVER}/review/getbyid`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>{
+      console.log(res.data)
+      })
+    // 찜 받아오기 
+    axios.post(`${SERVER}/favorite/getbyid`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>{
+        console.log(res.data)
+      })
+        
   }
 };
 </script>

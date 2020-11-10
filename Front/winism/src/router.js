@@ -99,7 +99,7 @@ export default new Router({
       }
     },
     {
-      path: '/product',
+      path: '/product/:wid',
       name: 'product',
       components: { default: Product, header: MainNavbar, footer: MainFooter },
       props: {
