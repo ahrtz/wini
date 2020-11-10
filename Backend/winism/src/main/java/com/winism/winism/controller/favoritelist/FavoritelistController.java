@@ -28,22 +28,25 @@ public class FavoritelistController {
 
     @PostMapping("/favorite/add")
     public ResponseEntity<String> add(FavoritelistEntity fl){
-        System.out.println("1");
-        ArrayList<wineList> ar =  (ArrayList)flservice.findByUid(fl.getUid()).get("list");
-        System.out.println("1");
+
+        List<FavoritelistEntity> list =  flservice.findByUid(fl.getUid());
+
+
+
         boolean flag = false;
 
-        if(!ar.isEmpty()){
-            System.out.println("1");
-            for(wineList arunit : ar){
-                System.out.println("들어감");
+        if(!list.isEmpty()){
+            for(FavoritelistEntity arunit : list){
                 if(arunit.getWid() == fl.getWid()){
+                    
+                    flservice.remove(arunit);
                     flag = true;
                     break;
+
                 }
             }
             if(flag){
-                return new ResponseEntity<>("fail", HttpStatus.OK);
+                return new ResponseEntity<>("success", HttpStatus.OK);
             }
             else{
                 flservice.add(fl);
@@ -54,6 +57,21 @@ public class FavoritelistController {
             flservice.add(fl);
             return new ResponseEntity<>("success", HttpStatus.OK);
         }
+    }
+
+    @PostMapping("/favorite/check")
+    public ResponseEntity<Boolean> check(String uid,int wid){
+        System.out.println(uid);
+        System.out.println(wid);
+
+        ArrayList<wineList> ar =  (ArrayList)flservice.findByUid(uid).get("list");
+        for(wineList arunit : ar){
+            if(arunit.getWid() == wid){
+                return new ResponseEntity<>(true, HttpStatus.OK);
+            }
+        }
+        
+        return new ResponseEntity<>(false, HttpStatus.OK);
     }
 
     @PostMapping("/favorite/remove")
