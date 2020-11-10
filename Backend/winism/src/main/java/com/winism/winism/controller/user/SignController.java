@@ -20,7 +20,6 @@ import java.util.Map;
 @Api(tags = {"1. Sign"})
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/v1")
 public class SignController {
 
     private final UserJpaRepo userJpaRepo;
