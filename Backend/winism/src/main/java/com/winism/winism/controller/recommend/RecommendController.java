@@ -12,6 +12,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.google.gson.Gson;
 import com.winism.winism.model.wine.wineList;
+import com.winism.winism.service.favoritelist.FavoritelistService;
+import com.winism.winism.service.review.ReviewService;
 import com.winism.winism.service.wine.WineService;
 import com.winism.winism.util.FileCheck;
 
@@ -34,7 +36,11 @@ public class RecommendController {
     @Autowired
     WineService wineservice;
 
-    
+    @Autowired
+    ReviewService reviewservice;
+
+    @Autowired
+    FavoritelistService fvservice;
 
     @GetMapping("/recommend/bywine")
     public ResponseEntity<List<Object>> recommendbywine(@RequestParam(required = false)int wid){
