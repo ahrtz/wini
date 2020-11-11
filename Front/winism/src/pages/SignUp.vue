@@ -71,11 +71,7 @@
                 >
               </div>
               
-              <div class="pull-right">
-                <h6>
-                  <a href="#pablo" class="link footer-link">Need Help?</a>
-                </h6>
-              </div>
+              
             </template>
           </card>
         </div>
