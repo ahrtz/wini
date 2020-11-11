@@ -16,6 +16,7 @@
               class="no-border input-lg"
               addon-left-icon="now-ui-icons users_circle-08"
               placeholder="E-mail"
+              v-model="signupData.email"
             >
             </fg-input>
 
@@ -23,6 +24,7 @@
               class="no-border input-lg"
               addon-left-icon="now-ui-icons text_caps-small"
               placeholder="Password"
+              v-model="signupData.password"
             >
             </fg-input>
 
@@ -30,42 +32,25 @@
               class="no-border input-lg"
               addon-left-icon="now-ui-icons text_caps-small"
               placeholder="Password Confirmation"
+              
             >
             </fg-input>
             <fg-input
               class="no-border input-lg"
               addon-left-icon="now-ui-icons text_caps-small"
               placeholder="Age"
+              v-model="signupData.age"
             >
             </fg-input>
-            <!-- <v-radio-group row v-model="signupData.gender" class="radio">
-              <v-radio
-                value='남'
-                style="color:white"
-                color='red'
-              >
-                <template v-slot:label>
-                  <div style="color:white">남</div>
-                </template>
-              </v-radio>
-              <v-radio
-                
-                value='여'
-                style="color:white"
-              >
-                <template v-slot:label>
-                  <div style="color:white">여</div>
-                </template>
-              </v-radio>
-            </v-radio-group> -->
+            
             <div class="row">
-              <n-radio v-model="signupData.gender" label='male' class="col-6">남</n-radio>
+              <n-radio color='white' v-model="signupData.gender" label='male' class="col-6">남</n-radio>
               <n-radio v-model="signupData.gender" label='female' class="col-6">여</n-radio>
             </div>
             <template slot="raw-content">
               <div class="card-footer text-center">
                 <a
-                  href="#pablo"
+                  @click="signUp"
                   class="btn btn-primary btn-round btn-lg btn-block"
                   >Sign Up</a
                 >
@@ -82,6 +67,8 @@
 </template>
 <script>
 import { Card, Button, FormGroupInput, Radio } from '@/components';
+import axios from 'axios'
+  const SERVER='http://k3a208.p.ssafy.io/api/'
 
 export default {
   name: 'signup-page',
@@ -100,6 +87,19 @@ export default {
         gender:null,
         age:""
       }
+    }
+  },
+  methods:{
+    // 필요한거 이메일 형식 검사 , 비번 두개 일치 검사 
+    async signUp(){
+      await axios.post(`${SERVER}signup`,this.signupData,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+      }}).then(res =>{
+        this.$store.commit('userData',this.signupData.email)
+        this.$store.commit('isLoggedin',true)
+        this.$router.push({name:'Main'})
+      })
     }
   }
 };

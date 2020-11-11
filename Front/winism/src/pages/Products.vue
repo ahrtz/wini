@@ -34,7 +34,7 @@
         </div>
         <div class="col-md-7 col-sm-12 col-xs-12">
           <div class="pl-6 ">
-            <p class="display-4 mb-0">{{wineData.koname}} <br> ({{wineData.enname}}) <br> {{wineData.year}}</p>
+            <p class="display-4 mb-0">{{wineData.wine.koname}} <br> ({{wineData.wine.enname}}) <br> {{wineData.wine.year}}</p>
             <v-card-actions class="pa-0">
               <v-spacer></v-spacer>
               <!-- <v-rating v-model="rating" class="" background-color="warning lighten-3"
@@ -60,7 +60,10 @@
                     <v-rating v-model="reviewData.rating"></v-rating> 
                   </v-card-actions>
                   <v-card-text>
-                    <v-text-field label="내용" v-model="reviewData.content"></v-text-field>
+                    <v-textarea label="내용" v-model="reviewData.content" 
+                    no-resize
+                    height="140"
+                    ></v-textarea>
                   </v-card-text>
                   <v-card-actions>
                   <v-spacer></v-spacer>
@@ -112,11 +115,11 @@
             <v-tab-item>
               <v-card v-for="review in reviews" :key="review.reviewid" class="row">
                   
-                  <v-card-title>{{review.content}}</v-card-title>
+                  <v-card-title>{{review.review.content}}</v-card-title>
                   <v-spacer></v-spacer>
-                  <v-rating v-model="review.rate" readonly></v-rating>
+                  <v-rating v-model="review.review.rating" readonly></v-rating>
                   
-                  <v-card-text>{{review.content}}</v-card-text>
+                  <v-card-text>{{review.review.content}}</v-card-text>
                   
               </v-card>
               
@@ -198,7 +201,7 @@ export default {
   },
     data(){
         return {
-          uid:'bonobono',
+          uid:null,
           wishTF:null,
             wineid:null,
             dialog:false,
@@ -229,19 +232,7 @@ export default {
            itemname:'your name is yoo se jung carbine sobinoung' 
           },
         ],
-        reviews:[
-          {
-            reviewid:1,
-            content:"내용1 이게 길어지면 어떻게 될 것인가 낭는 정말 잘 모르겟구나 ",
-            rate:3,
-            
-          },
-          {
-            reviewid:2,
-            content:'내용2',
-            rate:4
-          },
-        ],
+        reviews:{},
         reviewData:{
           title:'',
           content:'',
@@ -272,7 +263,7 @@ export default {
             console.log(res.data)
             this.wishTF=res.data
           })
-      })
+      })  
       },
       //위시리스트 추가 끝
       addReviewData(){
@@ -292,15 +283,24 @@ export default {
 
       }
       //리뷰데이터 넣기
+    },
+
+    beforecreate(){
+      this.uid = this.$store.state.userid
     }
+
 
     ,
     async created(){
+      
       this.wineid = this.$route.params.wid;
+
+
       var form = new FormData();
       form.append("wid",this.wineid)
       console.log(this.wineid)
-        await axios.post(`${SERVER}search/detail`,form,{
+      // 와인데이터 받아오기
+      await axios.post(`${SERVER}search/detail`,form,{
         
         headers: {
           'Access-Control-Allow-Origin': '*',
@@ -308,8 +308,10 @@ export default {
         }
         }).then(res =>{
           this.wineData=res.data
-        })
-      axios.post(`${SERVER}review/getbywine`,form,{
+        }).catch(e=>console.log(e))
+      
+      
+      await axios.post(`${SERVER}review/getbywine`,form,{
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-Type': 'multipart/form-data; charset = utf-8'
@@ -321,7 +323,7 @@ export default {
       form.append("wid",this.wineid)
       form.append('uid',this.uid)
       //uid 추후 수정 필
-      await axios.post(`${SERVER}/favorite/check`,form,{
+      await axios.post(`${SERVER}favorite/check`,form,{
         headers:{
           'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'multipart/form-data; charset = utf-8'
@@ -332,6 +334,17 @@ export default {
       })
 
     // 와인 id로 리뷰 데이터 받아오기 
+      var form = new FormData();
+      form.append("wid",this.wineid)
+    await axios.post(`${SERVER}review/getbywine`,form,{
+        headers:{
+          'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+        }
+      }).then(res=>{
+        this.reviews=res.data
+      })
+
 
 }}
 </script>
