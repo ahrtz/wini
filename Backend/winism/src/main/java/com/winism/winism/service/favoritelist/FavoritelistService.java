@@ -30,10 +30,14 @@ public class FavoritelistService {
     }
 
     public List<FavoritelistEntity>  findByUid(String uid){
-
         List<FavoritelistEntity> list = favodao.findByUid(uid);
-
         return list;
     }
+
+    public List<FavoritelistEntity>  findall(){
+        return favodao.findAll();
+    }
+
+
 
 }

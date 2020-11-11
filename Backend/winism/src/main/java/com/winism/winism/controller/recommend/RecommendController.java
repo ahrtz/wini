@@ -42,20 +42,26 @@ public class RecommendController {
         List<Object> result = new ArrayList<Object>();
 
         try{
-            
-            Gson gson = new Gson();
-            String po = gson.toJson(wineservice.getbyid(wid));
-            System.out.println(po);
+            wineList wl = wineservice.getbyid(wid);
+
+            JSONObject obj = new JSONObject();
+            obj.put("\"suger\"","\""+wl.getSWEETNESS()+"\"");   
+            obj.put("\"acid\"","\""+wl.getACIDITY()+"\"");   
+            obj.put("\"body\"","\""+wl.getBODY()+"\"");   
+            obj.put("\"tanin\"","\""+wl.getTANNIN()+"\"");   
+            obj.put("\"price\"","\""+wl.getCOST()+"\"");   
+            obj.put("\"food\"","\""+wl.getRECOMMANDATION()+"\"");   
+            obj.put("\"alcoo\"","\""+wl.getLAESTDEGREE()+"\"");   
             
 
 
-            Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\productRecommend.py ");
+            Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\productRecommend.py "+obj);
             // Process process = Runtime.getRuntime().exec("python /home/ubuntu/s03p31a208/Backend/winism/productRecommend.py");
 
             
 
             BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream(),"MS949"));
-            // BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream(),"MS949"));
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream(),"MS949"));
 
             
             
@@ -66,6 +72,10 @@ public class RecommendController {
             while((s= stdInput.readLine()) != null) {
                 System.out.println(s);
                 sre = s;
+            }
+
+            while((s= stdError.readLine()) != null) {
+                System.out.println(s);
             }
 
             sre = sre.replaceAll("\\(", "").replaceAll("\\)", "").replaceAll(",","");
