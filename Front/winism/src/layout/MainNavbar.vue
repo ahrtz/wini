@@ -63,15 +63,28 @@
           <p>Recommend</p>
         </a>
       </li>
+       <li class="nav-item" v-if="islogin==false"  style="cursor:pointer">
+        <a
+          class="nav-link"
+          @click="$router.push({name:'login'})"
+          target="_blank"
+        >
+          
+          <p><i class="now-ui-icons users_circle-08"></i> Login</p>
+        </a>
+      </li>
       
+
       <drop-down
               tag="li"
               title="My Cellar"
               icon="now-ui-icons design_image"
               class="nav-item"
+              v-if="islogin==true"
       >
-        <nav-link to="/login">
-          <i class="now-ui-icons users_circle-08"></i> Login
+        <nav-link to="/" >
+          <div @click="logout()"><i class="now-ui-icons users_circle-08"></i> logout
+          </div>
         </nav-link>
         <nav-link to="/profile">
           <i class="now-ui-icons users_single-02"></i> Profile
@@ -97,7 +110,25 @@ export default {
     Navbar,
     NavLink,
     [Popover.name]: Popover
-  }
+  },
+  data(){
+    return{
+      
+
+    }
+  },
+  methods:{
+    logout(){
+      this.$store.commit('userData',null)
+      this.$store.commit('isLoggedin',false)
+      
+      
+    }
+  },
+  computed:{
+    islogin(){
+      return  this.$store.getters.getlogin
+  }}
 };
 </script>
 

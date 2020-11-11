@@ -105,7 +105,7 @@
 .form-check-radio input[type="radio"]:checked + .form-check-sign::after {
     width: 4px;
     height: 4px;
-    background-color: $dark-background;
+    background-color: white;
     border-color: $dark-background;
     top: 11px;
     left: 11px;
