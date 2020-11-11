@@ -29,21 +29,11 @@ public class FavoritelistService {
         favodao.delete(fl);
     }
 
-    public HashMap<String,Object>   findByUid(String uid){
+    public List<FavoritelistEntity>  findByUid(String uid){
+
         List<FavoritelistEntity> list = favodao.findByUid(uid);
-        ArrayList<wineList> windlist = new ArrayList<>();
-        HashMap<String,Object> hm = new HashMap<>();
 
-        for(FavoritelistEntity fl : list){
-            int wid = fl.getWid();
-
-            windlist.add(searchservice.findByWid(wid));
-            
-        }
-        hm.put("list", windlist);
-        hm.put("size",windlist.size());
-
-        return hm;
+        return list;
     }
 
 }

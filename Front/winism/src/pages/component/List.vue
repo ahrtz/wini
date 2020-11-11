@@ -1,10 +1,18 @@
 <template>
-  <div>
-    <v-app >
+
+    <v-app>
       <v-container class="pt-5">
         <v-row style='margin-top:60px'>
           <v-col cols="12">
-            <v-text-field label="Search Wine" append-outer-icon="mdi-magnify"></v-text-field>
+            
+            <v-autocomplete
+            :search-input.sync="input"
+            :items="namelist"
+            @click:append-outer="submit" label="Search Wine" append-outer-icon="mdi-magnify" 
+            dense
+    
+          ></v-autocomplete>
+
           </v-col>
         </v-row>
         <div class="row">
@@ -121,9 +129,7 @@
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
             <v-row dense>
-              <v-col cols="12" sm="8" class="pl-6 pt-6">
-                <small>Showing 1-12 of 200 products</small>
-              </v-col>
+         
               <v-col cols="12" sm="4">
                 <v-select class="pa-0" v-model="select" :items="options" style="margin-bottom: -20px;" outlined dense>
                 </v-select>
@@ -133,7 +139,7 @@
             <v-divider></v-divider>
 
 <div class="row text-center">
-              <div class="col-12" :key="pro.id" v-for="pro in products">
+              <div class="col-12" :key="pro.id" v-for="pro in winelist">
                 <v-hover v-slot:default="{ hover }">
 
 <v-card>
@@ -155,26 +161,30 @@
                 <v-flex xs5>
                   <v-card-title primary-title>
                     <div>
-                      <div class="headline">Alvaro Palacios Villa de Corullon</div>
-                      <div>꿀레레레레레레레레레레</div>
-                      <div>(Red)</div>
+                      <div class="headline">{{pro.ename}}</div>
+                      <div>{{pro.koname}}</div>
+                      <div>{{pro.type}}</div>
+                      <div>{{pro.year}}</div>
+                      <div>{{pro.grape}}</div>
+                      <div>{{pro.temperature}}</div>
+                      <div v-if="pro.cost!=='가격정보없음'">{{pro.cost}}</div>
                     </div>
                   </v-card-title>
                 </v-flex>
                 <v-flex xs4>
                   <v-card-text>
                     <div>
-                    <template>
-                    sweetness<n-progress :value="sweetness" type="primary" :height="15" show-value>{{sweetness}}</n-progress>
+                    <template>sweetness
+                    <n-progress :value="parseInt(pro.sweetness)" type="primary" :height="15" show-value>{{pro.sweetness}}</n-progress>
                   </template>
                   <template>
-                    acidity<n-progress :value="acidity" type="primary" :height="15" show-value>{{acidity}}</n-progress>
+                    acidity<n-progress :value="parseInt(pro.acidity)" type="primary" :height="15" show-value>{{pro.acidity}}</n-progress>
                   </template>
                   <template>
-                    tannin<n-progress :value="tannin" type="primary" :height="15" show-value>{{tannin}}</n-progress>
+                    tannin<n-progress :value="parseInt(pro.tannin)" type="primary" :height="15" show-value>{{pro.tannin}}</n-progress>
                   </template>
                   <template>
-                    body<n-progress :value="body" type="primary" :height="15" show-value>{{body}}</n-progress>
+                    body<n-progress :value="parseInt(pro.body)" type="primary" :height="15" show-value>{{pro.body}}</n-progress>
                   </template>
                       
                       
@@ -194,7 +204,7 @@
                         <div v-if="hover"
                           class="d-flex transition-fast-in-fast-out white darken-2 v-card--reveal display-3 white--text"
                           style="height: 100%;">
-                          <v-btn v-if="hover" href="/detail" class="" outlined>VIEW</v-btn>
+                          <v-btn v-if="hover"  @click="$router.push({name:'product',params:{wid:pro.wid}})" class="" outlined>VIEW</v-btn>
                         </div>
 
                       </v-expand-transition>
@@ -212,7 +222,7 @@
 
 
     </v-app>
-  </div>
+
 
 </template>
 <script>
@@ -220,6 +230,8 @@
     Slider
   } from '@/components'
 import {Progress} from '@/components'
+import axios from 'axios'
+  const SERVER='http://k3a208.p.ssafy.io/api/'
   export default {
     name: 'List',
     components: {
@@ -228,6 +240,9 @@ import {Progress} from '@/components'
     },
     data() {
       return {
+        input:'',
+        winelist:[],
+        namelist:[],
 
         //wine taste
         sweetness:0,
@@ -345,14 +360,7 @@ import {Progress} from '@/components'
 
         ],
 
-        products: [{
-            id: 1,
-            name: 'Alvaro Palacios Villa de Corullon',
-            type: 'Red',
-            price: '18.00',
-            src: require('../../../public/img/wine-bottle-grapes.jpg')
-          },
-        ],
+
         sweetlabel: [
           'Dry',
           '', '', '', '', 'Sweet'
@@ -368,7 +376,48 @@ import {Progress} from '@/components'
         ],
     
       }
+    },
+    methods:{
+    submit(){
+      axios.get(`${SERVER}search?keyword=${this.input}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+      .then(res=>{
+        this.winelist=res.data.content
+        })
+      .catch(err=>console.log(err))
+
+    },
+    
+ 
+  },
+  watch: {
+    input: function () {
+      axios.get(`${SERVER}search/auto?keyword=${this.input}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+      .then(res=>{
+        this.namelist=[]
+        for(var i in res.data){
+          var regexp =/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*/gi;
+          if(!this.input.match(regexp)){
+            this.namelist.push(res.data[i].koname)
+          }
+          else{
+ this.namelist.push(res.data[i].enname)
+        }
+          }
+         
+        })
+      .catch(err=>console.log(err))
     }
+  }
   };
 </script>
 <style scoped>
