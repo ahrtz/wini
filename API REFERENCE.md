@@ -142,7 +142,7 @@
 | ----- | ---- | ---------------------------------- |
 | list  | List | 와인 정보(wine entity 확인) 리스트 |
 
-## 2.5 와인 추천 (GET /recommend/contents)
+## 2.5 와인 추천(상세페이지) (GET /recommend/byfavoandreview)
 
 `Request parameters`
 
@@ -150,6 +150,21 @@
 | --------- | ------ | ----------- |
 | userid    | String | 사용자 ID   |
 
+
+`Response (Success)`
+
+| Field | Type   | Description                 |
+| ----- | ------ | --------------------------- |
+| image | String | 사진 있을시 url 없을시 null |
+| wine  | Object | 와인 object                 |
+
+## 2.6 와인 추천(사용자 페이지) (GET /recommend/bywine)
+
+`Request parameters`
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| wid       | int  | 와인 아이디 |
 
 `Response (Success)`
 

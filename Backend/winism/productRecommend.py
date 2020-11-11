@@ -91,7 +91,7 @@ def tannin(x,tanin):
         return 0
 
 
-def readcsv(suger,acid,body,tanin,price,food,alcoo):
+def readcsv(suger,acid,body,tanin,price,food,alcoo,userdata):
 
 
     pd.set_option('display.max_columns', 100)
@@ -104,8 +104,8 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo):
     
     
 
-    csv = pd.read_csv("C:/Users/git/ssafy_project3/s03p31a208/Backend/winism/wine3.csv")
-    # csv = pd.read_csv("/home/ubuntu/s03p31a208/Backend/winism/wine3.csv")
+    csv = pd.read_csv("C:/Users/git/ssafy_project3/s03p31a208/Backend/winism/wine.csv")
+    # csv = pd.read_csv("/home/ubuntu/s03p31a208/Backend/winism/wine.csv")
 
     
 
@@ -137,16 +137,32 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo):
                             })
     dataset["sum"] = dataset["suger"] + dataset["body"] + dataset["acid"] + dataset["tanin"] + dataset["alco"] + dataset["food"] + dataset["price"]
 
-    # dataset["sum"] = np.where(dataset["wid"] == 14059,dataset["sum"] + 1,dataset["sum"])
+    
+
+    if(userdata != "null"):
+        userdata = userdata. split(",")
+        for i in range(len(userdata) - 1):
+            dataset["sum"] = np.where(dataset["wid"] == int(userdata[i]),dataset["sum"] + (1 - i * (1/(len(userdata)-1))) ,dataset["sum"])
+        
 
     dataset = dataset.sort_values(by=["sum"],axis = 0,ascending=False)
-    print(dataset.head(5))
+    # print(dataset.head(10))
 
 
     datalist = dataset["wid"].tolist()
     print(datalist[0],datalist[1],datalist[2],datalist[3],datalist[4])
     
-    
+
+# print(sys.argv[2])
 jsonobj = json.loads(sys.argv[1])
-readcsv(int(jsonobj["suger"]),int(jsonobj["acid"]),int(jsonobj["body"]),int(jsonobj["tanin"]) ,jsonobj["price"],jsonobj["food"],19)
+
+alcoo = jsonobj["alcoo"]
+if(alcoo == "None"):
+    alcoo = 0
+price = jsonobj["price"]
+if(price == "가격정보없음") | (price == ""):
+    price = 0
+
+readcsv(float(jsonobj["suger"]),float(jsonobj["acid"]),float(jsonobj["body"]),float(jsonobj["tanin"]) , float(price) ,jsonobj["food"],float(alcoo),sys.argv[2])
+
 
