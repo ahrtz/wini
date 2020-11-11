@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.winism.winism.model.review.ReviewEntity;
+import com.winism.winism.model.wine.wineList;
 import com.winism.winism.service.review.ReviewService;
+import com.winism.winism.service.wine.WineService;
 import com.winism.winism.util.FileCheck;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class ReviewController {
     
     @Autowired
     ReviewService reviewservice;
+
+    @Autowired
+    WineService wineservice;
 
     @PostMapping("/review/getbyid")
     public ResponseEntity<List<Object>> getbyid(String userid){
@@ -44,7 +49,6 @@ public class ReviewController {
     public ResponseEntity<List<Object>> getbywine(int wid){
 
         
-
         List<ReviewEntity> list = reviewservice.findAllByWid(wid);
 
         List<Object> result = new ArrayList<>();
@@ -61,12 +65,37 @@ public class ReviewController {
     @PostMapping("/review/register")
     public ResponseEntity<Object> register(ReviewEntity entity){
         reviewservice.register(entity);
+
+        List<ReviewEntity> rl =  reviewservice.findAllByWid(entity.getWid());
+
+        int sum = 0;
+        for(ReviewEntity re : rl){
+            sum +=  Integer.parseInt(re.getRating());
+        }
+
+        wineList wl =  wineservice.getbyid(entity.getWid());
+        wl.setRATING(sum/rl.size() + "");
+        wineservice.update(wl);
+
+
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
     @PostMapping("/review/update")
     public ResponseEntity<Object> update(ReviewEntity entity){
         reviewservice.register(entity);
+
+        List<ReviewEntity> rl =  reviewservice.findAllByWid(entity.getWid());
+
+        int sum = 0;
+        for(ReviewEntity re : rl){
+            sum +=  Integer.parseInt(re.getRating());
+        }
+
+        wineList wl =  wineservice.getbyid(entity.getWid());
+        wl.setRATING(sum/rl.size() + "");
+        wineservice.update(wl);
+        
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
