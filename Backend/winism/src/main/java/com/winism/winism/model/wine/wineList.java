@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="wine2")
+@Table(name="wine")
 public class wineList{
 
     @Id
@@ -38,7 +38,6 @@ public class wineList{
 
     @Column(name = "LOCAL")
     private String LOCAL;
-
 
     @Column(name = "SWEETNESS")
     private String SWEETNESS;
@@ -84,5 +83,11 @@ public class wineList{
 
     @Column(name = "SPLITNAME")
     private String SPLITNAME;
+
+    @Column(name = "RATING")
+    private String RATING;
+
+    @Column(name = "DESCRIPTION")
+    private String DESCRIPTION;
 
 }

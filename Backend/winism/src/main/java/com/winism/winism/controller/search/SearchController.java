@@ -72,6 +72,30 @@ public class SearchController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-
-
+    @PostMapping("/search")
+    @ApiOperation(value = "게시글 필터링")
+    public Object advSearch(
+        @RequestParam(required = false)final String page,
+        @RequestParam(required = false)final String keyword,
+        @RequestParam(required = false)final String type,
+        @RequestParam(required = false)final String pairing,
+        @RequestParam(required = false)final String price1,
+        @RequestParam(required = false)final String price2,
+        @RequestParam(required = false)final String alcohol1,
+        @RequestParam(required = false)final String alcohol2,
+        @RequestParam(required = false)final String rate,
+        @RequestParam(required = false)final String sweetness,
+        @RequestParam(required = false)final String acidity,
+        @RequestParam(required = false)final String tannin,
+        @RequestParam(required = false)final String body
+    )throws IOException {
+        //pagination
+        int pageInt=0;
+        if(page != null){
+            pageInt = Integer.parseInt(page);
+        }
+        Pageable pageable = PageRequest.of(pageInt,10);
+        Page<wineList> list = searchDao.findWithFilter(pageable,keyword,type,pairing,price1,price2,alcohol1,alcohol2,sweetness,acidity,tannin,body);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+     }
 }
