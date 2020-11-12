@@ -17,6 +17,7 @@ import Recommend from './pages/component/Recommend.vue'
 import Info from './pages/component/Info.vue'
 import StarterTest from './pages/component/StarterTest.vue'
 
+import test from './pages/component/StarterTestQuestion.vue'
 Vue.use(Router);
 
 export default new Router({
@@ -115,6 +116,11 @@ export default new Router({
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }
+      path: '/testpage',
+      name: 'testpage',
+      components: { default: test, header: MainNavbar},
+      props: {
+        header: { colorOnScroll: 400 }
       }
     }
   ],
