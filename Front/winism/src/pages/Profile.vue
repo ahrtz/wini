@@ -8,21 +8,18 @@
       </parallax>
       <div class="container">
         
-        <h3 class="title">이메일 혹은 닉네임</h3>
-        <p class="category">등급 개인정보?</p>
+        <h3 class="title">{{userid}}</h3>
+        
         <div class="content">
           <div class="social-description">
-            <h2>26</h2>
+            <h2>{{reviews.length}}</h2>
             <p>리뷰개수</p>
           </div>
           <div class="social-description">
-            <h2>26</h2>
+            <h2>{{wishes.length}}</h2>
             <p>찜개수</p>
           </div>
-          <div class="social-description">
-            <h2>48</h2>
-            <p>Bookmarks 뭔가 넣을게 없나?</p>
-          </div>
+
         </div>
       </div>
     </div>
@@ -40,7 +37,7 @@
             tab-nav-classes="nav-pills-just-icons"
             type="primary"
           >
-            <tab-pane title="Profile">
+            <tab-pane title="Profile" v-if="reviews.length > 0">
               <i slot="label" class="now-ui-icons design_image"></i>
               <h5 class="title text-center">리뷰리스트</h5>
               <div class="col-md-10 ml-auto mr-auto">
@@ -58,11 +55,67 @@
                       class="img-raised"
                     >
                       <v-card-text>
-                        <h5>{{item.review.title}}</h5>
+                        <h5>{{item.review.winename}}</h5>
                         <br>
                         {{item.review.content}}
+                        <br>
+                        {{item.review.rating}}
                       </v-card-text>
+                      <!-- <v-btn class="pull-right">삭제</v-btn>
+                      <v-btn class="pull-right">수정</v-btn> -->
+                      
+                      
+                      
                     </v-card>
+                      <div class="pull-right row">
+                        
+                          
+                          <v-app id="app" class="col-6 p-0 m-0">
+                            <v-dialog v-model="dialog" persistent>
+                              <template v-slot:activator="{on,attrs}">
+                                <v-btn  v-bind="attrs" v-on="on"  > 수정</v-btn>
+                              </template>
+                              <v-card class="mx-auto">
+                                <v-card-title>
+                                  <v-text-field label="제목"  hide-details="auto" v-model="item.review.title"></v-text-field>
+                                </v-card-title>
+                                <v-divider></v-divider>
+                                <v-card-actions> 
+                                  <v-spacer></v-spacer>
+                                  <v-rating v-model="item.review.rating"></v-rating> 
+                                </v-card-actions>
+                                <v-card-text>
+                                  <v-textarea label="내용" v-model="item.review.content" 
+                                  no-resize
+                                  height="140"
+                                  ></v-textarea>
+                                </v-card-text>
+                                <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  
+                                  outlined tile
+                                  @click="dialog = false"
+                                >
+                                  리뷰 등록
+                                </v-btn>
+                                <v-btn
+                                  
+                                  outlined tile
+                                  @click="dialog = false"
+                                >
+                                  취소
+                                </v-btn>
+
+                              </v-card-actions>
+                              </v-card>
+
+                            </v-dialog>
+                          </v-app>
+                          <v-btn class="col-6 px-1"> 삭제 </v-btn>
+                          <!-- <a class="link footer-link">삭제</a> -->
+                        
+                      </div>
                     <!-- <img src="img/bg11.jpg" alt="" class="img-raised" /> -->
                   </div>
                   <!-- <div class="col-md-6">
@@ -73,7 +126,7 @@
               </div>
             </tab-pane>
 
-            <tab-pane title="Home">
+            <tab-pane title="Home" v-if="wishes.length > 0">
               <i slot="label" class="now-ui-icons location_world"></i>
               <h5 class="title text-center">위시리스트</h5>
               <!-- 호버 먹이기 위랑 아래 둘다  -->
@@ -89,22 +142,7 @@
               </div>
             </tab-pane>
 
-            <tab-pane title="Messages">
-              <i slot="label" class="now-ui-icons sport_user-run"></i>
-
-              <div class="col-md-10 ml-auto mr-auto">
-                <div class="row collections">
-                  <div class="col-md-6">
-                    <img src="img/bg3.jpg" alt="" class="img-raised" />
-                    <img src="img/bg8.jpg" alt="" class="img-raised" />
-                  </div>
-                  <div class="col-md-6">
-                    <img src="img/bg7.jpg" alt="" class="img-raised" />
-                    <img src="img/bg6.jpg" class="img-raised" />
-                  </div>
-                </div>
-              </div>
-            </tab-pane>
+            
           </tabs>
         </div>
       </div>
@@ -128,11 +166,12 @@ export default {
       userid:null,
       reviews:{},
       wishes:{},
+      dialog:false,
     }
   },
   async created(){
-    // this.userid = this.$store.state.userid
-    this.userid='bonobono'
+    this.userid = this.$store.state.userid
+    // this.userid='bonobono'
     var form = new FormData()
     form.append('userid',this.userid)
 
@@ -154,6 +193,38 @@ export default {
         this.wishes=res.data
       })
         
+  },
+  methods:{
+    updateReview(item){
+       var form = new FormData();
+          form.append('title',item.review.title)
+          form.append('content',item.review.content)
+          form.append('rating',item.review.rating)
+          form.append('userid',item.review.userid)// uid 는 회원 완성되면 vuex 에서
+          form.append('winename',item.review.winename)
+          form.append('wid',item.review.wid)
+
+      axios.post(`${SERVER}review/update`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>{
+        console.log(res)
+        var form = new FormData()
+          form.append('userid',this.userid)
+
+          //리뷰 받아 오기 
+          axios.post(`${SERVER}/review/getbyid`,form,{headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Content-Type': 'multipart/form-data; charset = utf-8'
+            }}).then(res=>{
+            console.log(res.data)
+            this.reviews=res.data
+            })
+      })      
+    },
+    // deleteReview(item){
+
+    // }
   }
 };
 </script>
