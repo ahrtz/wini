@@ -10,8 +10,6 @@ import com.winism.winism.model.wine.wineList;
 
 
 public interface SearchDAO extends JpaRepository<wineList, String> {
-	Page<wineList> findAll(Pageable pageable);
-	Page<wineList> findByKONAMEContainingOrENNAMEContaining(Pageable pageable,String koname,String enname);
 
 	@Query("SELECT w FROM wineList w where (:KEYWORD is null or w.KONAME LIKE %:KEYWORD% or w.ENNAME LIKE %:KEYWORD%) AND"+
 	"(:TYPE is null or w.TYPE = :TYPE) AND (:RECOMMANDATION is null or w.RECOMMANDATION = :RECOMMANDATION) AND "+

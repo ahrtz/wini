@@ -50,30 +50,7 @@ public class SearchController {
 	SearchDAO searchDao;
 
 	@GetMapping("/search")
-    @ApiOperation(value = "게시글 리스트 불러오기")
-    public Object listWine(
-        @RequestParam(required = false)final String page,
-        @RequestParam(required = false)final String keyword
-    )throws IOException {
-        //pagination
-		int pageInt=0;
-		if(page != null){
-			pageInt = Integer.parseInt(page);
-        }
-        Pageable pageable = PageRequest.of(pageInt,10);
-        
-        Page<wineList> list = searchDao.findAll(pageable);
-        if(keyword == null){
-            list = searchDao.findAll(pageable);
-        }else{
-            list = searchDao.findByKONAMEContainingOrENNAMEContaining(pageable,keyword,keyword);
-        }
-        
-        return new ResponseEntity<>(list, HttpStatus.OK);
-    }
-
-    @PostMapping("/search")
-    @ApiOperation(value = "게시글 필터링")
+    @ApiOperation(value = "게시글 검색")
     public Object advSearch(
         @RequestParam(required = false)final String page,
         @RequestParam(required = false)final String keyword,
