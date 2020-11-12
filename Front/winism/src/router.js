@@ -116,6 +116,9 @@ export default new Router({
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }
+      }
+    },
+    {
       path: '/testpage',
       name: 'testpage',
       components: { default: test, header: MainNavbar},
