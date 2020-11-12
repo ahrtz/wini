@@ -20,15 +20,41 @@
             <v-card outlined>
               <v-card-title>Filters</v-card-title>
               <v-divider></v-divider>
-              <template>
-                <v-treeview :items="items" :open="[1]" :selected-color="'#fff'" activatable open-on-click dense>
-                </v-treeview>
+            
+              <v-list flat>
+   
+           <v-list-group >
+              <template v-slot:activator>
+                <v-list-item-title>Type</v-list-item-title>
               </template>
+ <v-list-item-group v-model="type" color="primary">
+              <v-list-item v-for="item in items" :key="item.id" >
+                <v-list-item-content>
+            <v-list-item-title v-text="item"></v-list-item-title>
+          </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+ </v-list-group>
+          </v-list>
+               
+           
               <v-divider></v-divider>
-              <template>
-                <v-treeview :items="pairings" :open="[1]" :selected-color="'#fff'" activatable open-on-click dense>
-                </v-treeview>
+                <v-list flat>
+   
+           <v-list-group >
+              <template v-slot:activator>
+                <v-list-item-title>Pairing</v-list-item-title>
               </template>
+ <v-list-item-group v-model="pairing" color="primary">
+              <v-list-item v-for="item in pairings" :key="item.id" >
+                <v-list-item-content>
+            <v-list-item-title v-text="item"></v-list-item-title>
+          </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+ </v-list-group>
+          </v-list>
+               
               <v-divider></v-divider>
               <v-card-title>Price</v-card-title>
               <v-range-slider v-model="range" :max="max" :min="min" :height="10" class="align-center some" dense>
@@ -214,7 +240,7 @@
               </div>
 </div>
             <div class="text-center mt-12">
-              <v-pagination v-model="page" :length="6"></v-pagination>
+              <v-pagination v-model="page" :length="10" :total-visible="7"></v-pagination>
             </div>
           </div>
         </div>
@@ -243,7 +269,8 @@ import axios from 'axios'
         input:'',
         winelist:[],
         namelist:[],
-
+        type:0,
+        pairing:'',
         //wine taste
         sweetness:0,
         body:0,
@@ -261,103 +288,13 @@ import axios from 'axios'
           'Price: High to Low',
         ],
         page: 1,
-        breadcrums: [{
-            text: 'Home',
-            disabled: false,
-            href: 'breadcrumbs_home',
-          },
-          {
-            text: 'Type',
-            disabled: false,
-            href: 'breadcrumbs_type',
-          },
-          {
-            text: 'Red',
-            disabled: true,
-            href: 'breadcrumbs_red',
-          },
-        ],
         min: 0,
         max: 10000,
-        items: [{
-            id: 2,
-            name: 'Type',
-            children: [{
-                id: 2,
-                name: 'Red'
-              },
-              {
-                id: 3,
-                name: 'White'
-              },
-              {
-                id: 4,
-                name: 'Rose'
-              },
-              {
-                id: 5,
-                name: 'Sparkling'
-              },
-            ],
-          },
+        items: ['Red','White','Rose','Sparkling'
 
         ],
-        pairings: [{
-            id: 2,
-            name: 'Pairing',
-            children: [
-              {
-                id: 1,
-                name: 'Cheese'
-              },
-              {
+        pairings: ['Cheese','Beef','Fish','Lamb','Vegetable','Pork','Western','Duck','Dessert','Poultry','Instant','etc'
             
-                id: 2,
-                name: 'Beef'
-              },
-              {
-                id: 3,
-                name: 'Fish'
-              },
-              {
-                id: 4,
-                name: 'Lamb'
-              },
-              {
-                id: 5,
-                name: 'Vegetable'
-              },
-              {
-                id: 6,
-                name: 'Pork'
-              },
-              {
-                id: 7,
-                name: 'Western'
-              },
-              {
-                id: 8,
-                name: 'Duck'
-              },
-              {
-                id: 9,
-                name: 'Dessert'
-              },
-              {
-                id: 10,
-                name: 'Poultry'
-              },
-               {
-                id: 11,
-                name: 'Instant'
-              },
-              {
-                id: 12,
-                name: 'Etc'
-              },
-            ],
-          },
-
         ],
 
 
@@ -379,7 +316,7 @@ import axios from 'axios'
     },
     methods:{
     submit(){
-      axios.get(`${SERVER}search?keyword=${this.input}`,{
+      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
@@ -416,7 +353,127 @@ import axios from 'axios'
          
         })
       .catch(err=>console.log(err))
+    },
+    range:function(){
+
+      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
+      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+    },
+    sweetness:function(){
+
+      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
+      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+    },
+    body:function(){
+
+      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
+      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+    },
+    tannin:function(){
+
+      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
+      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+    },
+    acidity:function(){
+      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
+      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+    },
+    type:function(){
+
+      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
+      sweetness:this.sweetness, acidity:toString(this.acidity),tannin:this.tannin,body:this.body},{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+    },
+    pairing:function(){
+
+      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
+      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+    },
+    alcoholrange:function(){
+
+      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
+      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
     }
+
   }
   };
 </script>
