@@ -15,6 +15,7 @@ import List from './pages/component/List.vue'
 import Guide from './pages/component/Guide.vue'
 import Recommend from './pages/component/Recommend.vue'
 import Info from './pages/component/Info.vue'
+import StarterTest from './pages/component/StarterTest.vue'
 
 Vue.use(Router);
 
@@ -102,6 +103,15 @@ export default new Router({
       path: '/product/:wid',
       name: 'product',
       components: { default: Product, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/startertest',
+      name: 'StarterTest',
+      components: { default: StarterTest, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }

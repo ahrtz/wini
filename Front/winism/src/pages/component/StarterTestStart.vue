@@ -1,27 +1,27 @@
 <template>
-  <div>
     <div class="page-header clear-filter">
       <parallax
         class="page-header-image"
-        style="background-image: url('img/wine-bottle-grapes.jpg')"
+        style="background-image:url('img/wine-grapes-drink.jpg')"
       >
       </parallax>
-      <div>
-        <StarterTestStart v-if="current == 0" @changeCurrent="changeCurrent"/>
-        <StarterTestQuestion v-if="current == 1" />
-        <StarterTestResult v-if="current == 2" />
+      <div class="container">
+        <div class="content-center brand">
+          <img class="n-logo" src="img/winelogo.png" alt="" />
+
+
+          <h3>간단한 테스트로 와인 취향을 알아보자!</h3>
+          <v-btn class="white--text" @click="gettingStarted()" outlined>Get start</v-btn>
+        </div>
+       
       </div>
     </div>
-  </div>
 </template>
 <script>
-import StarterTestStart from "./StarterTestStart.vue";
-import StarterTestQuestion from "./StarterTestQuestion.vue";
-import StarterTestResult from "./StarterTestResult.vue";
 export default {
-  name: "StarterTest",
+  name: "StarterTestStart",
   bodyClass: "index-page",
-  components: { StarterTestStart, StarterTestQuestion, StarterTestResult },
+  components: {},
   data() {
     return {
       //wine list slider data
@@ -29,12 +29,12 @@ export default {
       show: false,
       tab: null,
       expand: false,
+      isStart: true,
     };
   },
   methods: {
-    changeCurrent(current) {
-      console.log(current)
-      this.current = current
+    gettingStarted() {
+      this.$emit('changeCurrent', 1)
     }
   }
 };
