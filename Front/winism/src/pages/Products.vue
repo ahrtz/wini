@@ -30,6 +30,9 @@
               </v-carousel-item>
             
 
+
+
+
           </v-carousel>
         </div>
         <div class="col-md-7 col-sm-12 col-xs-12">
@@ -39,7 +42,7 @@
               <v-spacer></v-spacer>
               <!-- <v-rating v-model="rating" class="" background-color="warning lighten-3"
                         color="warning" dense></v-rating> -->
-              <span class="body-2	font-weight-thin "> 앞에 별점? 25 REVIEWS</span>
+              <span class="body-2	font-weight-thin " style="display: inline-block; width: 95%; text-align: right;"> <v-rating v-model="wineData.wine.rating"></v-rating>  {{reviews.length}}  REVIEWS</span>
             </v-card-actions>
             
             <div class="row">
@@ -97,19 +100,22 @@
         <div class="col-sm-12 col-xs-12 col-md-12">
           <v-tabs>
             <v-tab >Description</v-tab>
-            <v-tab >와이너리 설명?</v-tab>
+            <v-tab >추천 음식</v-tab>
             <v-tab>REVIEWS</v-tab>
             <v-tab-item>
               <p class="pt-10 subtitle-1 font-weight-thin">
-                와인에 대한 설명 
-                어울리는 음식? 
-                이건 따로 아이콘이나 그림을 모아서 일단 데이터를 보고 
+                {{wineData.wine.description}}
+                <br>
+                원산지 : {{wineData.wine.local}}
+                <br>
+                추천 음용 온도 : {{wineData.wine.temperature}}
+                <br>
+                여기 세정이가 만들었던 그래프 넣기
               </p>
             </v-tab-item>
             <v-tab-item>
               <p class="pt-10 subtitle-1 font-weight-thin">
-                와이너리? 설명? 
-                뭐 등등 무엇이던지
+                {{wineData.wine.recommandation}}
               </p>
             </v-tab-item>
             <v-tab-item>
@@ -266,32 +272,38 @@ export default {
       })  
       },
       //위시리스트 추가 끝
+
       addReviewData(){
-        var form = new FormData();
-        form.append('title',this.reviewData.title)
-        form.append('content',this.reviewData.content)
-        form.append('rating',this.reviewData.rating)
-        form.append('userid',this.uid)// uid 는 회원 완성되면 vuex 에서
-        form.append('winename',this.wineData.enname)
-        form.append('wid',this.wineData.wid)
-        axios.post(`${SERVER}review/register`,form,{headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'multipart/form-data; charset = utf-8'
-      }}).then(res=>
-      console.log(res)
-      )
+        
+        if (this.islogin==true){
+          var form = new FormData();
+          form.append('title',this.reviewData.title)
+          form.append('content',this.reviewData.content)
+          form.append('rating',this.reviewData.rating)
+          form.append('userid',this.uid)// uid 는 회원 완성되면 vuex 에서
+          form.append('winename',this.wineData.wine.koname)
+          form.append('wid',this.wineData.wine.wid)
+          axios.post(`${SERVER}review/register`,form,{headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'multipart/form-data; charset = utf-8'
+        }}).then(res=>
+        console.log(res)
+        )}
+        else{
+          alert('로그인해주세요')
+        }
+
 
       }
       //리뷰데이터 넣기
     },
+    computed:{
+    islogin(){
+      return  this.$store.getters.getlogin
+    }},
 
-    beforecreate(){
-      this.uid = this.$store.state.userid
-    }
-
-
-    ,
     async created(){
+      this.uid = this.$store.state.userid
       
       this.wineid = this.$route.params.wid;
 
