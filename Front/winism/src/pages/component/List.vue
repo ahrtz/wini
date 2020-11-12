@@ -328,6 +328,7 @@ import axios from 'axios'
       .catch(err=>console.log(err))
 
     },
+
     
  
   },
@@ -355,12 +356,25 @@ import axios from 'axios'
       .catch(err=>console.log(err))
     },
     range:function(){
-
-      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
-      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+var form = new FormData();
+        form.append('keyword',this.input)
+        form.append('page',this.page)
+        form.append('type',this.items[this.type])
+        form.append('pairing',this.pairings[this.pairing])
+        form.append('price1',this.range[0])
+        form.append('price2',this.range[1])
+        form.append('alcohol1',this.alcoholrange[0])
+        form.append('alcohol2',this.alcoholrange[1])
+        form.append('rate','')
+        form.append('sweetness',toString(this.sweetness))
+        form.append('acidity',toString(this.acidity))
+        form.append('tannin',toString(this.tannin))
+        form.append('body',toString(this.body))
+        console.log(form)
+      axios.post(`${SERVER}search`,form,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -370,27 +384,53 @@ import axios from 'axios'
 
     },
     sweetness:function(){
-
-      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
-      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
+      var form = new FormData();
+        form.append('keyword',this.input)
+        form.append('page',this.page)
+        form.append('type',this.items[this.type])
+        form.append('pairing',this.pairings[this.pairing])
+        form.append('price1',this.range[0])
+        form.append('price2',this.range[1])
+        form.append('alcohol1',this.alcoholrange[0])
+        form.append('alcohol2',this.alcoholrange[1])
+        form.append('rate','')
+        form.append('sweetness',this.sweetness.toString())
+        form.append('acidity',this.acidity)
+        form.append('tannin',this.tannin)
+        form.append('body',this.body)
+        // for(var pair of form.entries()){
+        //   console.log(pair[0]+pair[1])
+        // }
+      axios.post(`${SERVER}search`,{params:{keyword:this.input,page:this.page,type:this.items[this.type],sweetness:toString(this.sweetness)},headers:{
+	'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
+      }})
     .then(res=>{
       console.log(res)
       this.winelist=res.data.content
     })
+    .catch(err=>console.log(err))
 
     },
     body:function(){
-
-      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
-      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+var form = new FormData();
+        form.append('keyword',this.input)
+        form.append('page',this.page)
+        form.append('type',this.items[this.type])
+        form.append('pairing',this.pairings[this.pairing])
+        form.append('price1',this.range[0])
+        form.append('price2',this.range[1])
+        form.append('alcohol1',this.alcoholrange[0])
+        form.append('alcohol2',this.alcoholrange[1])
+        form.append('rate','')
+        form.append('sweetness',this.sweetness)
+        form.append('acidity',this.acidity)
+        form.append('tannin',this.tannin)
+        form.append('body',this.body)
+      axios.post(`${SERVER}search`,form,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -400,12 +440,24 @@ import axios from 'axios'
 
     },
     tannin:function(){
-
-      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
-      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+var form = new FormData();
+        form.append('keyword',this.input)
+        form.append('page',this.page)
+        form.append('type',this.items[this.type])
+        form.append('pairing',this.pairings[this.pairing])
+        form.append('price1',this.range[0])
+        form.append('price2',this.range[1])
+        form.append('alcohol1',this.alcoholrange[0])
+        form.append('alcohol2',this.alcoholrange[1])
+        form.append('rate','')
+        form.append('sweetness',this.sweetness)
+        form.append('acidity',this.acidity)
+        form.append('tannin',this.tannin)
+        form.append('body',this.body)
+      axios.post(`${SERVER}search`,form,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -415,11 +467,24 @@ import axios from 'axios'
 
     },
     acidity:function(){
-      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
-      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+      var form = new FormData();
+        form.append('keyword',this.input)
+        form.append('page',this.page)
+        form.append('type',this.items[this.type])
+        form.append('pairing',this.pairings[this.pairing])
+        form.append('price1',this.range[0])
+        form.append('price2',this.range[1])
+        form.append('alcohol1',this.alcoholrange[0])
+        form.append('alcohol2',this.alcoholrange[1])
+        form.append('rate','')
+        form.append('sweetness',this.sweetness)
+        form.append('acidity',this.acidity)
+        form.append('tannin',this.tannin)
+        form.append('body',this.body)
+      axios.post(`${SERVER}search`,form,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -429,12 +494,24 @@ import axios from 'axios'
 
     },
     type:function(){
-
-      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
-      sweetness:this.sweetness, acidity:toString(this.acidity),tannin:this.tannin,body:this.body},{
+var form = new FormData();
+        form.append('keyword',this.input)
+        form.append('page',this.page)
+        form.append('type',this.items[this.type])
+        form.append('pairing',this.pairings[this.pairing])
+        form.append('price1',this.range[0])
+        form.append('price2',this.range[1])
+        form.append('alcohol1',this.alcoholrange[0])
+        form.append('alcohol2',this.alcoholrange[1])
+        form.append('rate','')
+        form.append('sweetness',this.sweetness)
+        form.append('acidity',this.acidity)
+        form.append('tannin',this.tannin)
+        form.append('body',this.body)
+      axios.post(`${SERVER}search`,form,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -444,12 +521,24 @@ import axios from 'axios'
 
     },
     pairing:function(){
-
-      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
-      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+var form = new FormData();
+        form.append('keyword',this.input)
+        form.append('page',this.page)
+        form.append('type',this.items[this.type])
+        form.append('pairing',this.pairings[this.pairing])
+        form.append('price1',this.range[0])
+        form.append('price2',this.range[1])
+        form.append('alcohol1',this.alcoholrange[0])
+        form.append('alcohol2',this.alcoholrange[1])
+        form.append('rate','')
+        form.append('sweetness',this.sweetness)
+        form.append('acidity',this.acidity)
+        form.append('tannin',this.tannin)
+        form.append('body',this.body)
+      axios.post(`${SERVER}search`,form,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -459,12 +548,24 @@ import axios from 'axios'
 
     },
     alcoholrange:function(){
-
-      axios.post(`${SERVER}search`,{keyword:this.input,page:'',type:this.items[this.type],pairing:this.pairings[this.pairing],price1:this.range[0],price2:this.range[1],alcohol1:this.alcoholrange[0],alcohol2:this.alcoholrange[1],rate:'',
-      sweetness:this.sweetness, acidity:this.acidity,tannin:this.tannin,body:this.body},{
+var form = new FormData();
+        form.append('keyword',this.input)
+        form.append('page',this.page)
+        form.append('type',this.items[this.type])
+        form.append('pairing',this.pairings[this.pairing])
+        form.append('price1',this.range[0])
+        form.append('price2',this.range[1])
+        form.append('alcohol1',this.alcoholrange[0])
+        form.append('alcohol2',this.alcoholrange[1])
+        form.append('rate','')
+        form.append('sweetness',this.sweetness)
+        form.append('acidity',this.acidity)
+        form.append('tannin',this.tannin)
+        form.append('body',this.body)
+      axios.post(`${SERVER}search`,form,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
     	}
     })
     .then(res=>{
