@@ -34,19 +34,21 @@
         </div>
         <div class="col-md-7 col-sm-12 col-xs-12">
           <div class="pl-6 ">
-            <p class="display-1 mb-0">Modern Black T-Shirt</p>
+            <p class="display-4 mb-0">{{wineData.wine.koname}} <br> ({{wineData.wine.enname}}) <br> {{wineData.wine.year}}</p>
             <v-card-actions class="pa-0">
               <v-spacer></v-spacer>
               <!-- <v-rating v-model="rating" class="" background-color="warning lighten-3"
                         color="warning" dense></v-rating> -->
               <span class="body-2	font-weight-thin "> 앞에 별점? 25 REVIEWS</span>
             </v-card-actions>
+            
             <div class="row">
-            <v-btn class=" col-6" outlined tile>ADD TO WISHLIST</v-btn>
+            <v-btn v-if="this.wishTF==false" class=" col-6 m-0 p-1 " color="blue" outlined tile @click="addWishlist"> <v-icon>mdi-cart</v-icon>ADD TO WISHLIST></v-btn>
+            <n-button v-if="this.wishTF" class=" col-6 m-0 p-1" type='danger ' simple outlined tile @click="addWishlist"> <v-icon>mdi-cart</v-icon>remove from WISHLIST</n-button>
             <v-app id="app" class="col-6 p-0">
               <v-dialog v-model="dialog" persistent>
                 <template v-slot:activator="{on,attrs}">
-                  <v-btn  v-bind="attrs" v-on="on" outlined tile dense ><v-icon>mdi-cart</v-icon> 리뷰 남기기</v-btn>
+                  <v-btn  v-bind="attrs" v-on="on" outlined tile dense > 리뷰 남기기</v-btn>
                 </template>
                 <v-card class="mx-auto">
                   <v-card-title>
@@ -58,18 +60,23 @@
                     <v-rating v-model="reviewData.rating"></v-rating> 
                   </v-card-actions>
                   <v-card-text>
-                    <v-text-field label="내용" v-model="reviewData.content"></v-text-field>
+                    <v-textarea label="내용" v-model="reviewData.content" 
+                    no-resize
+                    height="140"
+                    ></v-textarea>
                   </v-card-text>
                   <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn
-                    text
-                    @click="dialog = false"
+                    
+                    outlined tile
+                    @click="dialog = false;addReviewData()"
                   >
                     리뷰 등록
                   </v-btn>
                   <v-btn
-                    text
+                    
+                    outlined tile
                     @click="dialog = false"
                   >
                     취소
@@ -108,11 +115,11 @@
             <v-tab-item>
               <v-card v-for="review in reviews" :key="review.reviewid" class="row">
                   
-                  <v-card-title>{{review.content}}</v-card-title>
+                  <v-card-title>{{review.review.content}}</v-card-title>
                   <v-spacer></v-spacer>
-                  <v-rating v-model="review.rate" readonly></v-rating>
+                  <v-rating v-model="review.review.rating" readonly></v-rating>
                   
-                  <v-card-text>{{review.content}}</v-card-text>
+                  <v-card-text>{{review.review.content}}</v-card-text>
                   
               </v-card>
               
@@ -176,14 +183,32 @@
 </template>
 
 <script>
+import axios from 'axios'
+  const SERVER='http://k3a208.p.ssafy.io/api/'
+  
+import {
+  Button,
+
+} from '@/components';
+
+
 export default {
     name:'Product',
     bodyClass: 'product-page',
+    components: {
+    [Button.name]: Button,
+    
+  },
     data(){
         return {
+          uid:null,
+          wishTF:null,
+            wineid:null,
             dialog:false,
             items:'',
+            wineData:null,
             item: [
+              // 이건 사진
           {
             text: 'Admin',
             href: '#'
@@ -207,33 +232,125 @@ export default {
            itemname:'your name is yoo se jung carbine sobinoung' 
           },
         ],
-        reviews:[
-          {
-            reviewid:1,
-            content:"내용1 이게 길어지면 어떻게 될 것인가 낭는 정말 잘 모르겟구나 ",
-            rate:3,
-            
-          },
-          {
-            reviewid:2,
-            content:'내용2',
-            rate:4
-          },
-        ],
+        reviews:{},
         reviewData:{
           title:'',
           content:'',
           rating:0
         },
         }
+    },
+    methods:{
+      async addWishlist(){
+        var form = new FormData();
+        form.append('wid',this.wineid)
+        form.append('uid',this.uid)
+        //  uid 는 회원 완성되면 뷰엑스에서 받아와야 하고 이것도 if 절로 vuex 에서 처리해야함
+        await axios.post(`${SERVER}favorite/add`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>{
+          var form = new FormData();
+          form.append("wid",this.wineid)
+          form.append('uid',this.uid)
+          //uid 추후 수정 필
+          axios.post(`${SERVER}/favorite/check`,form,{
+            headers:{
+              'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'multipart/form-data; charset = utf-8'
+            }
+          }).then(res=>{
+            console.log(res.data)
+            this.wishTF=res.data
+          })
+      })  
+      },
+      //위시리스트 추가 끝
+      addReviewData(){
+        var form = new FormData();
+        form.append('title',this.reviewData.title)
+        form.append('content',this.reviewData.content)
+        form.append('rating',this.reviewData.rating)
+        form.append('userid',this.uid)// uid 는 회원 완성되면 vuex 에서
+        form.append('winename',this.wineData.enname)
+        form.append('wid',this.wineData.wid)
+        axios.post(`${SERVER}review/register`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>
+      console.log(res)
+      )
+
+      }
+      //리뷰데이터 넣기
+    },
+
+    beforecreate(){
+      this.uid = this.$store.state.userid
     }
 
-}
+
+    ,
+    async created(){
+      
+      this.wineid = this.$route.params.wid;
+
+
+      var form = new FormData();
+      form.append("wid",this.wineid)
+      console.log(this.wineid)
+      // 와인데이터 받아오기
+      await axios.post(`${SERVER}search/detail`,form,{
+        
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'multipart/form-data; charset = utf-8'
+        }
+        }).then(res =>{
+          this.wineData=res.data
+        }).catch(e=>console.log(e))
+      
+      
+      await axios.post(`${SERVER}review/getbywine`,form,{
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'multipart/form-data; charset = utf-8'
+        }
+      }).then(res=>{
+        console.log(res.data)
+      })
+      var form = new FormData();
+      form.append("wid",this.wineid)
+      form.append('uid',this.uid)
+      //uid 추후 수정 필
+      await axios.post(`${SERVER}favorite/check`,form,{
+        headers:{
+          'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+        }
+      }).then(res=>{
+        console.log(res.data)
+        this.wishTF=res.data
+      })
+
+    // 와인 id로 리뷰 데이터 받아오기 
+      var form = new FormData();
+      form.append("wid",this.wineid)
+    await axios.post(`${SERVER}review/getbywine`,form,{
+        headers:{
+          'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+        }
+      }).then(res=>{
+        this.reviews=res.data
+      })
+
+
+}}
 </script>
 
 <style scoped>
 
 
-  
 
 </style>

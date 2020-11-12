@@ -42,10 +42,11 @@
           >
             <tab-pane title="Profile">
               <i slot="label" class="now-ui-icons design_image"></i>
-
+              <h5 class="title text-center">리뷰리스트</h5>
               <div class="col-md-10 ml-auto mr-auto">
                 <div class="row collections">
-                  <div class="col-md-4" v-for="item in dummy" :key="item.id">
+
+                  <div class="col-md-4" v-for="item in reviews" :key="item.id">
                     <img src="img/bg6.jpg" class="img-raised" />
                     <v-card
                       title="Card Title"
@@ -57,7 +58,9 @@
                       class="img-raised"
                     >
                       <v-card-text>
-                        {{item.content}}
+                        <h5>{{item.review.title}}</h5>
+                        <br>
+                        {{item.review.content}}
                       </v-card-text>
                     </v-card>
                     <!-- <img src="img/bg11.jpg" alt="" class="img-raised" /> -->
@@ -72,17 +75,16 @@
 
             <tab-pane title="Home">
               <i slot="label" class="now-ui-icons location_world"></i>
-
-              <div class="col-md-10 ml-auto mr-auto">
+              <h5 class="title text-center">위시리스트</h5>
+              <!-- 호버 먹이기 위랑 아래 둘다  -->
+              <div class="col-md-10 ml-auto mr-auto" >
                 <div class="row collections">
-                  <div class="col-md-6">
-                    <img src="img/bg1.jpg" alt="" class="img-raised" />
-                    <img src="img/bg3.jpg" alt="" class="img-raised" />
+                  <div class="col-md-6" v-for="item in wishes" :key="item.id">
+                    <img src="img/bg1.jpg" alt="" class="img-raised" @click="$router.push({name:'product',params:{wid:item.wine.wid}})"/>
+                    
+                    {{item.wine.koname}}
                   </div>
-                  <div class="col-md-6">
-                    <img src="img/bg8.jpg" alt="" class="img-raised" />
-                    <img src="img/bg7.jpg" alt="" class="img-raised" />
-                  </div>
+                  
                 </div>
               </div>
             </tab-pane>
@@ -111,7 +113,9 @@
 </template>
 <script>
 import { Tabs, TabPane } from '@/components';
-
+import axios from 'axios'
+import { Form } from 'element-ui';
+  const SERVER='http://k3a208.p.ssafy.io/api/'
 export default {
   name: 'profile',
   bodyClass: 'profile-page',
@@ -121,25 +125,35 @@ export default {
   },
   data(){
     return{
-      dummy:[
-        {
-          id:1,
-          content:21
-        },
-        {
-          id:2,
-          content:22
-        },
-        {
-          id:3,
-          content:23
-        },
-        {
-          id:4,
-          content:24
-        },
-      ]
+      userid:null,
+      reviews:{},
+      wishes:{},
     }
+  },
+  async created(){
+    // this.userid = this.$store.state.userid
+    this.userid='bonobono'
+    var form = new FormData()
+    form.append('userid',this.userid)
+
+    //리뷰 받아 오기 
+    axios.post(`${SERVER}/review/getbyid`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>{
+      console.log(res.data)
+      this.reviews=res.data
+      })
+    // 찜 받아오기 
+    
+
+    axios.post(`${SERVER}/favorite/getbyid`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>{
+        this.wishes=res.data
+      })
+        
   }
 };
 </script>

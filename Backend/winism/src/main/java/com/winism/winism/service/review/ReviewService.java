@@ -22,6 +22,14 @@ public class ReviewService {
         return reviewdao.findAllByUserid(userid);
     }
 
+    public List<ReviewEntity> findAll(){
+        return reviewdao.findAll();
+    }
+
+    public List<ReviewEntity> findAllByWid(int wid){
+        return reviewdao.findAllByWid(wid);
+    }
+
     public void register(ReviewEntity entity){
         entity.setDate(winismdate.getToday());
         reviewdao.save(entity);

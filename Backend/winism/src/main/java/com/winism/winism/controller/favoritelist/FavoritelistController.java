@@ -9,6 +9,8 @@ import com.winism.winism.dao.search.SearchDAO;
 import com.winism.winism.model.favoritelist.FavoritelistEntity;
 import com.winism.winism.model.wine.wineList;
 import com.winism.winism.service.favoritelist.FavoritelistService;
+import com.winism.winism.service.wine.WineService;
+import com.winism.winism.util.FileCheck;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,26 +26,32 @@ public class FavoritelistController {
     @Autowired
     FavoritelistService flservice;
 
+    @Autowired
+    WineService wineservice;
+
   
 
     @PostMapping("/favorite/add")
     public ResponseEntity<String> add(FavoritelistEntity fl){
-        System.out.println("1");
-        ArrayList<wineList> ar =  (ArrayList)flservice.findByUid(fl.getUid()).get("list");
-        System.out.println("1");
+
+        List<FavoritelistEntity> list =  flservice.findByUid(fl.getUid());
+
+
+
         boolean flag = false;
 
-        if(!ar.isEmpty()){
-            System.out.println("1");
-            for(wineList arunit : ar){
-                System.out.println("들어감");
+        if(!list.isEmpty()){
+            for(FavoritelistEntity arunit : list){
                 if(arunit.getWid() == fl.getWid()){
+
+                    flservice.remove(arunit);
                     flag = true;
                     break;
+
                 }
             }
             if(flag){
-                return new ResponseEntity<>("fail", HttpStatus.OK);
+                return new ResponseEntity<>("success", HttpStatus.OK);
             }
             else{
                 flservice.add(fl);
@@ -56,6 +64,21 @@ public class FavoritelistController {
         }
     }
 
+
+    @PostMapping("/favorite/check")
+    public ResponseEntity<Boolean> check(String uid,int wid){
+
+        List<FavoritelistEntity> ar =  flservice.findByUid(uid);
+        for(FavoritelistEntity arunit : ar){
+            if(arunit.getWid() == wid){
+                return new ResponseEntity<>(true, HttpStatus.OK);
+            }
+        }
+
+        return new ResponseEntity<>(false, HttpStatus.OK);
+    }
+
+
     @PostMapping("/favorite/remove")
     public ResponseEntity<String> remove(FavoritelistEntity fl){
         flservice.remove(fl);
@@ -64,8 +87,24 @@ public class FavoritelistController {
     
     
     @PostMapping("/favorite/getbyid")
-    public ResponseEntity<HashMap<String,Object>  > getbyid(String uid){
-        return new ResponseEntity<>(flservice.findByUid(uid), HttpStatus.OK);
+    public ResponseEntity<Object> getbyid(String userid){
+        
+        
+        
+        List<FavoritelistEntity> flar = flservice.findByUid(userid);
+        ArrayList<wineList> ar = new ArrayList<>();
+        List<Object> list = new ArrayList();
+        FileCheck fc = new FileCheck();
+        for(FavoritelistEntity ff: flar){
+            HashMap<String,Object> hm = new HashMap<>();
+            hm.put("wine", wineservice.getbyid(ff.getWid()));
+            hm.put("image",fc.checkImage(wineservice.getbyid(ff.getWid()).getENNAME()));
+
+            list.add(hm);
+        }
+        
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     
