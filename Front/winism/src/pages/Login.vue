@@ -8,8 +8,8 @@
       <div class="container">
         <div class="col-md-5 ml-auto mr-auto">
           <card type="login" plain >
-            <div slot="header" class="logo-container">
-              <img v-lazy="'img/now-logo.png'" alt="" />
+            <div slot="header" >
+              <img v-lazy="'img/winelogowhite.png'" alt="" />
             </div>
 
             <fg-input
@@ -38,7 +38,7 @@
               </div>
               <div class="pull-left">
                 <h6>
-                  <a @click="$router.push({name:'signup'})" class="link footer-link">Create Account</a>
+                  <a @click="$router.push({name:'signup'})" style="cursor:pointer" class="link footer-link">Create Account</a>
                 </h6>
               </div>
               <!-- <div class="pull-right">

@@ -139,6 +139,24 @@
                 </div>
               </div>
             </tab-pane>
+            <tab-pane title="Home" >
+              <i slot="label" class="now-ui-icons location_world"></i>
+              <h5 class="title text-center">you might also like</h5>
+              <!-- 호버 먹이기 위랑 아래 둘다  -->
+              <div class="col-md-10 ml-auto mr-auto" >
+                <div class="row collections">
+                  <div class="col-md-6" v-for="item in recommends" :key="item.id">
+                    <img src="img/bg1.jpg" alt="" class="img-raised" @click="$router.push({name:'product',params:{wid:item.wine.wid}})"/>
+                      
+                    {{item.wine.koname}}
+                    
+                  </div>
+                  
+                </div>
+              </div>
+            </tab-pane>
+
+            
 
             
           </tabs>
@@ -165,6 +183,7 @@ export default {
       reviews:{},
       wishes:{},
       dialog:false,
+      recommends:{}
     }
   },
   async created(){
@@ -190,7 +209,16 @@ export default {
       }}).then(res=>{
         this.wishes=res.data
       })
-        
+    
+    axios.get(`${SERVER}recommend/byfavoandreview?userid=${this.userid}`,{
+      headers:{
+        'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+        }
+      }).then(res=>{
+        console.log(res)
+        this.recommends = res.data
+      })
   },
   methods:{
     updateReview(item){
