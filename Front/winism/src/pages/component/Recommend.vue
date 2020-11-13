@@ -142,11 +142,11 @@
       text-color="black">White</v-chip>
 
          <v-chip v-if="card.store==='emart'" color="yellow"
-      text-color="black">emart</v-chip>
+      text-color="black" @click="changestore('emart')">emart</v-chip>
       <v-chip v-else-if="card.store==='GS25'" color="blue"
-      text-color="black">GS25</v-chip>
+      text-color="black" @click="changestore('GS25')">GS25</v-chip>
        <v-chip v-else color="pink"
-      text-color="black">CU</v-chip>
+      text-color="black" @click="changestore('CU')">CU</v-chip>
 
         <v-chip>{{card.price}}</v-chip>
       </v-chip-group>
@@ -156,7 +156,7 @@
       </v-row>
     </v-container>
 
-<Map/>
+<Map :store="store"/>
 </v-col>
 
 
@@ -191,6 +191,7 @@ export default {
         acidity:0,
         winelist:[],
         uid:null,
+        store:'',
 
        products: [{
             id: 1,
@@ -281,6 +282,12 @@ export default {
           },
         ]
       }
+  },
+  methods:{
+    changestore(some){
+      this.store=some
+    }
+
   },
   mounted(){
     this.uid = this.$store.state.userid
