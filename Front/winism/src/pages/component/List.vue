@@ -154,13 +154,7 @@
             </v-card>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <v-row dense>
          
-              <v-col cols="12" sm="4">
-                <v-select class="pa-0" v-model="select" :items="options" style="margin-bottom: -20px;" outlined dense>
-                </v-select>
-              </v-col>
-            </v-row>
 
             <v-divider></v-divider>
 
@@ -186,15 +180,16 @@
                 </v-flex>
                 <v-flex xs5>
                   <v-card-title primary-title>
-                    <div>
-                      <div class="headline">{{pro.ename}}</div>
-                      <div>{{pro.koname}}</div>
-                      <div>{{pro.type}}</div>
-                      <div>{{pro.year}}</div>
-                      <div>{{pro.grape}}</div>
-                      <div>{{pro.temperature}}</div>
-                      <div v-if="pro.cost!=='가격정보없음'">{{pro.cost}}</div>
-                    </div>
+                    
+                     <h6>{{pro.koname}}</h6>
+                      <h7>{{pro.enname}}</h7>
+                     
+                      <p>{{pro.type}}</p>
+                      <p>{{pro.year}}</p>
+                      <p>{{pro.grape}}</p>
+                      <p>{{pro.temperature}}</p>
+                      <p v-if="pro.cost!=='가격정보없음'">{{pro.cost}}</p>
+                    
                   </v-card-title>
                 </v-flex>
                 <v-flex xs4>
@@ -269,30 +264,25 @@ import axios from 'axios'
         input:'',
         winelist:[],
         namelist:[],
-        type:0,
-        pairing:'',
+        type:null,
+        pairing:'fish',
         //wine taste
-        sweetness:0,
-        body:0,
-        tannin:0,
-        acidity:0,
+        sweetness:1,
+        body:1,
+        tannin:1,
+        acidity:1,
         alcoholrange:[10,20],
 
-        range: [0, 10000],
+        range: [0, 100000],
         select: 'Popularity',
-        options: [
-          'Default',
-          'Popularity',
-          'Relevance',
-          'Price: Low to High',
-          'Price: High to Low',
-        ],
+      
         page: 1,
         min: 0,
-        max: 10000,
+        max: 100000,
         items: ['Red','White','Rose','Sparkling'
 
         ],
+        koreanitems:['레드','화이트','로제','스파클링'],
         pairings: ['Cheese','Beef','Fish','Lamb','Vegetable','Pork','Western','Duck','Dessert','Poultry','Instant','etc'
             
         ],
@@ -328,6 +318,40 @@ import axios from 'axios'
       .catch(err=>console.log(err))
 
     },
+    changeto(){
+      if(this.input===null){
+        axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(this.input)
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+
+      }
+    else{
+       axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(this.input)
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+
+    }
+    }
 
     
  
@@ -356,25 +380,12 @@ import axios from 'axios'
       .catch(err=>console.log(err))
     },
     range:function(){
-var form = new FormData();
-        form.append('keyword',this.input)
-        form.append('page',this.page)
-        form.append('type',this.items[this.type])
-        form.append('pairing',this.pairings[this.pairing])
-        form.append('price1',this.range[0])
-        form.append('price2',this.range[1])
-        form.append('alcohol1',this.alcoholrange[0])
-        form.append('alcohol2',this.alcoholrange[1])
-        form.append('rate','')
-        form.append('sweetness',toString(this.sweetness))
-        form.append('acidity',toString(this.acidity))
-        form.append('tannin',toString(this.tannin))
-        form.append('body',toString(this.body))
-        console.log(form)
-      axios.post(`${SERVER}search`,form,{
+      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
+      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'multipart/form-data; charset = utf-8'
+    		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -384,27 +395,15 @@ var form = new FormData();
 
     },
     sweetness:function(){
-      var form = new FormData();
-        form.append('keyword',this.input)
-        form.append('page',this.page)
-        form.append('type',this.items[this.type])
-        form.append('pairing',this.pairings[this.pairing])
-        form.append('price1',this.range[0])
-        form.append('price2',this.range[1])
-        form.append('alcohol1',this.alcoholrange[0])
-        form.append('alcohol2',this.alcoholrange[1])
-        form.append('rate','')
-        form.append('sweetness',this.sweetness.toString())
-        form.append('acidity',this.acidity)
-        form.append('tannin',this.tannin)
-        form.append('body',this.body)
-        // for(var pair of form.entries()){
-        //   console.log(pair[0]+pair[1])
-        // }
-      axios.post(`${SERVER}search`,{params:{keyword:this.input,page:this.page,type:this.items[this.type],sweetness:toString(this.sweetness)},headers:{
-	'Access-Control-Allow-Origin': '*',
+      console.log(this.koreanitems[this.type])
+      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
+      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
-      }})
+    	}
+    })
     .then(res=>{
       console.log(res)
       this.winelist=res.data.content
@@ -413,24 +412,12 @@ var form = new FormData();
 
     },
     body:function(){
-var form = new FormData();
-        form.append('keyword',this.input)
-        form.append('page',this.page)
-        form.append('type',this.items[this.type])
-        form.append('pairing',this.pairings[this.pairing])
-        form.append('price1',this.range[0])
-        form.append('price2',this.range[1])
-        form.append('alcohol1',this.alcoholrange[0])
-        form.append('alcohol2',this.alcoholrange[1])
-        form.append('rate','')
-        form.append('sweetness',this.sweetness)
-        form.append('acidity',this.acidity)
-        form.append('tannin',this.tannin)
-        form.append('body',this.body)
-      axios.post(`${SERVER}search`,form,{
+axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
+      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'multipart/form-data; charset = utf-8'
+    		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -440,24 +427,12 @@ var form = new FormData();
 
     },
     tannin:function(){
-var form = new FormData();
-        form.append('keyword',this.input)
-        form.append('page',this.page)
-        form.append('type',this.items[this.type])
-        form.append('pairing',this.pairings[this.pairing])
-        form.append('price1',this.range[0])
-        form.append('price2',this.range[1])
-        form.append('alcohol1',this.alcoholrange[0])
-        form.append('alcohol2',this.alcoholrange[1])
-        form.append('rate','')
-        form.append('sweetness',this.sweetness)
-        form.append('acidity',this.acidity)
-        form.append('tannin',this.tannin)
-        form.append('body',this.body)
-      axios.post(`${SERVER}search`,form,{
+axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
+      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'multipart/form-data; charset = utf-8'
+    		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -467,24 +442,12 @@ var form = new FormData();
 
     },
     acidity:function(){
-      var form = new FormData();
-        form.append('keyword',this.input)
-        form.append('page',this.page)
-        form.append('type',this.items[this.type])
-        form.append('pairing',this.pairings[this.pairing])
-        form.append('price1',this.range[0])
-        form.append('price2',this.range[1])
-        form.append('alcohol1',this.alcoholrange[0])
-        form.append('alcohol2',this.alcoholrange[1])
-        form.append('rate','')
-        form.append('sweetness',this.sweetness)
-        form.append('acidity',this.acidity)
-        form.append('tannin',this.tannin)
-        form.append('body',this.body)
-      axios.post(`${SERVER}search`,form,{
+      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
+      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'multipart/form-data; charset = utf-8'
+    		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -494,51 +457,16 @@ var form = new FormData();
 
     },
     type:function(){
-var form = new FormData();
-        form.append('keyword',this.input)
-        form.append('page',this.page)
-        form.append('type',this.items[this.type])
-        form.append('pairing',this.pairings[this.pairing])
-        form.append('price1',this.range[0])
-        form.append('price2',this.range[1])
-        form.append('alcohol1',this.alcoholrange[0])
-        form.append('alcohol2',this.alcoholrange[1])
-        form.append('rate','')
-        form.append('sweetness',this.sweetness)
-        form.append('acidity',this.acidity)
-        form.append('tannin',this.tannin)
-        form.append('body',this.body)
-      axios.post(`${SERVER}search`,form,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'multipart/form-data; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(res)
-      this.winelist=res.data.content
-    })
-
+      this.changeto()
+    
     },
     pairing:function(){
-var form = new FormData();
-        form.append('keyword',this.input)
-        form.append('page',this.page)
-        form.append('type',this.items[this.type])
-        form.append('pairing',this.pairings[this.pairing])
-        form.append('price1',this.range[0])
-        form.append('price2',this.range[1])
-        form.append('alcohol1',this.alcoholrange[0])
-        form.append('alcohol2',this.alcoholrange[1])
-        form.append('rate','')
-        form.append('sweetness',this.sweetness)
-        form.append('acidity',this.acidity)
-        form.append('tannin',this.tannin)
-        form.append('body',this.body)
-      axios.post(`${SERVER}search`,form,{
+axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
+      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'multipart/form-data; charset = utf-8'
+    		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -548,24 +476,12 @@ var form = new FormData();
 
     },
     alcoholrange:function(){
-var form = new FormData();
-        form.append('keyword',this.input)
-        form.append('page',this.page)
-        form.append('type',this.items[this.type])
-        form.append('pairing',this.pairings[this.pairing])
-        form.append('price1',this.range[0])
-        form.append('price2',this.range[1])
-        form.append('alcohol1',this.alcoholrange[0])
-        form.append('alcohol2',this.alcoholrange[1])
-        form.append('rate','')
-        form.append('sweetness',this.sweetness)
-        form.append('acidity',this.acidity)
-        form.append('tannin',this.tannin)
-        form.append('body',this.body)
-      axios.post(`${SERVER}search`,form,{
+axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
+      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'multipart/form-data; charset = utf-8'
+    		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
     .then(res=>{
@@ -575,6 +491,19 @@ var form = new FormData();
 
     }
 
+  },
+   mounted(){
+    axios.get(`${SERVER}search?keyword= `,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+
+    })
   }
   };
 </script>
