@@ -305,32 +305,24 @@ public class RecommendController {
                 LAESTDEGREE.put(wl.getLAESTDEGREE()+"", LAESTDEGREE.get(wl.getLAESTDEGREE()) + 1);
             }
         }
-        
-        System.out.println(SWEETNESS);
-        System.out.println();
-        System.out.println(ACIDITY);
-        System.out.println();
-        System.out.println(BODY);
-        System.out.println();
-        System.out.println(TANNIN);
-        System.out.println();
-        System.out.println(COST);
-        System.out.println();
-        System.out.println(RECOMMANDATION);
-        System.out.println();
-        System.out.println(LAESTDEGREE);
-        System.out.println();
-
-        
+                
 
         JSONObject obj = new JSONObject();
-        obj.put("\"suger\"","\""+maxValue(SWEETNESS)+"\"");   
-        obj.put("\"acid\"","\""+maxValue(ACIDITY)+"\"");   
-        obj.put("\"body\"","\""+maxValue(BODY)+"\"");   
-        obj.put("\"tanin\"","\""+maxValue(TANNIN)+"\"");
-        obj.put("\"price\"","\""+maxValue(COST)+"\"");   
-        obj.put("\"food\"","\""+maxValue(RECOMMANDATION)+"\"");   
-        obj.put("\"alcoo\"","\""+maxValue(LAESTDEGREE)+"\"");   
+        // obj.put("\"suger\"","\""+maxValue(SWEETNESS)+"\"");   
+        // obj.put("\"acid\"","\""+maxValue(ACIDITY)+"\"");   
+        // obj.put("\"body\"","\""+maxValue(BODY)+"\"");   
+        // obj.put("\"tanin\"","\""+maxValue(TANNIN)+"\"");
+        // obj.put("\"price\"","\""+maxValue(COST)+"\"");   
+        // obj.put("\"food\"","\""+maxValue(RECOMMANDATION)+"\"");   
+        // obj.put("\"alcoo\"","\""+maxValue(LAESTDEGREE)+"\"");   
+
+        obj.put("suger",maxValue(SWEETNESS));   
+        obj.put("acid",maxValue(ACIDITY));   
+        obj.put("body",maxValue(BODY));   
+        obj.put("tanin",maxValue(TANNIN));   
+        obj.put("price",maxValue(COST));   
+        obj.put("food",maxValue(RECOMMANDATION));   
+        obj.put("alcoo",maxValue(LAESTDEGREE));  
         
 
         List<Object> result = new ArrayList<Object>();
