@@ -163,8 +163,7 @@ alcoo = jsonobj["alcoo"]
 if(alcoo == "None"):
     alcoo = 0
 price = jsonobj["price"]
-if(price == "가격정보없음") | (price == ""):
-    price = 0
+
 
 readcsv(float(jsonobj["suger"]),float(jsonobj["acid"]),float(jsonobj["body"]),float(jsonobj["tanin"]) , float(price) ,jsonobj["food"],float(alcoo),sys.argv[2])
 
