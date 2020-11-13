@@ -143,13 +143,21 @@ public class RecommendController {
             wineList wl = wineservice.getbyid(wid);
 
             JSONObject obj = new JSONObject();
-            obj.put("\"suger\"","\""+wl.getSWEETNESS()+"\"");   
-            obj.put("\"acid\"","\""+wl.getACIDITY()+"\"");   
-            obj.put("\"body\"","\""+wl.getBODY()+"\"");   
-            obj.put("\"tanin\"","\""+wl.getTANNIN()+"\"");   
-            obj.put("\"price\"","\""+wl.getCOST()+"\"");   
-            obj.put("\"food\"","\""+wl.getRECOMMANDATION()+"\"");   
-            obj.put("\"alcoo\"","\""+wl.getLAESTDEGREE()+"\"");   
+            // obj.put("\"suger\"","\""+wl.getSWEETNESS()+"\"");   
+            // obj.put("\"acid\"","\""+wl.getACIDITY()+"\"");   
+            // obj.put("\"body\"","\""+wl.getBODY()+"\"");   
+            // obj.put("\"tanin\"","\""+wl.getTANNIN()+"\"");   
+            // obj.put("\"price\"","\""+wl.getCOST()+"\"");   
+            // obj.put("\"food\"","\""+wl.getRECOMMANDATION()+"\"");   
+            // obj.put("\"alcoo\"","\""+wl.getLAESTDEGREE()+"\""); 
+            
+            obj.put("suger",wl.getSWEETNESS());   
+            obj.put("acid",wl.getACIDITY());   
+            obj.put("body",wl.getBODY());   
+            obj.put("tanin",wl.getTANNIN());   
+            obj.put("price",wl.getCOST());   
+            obj.put("food",wl.getRECOMMANDATION());   
+            obj.put("alcoo",wl.getLAESTDEGREE());  
 
             
             // Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\productRecommend.py "+obj+" "+arg);
