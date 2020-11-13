@@ -171,26 +171,38 @@
         <v-flex xs12>
           
               <v-layout>
-                <v-flex xs3>
+                <v-flex xs2>
                   <v-img
                     src="../../../public/img/pngegg.png"
                     height="125px"
                     contain
                   ></v-img>
                 </v-flex>
-                <v-flex xs5>
-                  <v-card-title primary-title>
+                <v-flex xs6>
+                  <v-card-title class="headline">
                     
                      <h6>{{pro.koname}}</h6>
                       <h6>{{pro.enname}}</h6>
-                     
-                      <p>{{pro.type}}</p>
-                      <p>{{pro.year}}</p>
-                      <p>{{pro.grape}}</p>
-                      <p>{{pro.temperature}}</p>
-                      <p v-if="pro.cost!=='가격정보없음'">{{pro.cost}}</p>
-                    
-                  </v-card-title>
+    </v-card-title>
+    <v-card-text>
+            <v-chip v-if="pro.type=='레드'" color="#882814"
+      text-color="white" dark><strong>레드</strong></v-chip>
+      <v-chip v-else-if="pro.type=='화이트'" color="#f9e8c0"
+      text-color="black"><strong>화이트</strong></v-chip>
+      <v-chip v-else-if="pro.type=='로제'" color="#d19492"
+      text-color="black"><strong>로제</strong></v-chip>
+      <v-chip v-else color="#f5ecc4"
+      text-color="black"><strong>{{pro.type}}</strong></v-chip>    </v-card-text>
+
+                      <h6 v-if="pro.laestdegree!=='None'">알코올 {{pro.laestdegree}}</h6>
+                      <h6 v-if="pro.local.includes('칠레')">칠레(Chile)</h6>
+                      <h6 v-else-if="pro.local.includes('프랑스')">프랑스(France)</h6>
+                      <h6 v-else-if="pro.local.includes('미국')">미국(USA)</h6>
+                      <h6 v-else-if="pro.local.includes('이탈리아')">이탈리아(Italy)</h6>
+                      <h6 v-else-if="pro.local.includes('스페인')">스페인(Spain)</h6>
+                      <h6 v-else-if="pro.local.includes('크로아티아')">크로아티아(Croatia)</h6>
+                    <v-chip v-if="pro.cost!=='0'"><strong>{{pro.cost}}&#8361;</strong></v-chip>
+
                 </v-flex>
                 <v-flex xs4>
                   <v-card-text>
@@ -265,7 +277,7 @@ import axios from 'axios'
         winelist:[],
         namelist:[],
         type:0,
-        pairing:'',
+        pairing:0,
         //wine taste
         sweetness:1,
         body:1,
@@ -320,23 +332,42 @@ import axios from 'axios'
     },
     changeto(){
       if(this.input===null){
-        axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}`,{
+        if(this.pairing===null){
+          axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}&price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
     .then(res=>{
-      console.log(this.input)
+      console.log(this.koreanitems[this.type])
       console.log(res)
       this.winelist=res.data.content
     })
+
+        }
+        else{
+           
+          axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(this.koreanitems[this.type])
+      console.log(this.pairings[this.pairing])
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+        }
 
 
       }
     else{
        axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
@@ -350,8 +381,8 @@ import axios from 'axios'
 
 
     }
+    
     }
-
     
  
   },
@@ -379,80 +410,21 @@ import axios from 'axios'
       .catch(err=>console.log(err))
     },
     range:function(){
-      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
-      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(res)
-      this.winelist=res.data.content
-    })
+      this.changeto()
 
     },
     sweetness:function(){
-      console.log(this.koreanitems[this.type])
-      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
-      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(res)
-      this.winelist=res.data.content
-    })
-    .catch(err=>console.log(err))
-
+    this.changeto()
     },
     body:function(){
-axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
-      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(res)
-      this.winelist=res.data.content
-    })
+this.changeto()
 
     },
     tannin:function(){
-axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
-      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(res)
-      this.winelist=res.data.content
-    })
-
+this.changeto()
     },
     acidity:function(){
-      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
-      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(res)
-      this.winelist=res.data.content
-    })
+    this.changeto()
 
     },
     type:function(){
@@ -460,34 +432,11 @@ axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.k
     
     },
     pairing:function(){
-axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
-      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(res)
-      this.winelist=res.data.content
-    })
+this.changeto()
 
     },
     alcoholrange:function(){
-axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&
-      rate=${this.rate}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(res)
-      this.winelist=res.data.content
-    })
-
+this.changeto()
     }
 
   },
