@@ -17,11 +17,10 @@
 <v-app>
   <v-container class="pt-5">
   <div style="margin-top:10px">
-    <div class="row text-center">
-              <div class="col-12" :key="pro.id" v-for="pro in products">
+  <h5 style='font-weight:bold;'>{{this.uid}}님의 와인 취향은 다음과 같습니다</h5>
+   <div class="col-12" :key="pro.id" v-for="pro in winelist">
                 <v-hover v-slot:default="{ hover }">
-
-<v-card>
+    <v-card>
       <v-container
         fluid
         grid-list-lg
@@ -30,36 +29,58 @@
         <v-flex xs12>
           
               <v-layout>
-                <v-flex xs3>
-                  <v-img
-                    src="../../../public/img/pngegg.png"
+                <v-flex xs2>
+                  <v-img v-if="pro['image']!=='null'"
+                    :src="pro.image"
+                    height="125px"
+                    contain
+                  ></v-img>
+                  <v-img v-else
+                    src="../../../public/img/AlbertBichotBourgognePassetoutgrain.png"
                     height="125px"
                     contain
                   ></v-img>
                 </v-flex>
-                <v-flex xs5>
-                  <v-card-title primary-title>
-                    <div>
-                      <div class="headline">Alvaro Palacios Villa de Corullon</div>
-                      <div>꿀레레레레레레레레레레</div>
-                      <div>(Red)</div>
-                    </div>
-                  </v-card-title>
+                <v-flex xs6>
+                  <v-card-title class="headline">
+                    
+                     <h6>{{pro['wine'].koname}}</h6>
+                      <h6>{{pro['wine'].enname}}</h6>
+    </v-card-title>
+    <v-card-text>
+            <v-chip v-if="pro['wine'].type=='레드'" color="#882814"
+      text-color="white" dark><strong>레드</strong></v-chip>
+      <v-chip v-else-if="pro['wine'].type=='화이트'" color="#f9e8c0"
+      text-color="black"><strong>화이트</strong></v-chip>
+      <v-chip v-else-if="pro['wine'].type=='로제'" color="#d19492"
+      text-color="black"><strong>로제</strong></v-chip>
+      <v-chip v-else color="#f5ecc4"
+      text-color="black"><strong>{{pro['wine'].type}}</strong></v-chip>    </v-card-text>
+
+                      <h6 v-if="pro['wine'].laestdegree!=='None'">알코올 {{pro['wine'].laestdegree}}</h6>
+                      <h6 v-if="pro['wine'].local.includes('칠레')">칠레(Chile)</h6>
+                      <h6 v-else-if="pro['wine'].local.includes('프랑스')">프랑스(France)</h6>
+                      <h6 v-else-if="pro['wine'].local.includes('미국')">미국(USA)</h6>
+                      <h6 v-else-if="pro['wine'].local.includes('이탈리아')">이탈리아(Italy)</h6>
+                      <h6 v-else-if="pro['wine'].local.includes('스페인')">스페인(Spain)</h6>
+                      <h6 v-else-if="pro['wine'].local.includes('크로아티아')">크로아티아(Croatia)</h6>
+                    <v-chip v-if="pro['wine'].cost!=='0'"><strong>&#8361;{{pro['wine'].cost}}</strong></v-chip>
+
                 </v-flex>
                 <v-flex xs4>
                   <v-card-text>
                     <div>
-                    <template>
-                    sweetness<n-progress :value="sweetness" type="primary" :height="15" show-value>{{sweetness}}</n-progress>
+                    <template>sweetness
+                    <n-progress :value="parseInt(pro['wine'].sweetness)" type="primary" :height="15" show-value>{{pro['wine'].sweetness}}</n-progress>
                   </template>
                   <template>
-                    acidity<n-progress :value="acidity" type="primary" :height="15" show-value>{{acidity}}</n-progress>
+                    acidity<n-progress :value="parseInt(pro['wine'].acidity)" type="primary" :height="15" show-value>{{pro['wine'].acidity}}</n-progress>
                   </template>
                   <template>
-                    tannin<n-progress :value="tannin" type="primary" :height="15" show-value>{{tannin}}</n-progress>
+                    tannin<n-progress :value="parseInt(pro['wine'].tannin)" type="primary" :height="15" show-value>{{pro['wine'].tannin}}</n-progress>
                   </template>
                   <template>
-                    body<n-progress :value="body" type="primary" :height="15" show-value>{{body}}</n-progress>
+                    body<n-progress :value="parseInt(pro['wine'].body)" type="primary" :height="15" show-value>{{pro['wine'].body}}</n-progress>
                   </template>
                       
                       
@@ -79,18 +100,18 @@
                         <div v-if="hover"
                           class="d-flex transition-fast-in-fast-out white darken-2 v-card--reveal display-3 white--text"
                           style="height: 100%;">
-                          <v-btn v-if="hover" href="/product" class="" outlined>VIEW</v-btn>
+                          <v-btn v-if="hover"  @click="$router.push({name:'product',params:{wid:pro.wid}})" class="" outlined>VIEW</v-btn>
                         </div>
 
                       </v-expand-transition>
 
 </v-card>
+
                 </v-hover>
               </div>
-</div>
 <v-row>
 <v-col cols="12">
-<h4>가성비가 좋은 와인</h4>
+<h4>마트별 가성비가 좋은 와인</h4>
 
 <v-container fluid>
       <v-row dense>
@@ -132,16 +153,7 @@
         </v-col>
       </v-row>
     </v-container>
-  
-<v-card
 
-    class="mx-auto my-12"
-  
-  >
-    <v-img
-      src="../../../public/img/AlbertBichotBourgognePassetoutgrain.png"
-    ></v-img>
-  </v-card>
 <Map/>
 </v-col>
 
@@ -175,6 +187,8 @@ export default {
         body:0,
         tannin:3,
         acidity:0,
+        winelist:[],
+        uid:null,
 
        products: [{
             id: 1,
@@ -220,9 +234,10 @@ export default {
   },
   mounted(){
     this.uid = this.$store.state.userid
-    axios.get(`${SERVER}recommend/byfavoandreview?uid=${this.uid}`)
+    axios.get(`${SERVER}recommend/byfavoandreview?userid=${this.uid}`)
     .then(res=>{
       console.log(res)
+      this.winelist=res.data
 
     })
   }
