@@ -16,19 +16,23 @@
           cycle
           :show-arrows="false"
           >
+                
               <v-carousel-item
-                src="img/bg7.jpg"
+                :src="imagesrc"
+                v-if="imagesrc!=''"
               >
               </v-carousel-item>
               <v-carousel-item
-                src="img/bg8.jpg"
+              v-if="wineData.wine.type=='로제'||wineData.wine.type=='레드'"
+                src="img/pngwing.com.png"
               >
               </v-carousel-item>
               <v-carousel-item
-                src="img/bg6.jpg"
+              v-if="wineData.wine.type=='화이트'||wineData.wine.type=='스파클링'"
+                src="img/pngwing.comm.png"
               >
               </v-carousel-item>
-            
+              
 
 
 
@@ -110,8 +114,22 @@
                 <br>
                 추천 음용 온도 : {{wineData.wine.temperature}}
                 <br>
-                여기 세정이가 만들었던 그래프 넣기
+               
+                
               </p>
+                <br>
+                  <template>sweetness
+                    <n-progress :value="parseInt(wineData.wine.sweetness)" type="primary" :height="15" show-value>{{wineData.wine.sweetness}}</n-progress>
+                  </template>
+                  <template>acidity
+                    <n-progress :value="parseInt(wineData.wine.acidity)" type="primary" :height="15" show-value>{{wineData.wine.acidity}}</n-progress>
+                  </template>
+                  <template>tannin
+                    <n-progress :value="parseInt(wineData.wine.tannin)" type="primary" :height="15" show-value>{{wineData.wine.tannin}}</n-progress>
+                  </template>
+                  <template>body
+                    <n-progress :value="parseInt(wineData.wine.body)" type="primary" :height="15" show-value>{{wineData.wine.body}}</n-progress>
+                  </template>
             </v-tab-item>
             <v-tab-item>
               <p class="pt-10 subtitle-1 font-weight-thin">
@@ -158,10 +176,21 @@
                     >
                     </v-img>
                     <div class="col-md-12 col-xs-12">
-                      <h6 class="py-0 ">{{item.itemname}} </h6>
+                      <h6 class="py-0 ">{{item.wine.koname}} </h6>
                     <v-card-text class="text--primary text-center">
-                      <div>기타등등 정보</div>
-                      <div>이건 기타등등 기타 등등 기타 등등의 정보가 옵니다</div>
+                      <div>{{item.wine.type}} 와인</div>
+                      <template>sweetness
+                        <n-progress :value="parseInt(item.wine.sweetness)" type="primary" :height="15" show-value>{{item.wine.sweetness}}</n-progress>
+                      </template>
+                      <template>acidity
+                        <n-progress :value="parseInt(item.wine.acidity)" type="primary" :height="15" show-value>{{item.wine.acidity}}</n-progress>
+                      </template>
+                      <template>tannin
+                        <n-progress :value="parseInt(item.wine.tannin)" type="primary" :height="15" show-value>{{item.wine.tannin}}</n-progress>
+                      </template>
+                      <template>body
+                        <n-progress :value="parseInt(item.wine.body)" type="primary" :height="15" show-value>{{item.wine.body}}</n-progress>
+                      </template>
                     </v-card-text>
                     </div>
                     <div class="text-center col-12">
@@ -169,6 +198,7 @@
                         class="ma-2"
                         outlined
                         color="info"
+                        @click="gotorecommend(item)"
                       >
                         Explore
                       </v-btn>
@@ -193,7 +223,7 @@ import axios from 'axios'
   const SERVER='http://k3a208.p.ssafy.io/api/'
   
 import {
-  Button,
+  Button,Progress
 
 } from '@/components';
 
@@ -203,10 +233,12 @@ export default {
     bodyClass: 'product-page',
     components: {
     [Button.name]: Button,
+    [Progress.name]: Progress
     
   },
     data(){
         return {
+          key:0,
           uid:null,
           wishTF:null,
             wineid:null,
@@ -247,6 +279,13 @@ export default {
         }
     },
     methods:{
+      gotorecommend(item){
+        this.$router.push({name:'product',params:{wid:item.wine.wid}})
+        this.key = this.key+1
+        this.$forceUpdate()
+
+      },
+
       async addWishlist(){
         if (this.islogin==true){
         var form = new FormData();
@@ -303,9 +342,30 @@ export default {
     computed:{
     islogin(){
       return  this.$store.getters.getlogin
-    }},
+    },
+    imagesrc(){
+      if (this.wineData.image != null){
+        return this.wineData.image.replace(/ /gi,"%20")}
+  
+      else{
+      //   if(this.wineData.wine.type=="레드"||this.wineData.wine.type=="로제"){
+      //    return "img/pngwing.com.png"
+      //   }
+      //   else{
+      //     return "img/pngwing.comm.png"
+      // }
+          return ""
+      }
+      } 
+    },
+
+    
+    
+    
+    
 
     async created(){
+      this.wineData={}
       this.uid = this.$store.state.userid
       
       this.wineid = this.$route.params.wid;
@@ -352,14 +412,25 @@ export default {
       var form = new FormData();
       form.append("wid",this.wineid)
     await axios.post(`${SERVER}review/getbywine`,form,{
-        headers:{
-          'Access-Control-Allow-Origin': '*',
+      headers:{
+        'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'multipart/form-data; charset = utf-8'
         }
       }).then(res=>{
         this.reviews=res.data
       })
+      var form = new FormData();
+      form.append("wid",this.wineid)
 
+    await axios.get(`${SERVER}recommend/bywine?wid=${this.wineid}`,{
+      headers:{
+        'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+        }
+      }).then(res =>{
+        console.log(res.data)
+        this.recommend=res.data
+      })
 
 }}
 </script>
