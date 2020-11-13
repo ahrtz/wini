@@ -104,8 +104,8 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo,userdata):
     
     
 
-    csv = pd.read_csv("C:/Users/git/ssafy_project3/s03p31a208/Backend/winism/wine.csv")
-    # csv = pd.read_csv("/home/ubuntu/s03p31a208/Backend/winism/wine.csv")
+    # csv = pd.read_csv("C:/Users/git/ssafy_project3/s03p31a208/Backend/winism/wine.csv")
+    csv = pd.read_csv("/home/ubuntu/s03p31a208/Backend/winism/wine.csv")
 
     
 
