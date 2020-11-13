@@ -30,24 +30,13 @@
           >
            <h1 class="text-center font-size">Guide</h1>
             <div class="text-center">
-              <v-btn  href="/guide" class="white--text " outlined>Go</v-btn>
+              <v-btn @click="$router.push({name:'Guide'})" class="white--text " outlined>Go</v-btn>
             </div>
 
 
-<!--            <v-expand-transition>-->
-<!--              <div-->
-<!--                v-if="hover"-->
-<!--                class="d-flex transition-fast-in-fast-out orange darken-2 v-card&#45;&#45;reveal display-3 white&#45;&#45;text"-->
-<!--                style="height: 100%;"-->
-<!--              >-->
-
-<!--                <h3>Top Picks</h3><br/>-->
-<!--                <h3>sdfs</h3>-->
-<!--              </div>-->
-<!--            </v-expand-transition>-->
           </v-img>
         </v-card>
-<!--        </v-hover>-->
+
       </div>
       <div
         class="col-md-6 col-sm-6 col-xs-12"
@@ -61,7 +50,7 @@
           >
             <h1 class="text-center font-size">List</h1>
             <div class="text-center">
-              <v-btn  href="/list" class="white--text" outlined>Go</v-btn>
+              <v-btn  @click="$router.push({name:'List'})" class="white--text" outlined>Go</v-btn>
             </div>
           </v-img>
         </v-card>
@@ -80,7 +69,7 @@
           >
             <h1 class="text-center font-size">Info</h1>
             <div class="text-center mt-2">
-              <v-btn class="white--text caption"  href="/" text>Go <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
+              <v-btn class="white--text caption"  @click="$router.push({name:'Info'})" text>Go <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
             </div>
           </v-img>
         </v-card>
@@ -97,7 +86,7 @@
           >
             <h1 class="text-center font-size">Recommend</h1>
             <div class="text-center mt-2">
-              <v-btn class="white--text caption"  href="/news" text>Go <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
+              <v-btn class="white--text caption" @click="$router.push({name:'Recommend'})" text>Go <v-icon class="white--text caption">mdi-arrow-right</v-icon></v-btn>
             </div>
           </v-img>
         </v-card>

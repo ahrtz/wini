@@ -17,9 +17,7 @@
         width="200"
         trigger="hover"
       >
-        <div class="popover-body">
-          Designed by Invision. Coded by Creative Tim
-        </div>
+        
       </el-popover>
     </template>
     <template slot="navbar-menu">
@@ -56,7 +54,7 @@
        <li class="nav-item" style="cursor:pointer">
         <a
           class="nav-link"
-          href="https://www.creative-tim.com/product/vue-now-ui-kit"
+           @click="$router.push({name:'Recommend'})"
           target="_blank"
         >
           
