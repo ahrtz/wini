@@ -136,15 +136,17 @@
       <v-chip-group
         column
       >
-         <v-chip v-if="card.type='red'" color="red"
+         <v-chip v-if="card.type==='red'" color="red"
       text-color="white">Red</v-chip>
       <v-chip v-else color="white"
       text-color="black">White</v-chip>
 
-         <v-chip v-if="card.store='emart'" color="yellow"
+         <v-chip v-if="card.store==='emart'" color="yellow"
       text-color="black">emart</v-chip>
-      <v-chip v-else-if="card.store='gs25'" color="blue"
+      <v-chip v-else-if="card.store==='GS25'" color="blue"
       text-color="black">GS25</v-chip>
+       <v-chip v-else color="pink"
+      text-color="black">CU</v-chip>
 
         <v-chip>{{card.price}}</v-chip>
       </v-chip-group>
@@ -224,9 +226,57 @@ export default {
           type:'red'
           },
           {title:'하디스 빈 619 카베르네 소비뇽 2019',
-          src:'../../../public/img/poupille.jpg',
-          price:'25,800',
+          src:'../../../public/img/hadis.JPG',
+          price:'14,900',
+          store:'GS25',
+          type:'red'
+          },
+          {title:'알파카 카베르네 메를로',
+          src:'../../../public/img/apk.JPG',
+          price:'11,000',
+          store:'CU',
+          type:'red'
+          },
+           {title:'칸티 모스카토 콜레지오네 디 파밀리아',
+          src:'../../../public/img/canti.JPG',
+          price:'15,000',
           store:'emart',
+          type:'white'
+          },
+          {title:'에라주리즈, 맥스 리제르바 카베르네 소비뇽',
+          src:'../../../public/img/errazuriz.JPG',
+          price:'25,900',
+          store:'GS25',
+          type:'red'
+          },
+          {title:'카멜 로드, 몬테레이 피노누아',
+          src:'../../../public/img/camelroad.JPG',
+          price:'35,000',
+          store:'GS25',
+          type:'red'
+          },
+          {title:'네이처 사운드',
+          src:'../../../public/img/naturesound.JPG',
+          price:'9,900',
+          store:'GS25',
+          type:'red'
+          },
+          {title:'세크레토 말벡',
+          src:'../../../public/img/secreto.JPG',
+          price:'19,900',
+          store:'CU',
+          type:'red'
+          },
+           {title:'발데파블로 상그리아 레드',
+          src:'../../../public/img/sangria.JPG',
+          price:'3,700',
+          store:'GS25',
+          type:'red'
+          },
+          {title:'솔데빠냐스 비노 블랑코',
+          src:'../../../public/img/soldepenas.jpg',
+          price:'3,700',
+          store:'GS25',
           type:'red'
           },
         ]
