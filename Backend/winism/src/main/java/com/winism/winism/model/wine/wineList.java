@@ -85,7 +85,7 @@ public class wineList{
     private String SPLITNAME;
 
     @Column(name = "RATING")
-    private String RATING;
+    private int RATING;
 
     @Column(name = "DESCRIPTION")
     private String DESCRIPTION;

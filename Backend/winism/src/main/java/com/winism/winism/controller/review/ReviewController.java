@@ -70,11 +70,11 @@ public class ReviewController {
 
         int sum = 0;
         for(ReviewEntity re : rl){
-            sum +=  Integer.parseInt(re.getRating());
+            sum +=  re.getRating();
         }
 
         wineList wl =  wineservice.getbyid(entity.getWid());
-        wl.setRATING(sum/rl.size() + "");
+        wl.setRATING(sum/rl.size());
         wineservice.update(wl);
 
 
@@ -89,11 +89,11 @@ public class ReviewController {
 
         int sum = 0;
         for(ReviewEntity re : rl){
-            sum +=  Integer.parseInt(re.getRating());
+            sum +=  re.getRating();
         }
 
         wineList wl =  wineservice.getbyid(entity.getWid());
-        wl.setRATING(sum/rl.size() + "");
+        wl.setRATING(sum/rl.size());
         wineservice.update(wl);
         
         return new ResponseEntity<>("success", HttpStatus.OK);

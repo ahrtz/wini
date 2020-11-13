@@ -150,7 +150,7 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo,userdata):
 
 
     datalist = dataset["wid"].tolist()
-    print(datalist[0],datalist[1],datalist[2],datalist[3],datalist[4])
+    print(datalist[0],datalist[1],datalist[2],datalist[3])
     
 
 # print(sys.argv[2])
