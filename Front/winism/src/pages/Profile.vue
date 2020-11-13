@@ -51,7 +51,7 @@
                       img-alt="Image"
                       img-top
                       tag="article"
-                      style="max-width: 20rem;"
+                      
                       class="img-raised"
                     >
                       <v-card-text>
@@ -95,9 +95,9 @@
                                 <v-btn
                                   
                                   outlined tile
-                                  @click="dialog = false"
+                                  @click="dialog = false;updateReview(item)"
                                 >
-                                  리뷰 등록
+                                  리뷰 수정
                                 </v-btn>
                                 <v-btn
                                   
@@ -112,16 +112,13 @@
 
                             </v-dialog>
                           </v-app>
-                          <v-btn class="col-6 px-1"> 삭제 </v-btn>
-                          <!-- <a class="link footer-link">삭제</a> -->
+                          <v-btn class="col-6 px-1" @click="deleteReview(item)"> 삭제 </v-btn>
+                          
                         
                       </div>
                     <!-- <img src="img/bg11.jpg" alt="" class="img-raised" /> -->
                   </div>
-                  <!-- <div class="col-md-6">
-                    <img src="img/bg7.jpg" alt="" class="img-raised" />
-                    <img src="img/bg8.jpg" alt="" class="img-raised" />
-                  </div> -->
+                  
                 </div>
               </div>
             </tab-pane>
@@ -134,8 +131,9 @@
                 <div class="row collections">
                   <div class="col-md-6" v-for="item in wishes" :key="item.id">
                     <img src="img/bg1.jpg" alt="" class="img-raised" @click="$router.push({name:'product',params:{wid:item.wine.wid}})"/>
-                    
+                      
                     {{item.wine.koname}}
+                    <v-btn @click="removeWish(item)">취소</v-btn>
                   </div>
                   
                 </div>
@@ -176,17 +174,17 @@ export default {
     form.append('userid',this.userid)
 
     //리뷰 받아 오기 
-    axios.post(`${SERVER}/review/getbyid`,form,{headers: {
+    axios.post(`${SERVER}review/getbyid`,form,{headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'multipart/form-data; charset = utf-8'
       }}).then(res=>{
-      console.log(res.data)
+      // console.log(res.data)
       this.reviews=res.data
       })
     // 찜 받아오기 
     
 
-    axios.post(`${SERVER}/favorite/getbyid`,form,{headers: {
+    axios.post(`${SERVER}favorite/getbyid`,form,{headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'multipart/form-data; charset = utf-8'
       }}).then(res=>{
@@ -196,6 +194,7 @@ export default {
   },
   methods:{
     updateReview(item){
+      console.log(item)
        var form = new FormData();
           form.append('title',item.review.title)
           form.append('content',item.review.content)
@@ -203,28 +202,67 @@ export default {
           form.append('userid',item.review.userid)// uid 는 회원 완성되면 vuex 에서
           form.append('winename',item.review.winename)
           form.append('wid',item.review.wid)
+          form.append('rid',item.review.rid)
 
       axios.post(`${SERVER}review/update`,form,{headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'multipart/form-data; charset = utf-8'
       }}).then(res=>{
-        console.log(res)
+        // console.log(res)
         var form = new FormData()
           form.append('userid',this.userid)
 
           //리뷰 받아 오기 
-          axios.post(`${SERVER}/review/getbyid`,form,{headers: {
+          axios.post(`${SERVER}review/getbyid`,form,{headers: {
               'Access-Control-Allow-Origin': '*',
               'Content-Type': 'multipart/form-data; charset = utf-8'
             }}).then(res=>{
             console.log(res.data)
             this.reviews=res.data
-            })
-      })      
+            }).catch(e =>{console.log(e)})
+      }).catch(e=>console.log(e))      
     },
-    // deleteReview(item){
+    deleteReview(item){
+      var form = new FormData()
+      form.append('rid',item.review.rid)
+      axios.post(`${SERVER}review/delete`,form,{headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Content-Type': 'multipart/form-data; charset = utf-8'
+            }}).then(res => {
+              var form = new FormData()
+                form.append('userid',this.userid)
 
-    // }
+                //리뷰 받아 오기 
+                axios.post(`${SERVER}review/getbyid`,form,{headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'multipart/form-data; charset = utf-8'
+                  }}).then(res=>{
+                  // console.log(res.data)
+                  this.reviews=res.data
+                  })
+            })
+    },
+    async removeWish(item){
+      var form = new FormData()
+      
+      form.append('uid',this.userid)
+      form.append('wid',item.wine.wid)
+      await axios.post(`${SERVER}favorite/add`,form,{headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'multipart/form-data; charset = utf-8'
+      }}).then(res=>{
+        // console.log(res)
+          var form = new FormData()
+          form.append('userid',this.userid)
+
+            axios.post(`${SERVER}favorite/getbyid`,form,{headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'multipart/form-data; charset = utf-8'
+          }}).then(res=>{
+            this.wishes=res.data
+          })
+      })
+    }
   }
 };
 </script>

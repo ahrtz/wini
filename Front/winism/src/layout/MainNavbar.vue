@@ -23,37 +23,37 @@
       </el-popover>
     </template>
     <template slot="navbar-menu">
-      <li class="nav-item">
+      <li class="nav-item" style="cursor:pointer">
         <a
           class="nav-link"
-          href="/guide"
+          @click="$router.push({name:'Guide'})"
           target="_blank"
         >
           
           <p>Guide</p>
         </a>
       </li>
-       <li class="nav-item">
+       <li class="nav-item" style="cursor:pointer">
         <a
           class="nav-link"
-          href="/list"
+          @click="$router.push({name:'List'})"
           target="_blank"
         >
           
           <p>List</p>
         </a>
       </li>
-       <li class="nav-item">
+       <li class="nav-item" style="cursor:pointer">
         <a
           class="nav-link"
-          href="https://www.creative-tim.com/product/vue-now-ui-kit"
+          @click="$router.push({name:'Info'})"
           target="_blank"
         >
           
           <p>Info</p>
         </a>
       </li>
-       <li class="nav-item">
+       <li class="nav-item" style="cursor:pointer">
         <a
           class="nav-link"
           href="https://www.creative-tim.com/product/vue-now-ui-kit"

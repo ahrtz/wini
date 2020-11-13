@@ -248,6 +248,7 @@ export default {
     },
     methods:{
       async addWishlist(){
+        if (this.islogin==true){
         var form = new FormData();
         form.append('wid',this.wineid)
         form.append('uid',this.uid)
@@ -269,7 +270,9 @@ export default {
             console.log(res.data)
             this.wishTF=res.data
           })
-      })  
+      })  }else{
+        alert('로그인 해야 할수 있슴다')
+      }
       },
       //위시리스트 추가 끝
 
