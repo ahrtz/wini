@@ -182,7 +182,7 @@
                   <v-card-title primary-title>
                     
                      <h6>{{pro.koname}}</h6>
-                      <h7>{{pro.enname}}</h7>
+                      <h6>{{pro.enname}}</h6>
                      
                       <p>{{pro.type}}</p>
                       <p>{{pro.year}}</p>
@@ -264,8 +264,8 @@ import axios from 'axios'
         input:'',
         winelist:[],
         namelist:[],
-        type:null,
-        pairing:'fish',
+        type:0,
+        pairing:'',
         //wine taste
         sweetness:1,
         body:1,
@@ -320,8 +320,7 @@ import axios from 'axios'
     },
     changeto(){
       if(this.input===null){
-        axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}&sweetness=${this.sweetness}&acidity=${this.acidity}&body=${this.body}&tannin=${this.tannin}`,{
+        axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
