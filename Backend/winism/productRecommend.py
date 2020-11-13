@@ -154,6 +154,9 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo,userdata):
     
 
 # print(sys.argv[2])
+
+print(sys.argv[1])
+print(sys.argv[2])
 jsonobj = json.loads(sys.argv[1])
 
 alcoo = jsonobj["alcoo"]

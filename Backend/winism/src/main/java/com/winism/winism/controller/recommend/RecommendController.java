@@ -152,8 +152,8 @@ public class RecommendController {
             obj.put("\"alcoo\"","\""+wl.getLAESTDEGREE()+"\"");   
 
             
-            // Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\productRecommend.py "+obj+" "+arg);
-            Process process = Runtime.getRuntime().exec("python /home/ubuntu/s03p31a208/Backend/winism/productRecommend.py "+obj+" "+arg);
+            Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\productRecommend.py "+obj+" "+arg);
+            // Process process = Runtime.getRuntime().exec("python /home/ubuntu/s03p31a208/Backend/winism/productRecommend.py "+obj+" "+arg);
 
             
 
