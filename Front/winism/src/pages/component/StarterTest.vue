@@ -3,13 +3,13 @@
     <div class="page-header clear-filter">
       <parallax
         class="page-header-image"
-        style="background-image: url('img/wine-bottle-grapes.jpg')"
+        style="background-image: url('img/startertest_bg.jpg')"
       >
       </parallax>
       <div>
         <StarterTestStart v-if="current == 0" @changeCurrent="changeCurrent"/>
-        <StarterTestQuestion v-if="current == 1" />
-        <StarterTestResult v-if="current == 2" />
+        <StarterTestQuestion v-if="current == 1" @submitResult="getResult"/>
+        <StarterTestResult v-if="current == 2" :result="result"/>
       </div>
     </div>
   </div>
@@ -29,12 +29,19 @@ export default {
       show: false,
       tab: null,
       expand: false,
+      result: null,
     };
   },
   methods: {
     changeCurrent(current) {
       console.log(current)
       this.current = current
+    },
+    getResult(result) {
+      console.log(result)
+      this.current = 2
+      this.result = result
+
     }
   }
 };
