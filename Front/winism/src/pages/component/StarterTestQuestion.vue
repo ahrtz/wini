@@ -1,27 +1,41 @@
 <template>
     <div class="wrapper" v-bind:style="{height:window.height+'px'}">
-        <div id="center" class="col-xs-8 col-sm-6 col-md-6 col-lg-7" v-bind:style="{height:window.height+'px' , backgroundImage:'url(' + image + ')'}">
-                <div class="void" v-bind:style="{height:window.height*0.3+'px'}"></div>
+        <div id="center" class="col-xs-8 col-sm-9 col-md-7 col-lg-7" v-bind:style="{height:window.height+'px' , backgroundImage:'url(' + imageQ + ')'}">
+                <div class="void" v-bind:style="{height:window.height*0.25+'px'}"></div>
                 <div
                     class="textbox"
                     v-bind:style="{fontSize:window.height*0.03+'px' , height:window.height*0.2+'px'}"
                     v-html="'Q'+QCount+'. '+question"></div>
-                <div class="void" v-bind:style="{height:window.height*0.1+'px'}"></div>
+                <div class="void" v-bind:style="{height:window.height*0.05+'px'}"></div>
                 <div class="selectArea">
                     <a v-on:click="clickans1()">
                         <div
                             class="selectBox1"
-                            v-bind:style="{height:max*0.13+'px',width:max*0.13+'px'}"
-                            v-html="ans1"/>
+                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px'}"/>
                     </a>
 
                     <a v-on:click="clickans2()">
                         <div
                             class="selectBox2"
-                            v-bind:style="{height:max*0.13+'px',width:max*0.13+'px'}"
+                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px'}"/>
+                    </a>
+            </div>
+            <div class="selectArea">
+                    <a v-on:click="clickans1()">
+                        <div
+                            class="selectBox1 seltext"
+                            v-bind:style="{width:max*0.15+'px'}"
+                            v-html="ans1"/>
+                    </a>
+
+                    <a v-on:click="clickans2()">
+                        <div
+                            class="selectBox2 seltext"
+                            v-bind:style="{width:max*0.15+'px'}"
                             v-html="ans2"/>
                     </a>
             </div>
+
         </div>
     </div>
 </template>
@@ -47,7 +61,9 @@ export default {
                 width: 0,
                 height: 0
             },
-            image:"'https://vuejs.org/images/logo.png'",
+            imageQ:"'img/questIMG/Quest"+"0"+".jpg'",
+            imageA1:"'img/questIMG/Quest"+"0"+".jpg'",
+            imageA2:"'img/questIMG/Quest"+"0"+".jpg'",
             max:0,
             QCount: 0,
             QNum: -1,
@@ -70,7 +86,7 @@ export default {
             qList: [
                 '당신은 감옥에 갇혔습니다. <br/> 생존을 위해 두가지 음식중 하나를 먹어야 합니다.',
                 '오늘은 불타는 금요일의 퇴근길. <br/> 지금부터 무엇을 하지?',
-                '베라갔을때에 아이스크림을 고르는 내 모습',
+                '베스킨라빈스에서 아이스크림을 고르는 내 모습',
                 '길에서 괴한이 아는 사람을 위협하고있다. <br/>당신의 선택은?',
                 '인간이 가장 허기진다는 새벽1시. <br/>냉장고에는 과일밖에 없다. ',
                 '내 어린시절 꿈. 판검사 vs 의사',
@@ -220,7 +236,7 @@ export default {
     background-color: black;
 }
 #center {
-    background-size: 500px 5000px;
+    background-size: 100% 100%;
     margin: auto;
     width: 100%;
 }
@@ -256,5 +272,10 @@ export default {
     float: right;
     margin-right: 3em;
     background-color: white;
+}
+.seltext{
+    color: white;
+    text-align: center;
+    background-color: transparent;
 }
 </style>
