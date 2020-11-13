@@ -16,7 +16,7 @@
     </div>
 <v-app>
 
-  <v-container ma-0 pa-0>
+  <v-container>
   <div style="margin-top:10px">
   <v-row>
   <v-col cols="6">
@@ -68,26 +68,7 @@
 
 
   </div>
-   <v-tabs
-      v-model="tab"
-      background-color=#750049
-      color="white"
-      grow
-    >
-      <v-tab
-        
-      >
-        For Beginner
-      </v-tab>
-      <v-tab
-        
-      >
-        For Pro
-      </v-tab>
-       <v-tab-item
-      >
-
-        <v-card flat>
+   <v-card flat>
          
           <v-timeline
     align-top
@@ -115,40 +96,7 @@
     </v-timeline-item>
   </v-timeline>
         </v-card>
-      
-      </v-tab-item>
-    <v-tab-item
-      >
-        <v-card flat>
-         
-          <v-timeline
-    align-top
-    :dense="$vuetify.breakpoint.smAndDown"
-  >
-    <v-timeline-item
-      v-for="(item, i) in items"
-      :key="i"
-      :color="item.color"
-      :icon="item.icon"
-      fill-dot  
-    >
-      <v-card
-        :color="item.color"
-        dark
-      >
-        <v-card-title class="title">
-          {{item.title}}
-        </v-card-title>
-        <v-card-text class="white text--primary">
-          <p>{{item.content}}</p>
-          
-        </v-card-text>
-      </v-card>
-    </v-timeline-item>
-  </v-timeline>
-        </v-card>
-      </v-tab-item>
-    </v-tabs>
+   
     </v-container>
 
  
