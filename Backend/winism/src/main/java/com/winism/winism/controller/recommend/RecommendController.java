@@ -143,13 +143,21 @@ public class RecommendController {
             wineList wl = wineservice.getbyid(wid);
 
             JSONObject obj = new JSONObject();
-            obj.put("\"suger\"","\""+wl.getSWEETNESS()+"\"");   
-            obj.put("\"acid\"","\""+wl.getACIDITY()+"\"");   
-            obj.put("\"body\"","\""+wl.getBODY()+"\"");   
-            obj.put("\"tanin\"","\""+wl.getTANNIN()+"\"");   
-            obj.put("\"price\"","\""+wl.getCOST()+"\"");   
-            obj.put("\"food\"","\""+wl.getRECOMMANDATION()+"\"");   
-            obj.put("\"alcoo\"","\""+wl.getLAESTDEGREE()+"\"");   
+            // obj.put("\"suger\"","\""+wl.getSWEETNESS()+"\"");   
+            // obj.put("\"acid\"","\""+wl.getACIDITY()+"\"");   
+            // obj.put("\"body\"","\""+wl.getBODY()+"\"");   
+            // obj.put("\"tanin\"","\""+wl.getTANNIN()+"\"");   
+            // obj.put("\"price\"","\""+wl.getCOST()+"\"");   
+            // obj.put("\"food\"","\""+wl.getRECOMMANDATION()+"\"");   
+            // obj.put("\"alcoo\"","\""+wl.getLAESTDEGREE()+"\""); 
+            
+            obj.put("suger",wl.getSWEETNESS());   
+            obj.put("acid",wl.getACIDITY());   
+            obj.put("body",wl.getBODY());   
+            obj.put("tanin",wl.getTANNIN());   
+            obj.put("price",wl.getCOST());   
+            obj.put("food",wl.getRECOMMANDATION());   
+            obj.put("alcoo",wl.getLAESTDEGREE());  
 
             
             // Process process = Runtime.getRuntime().exec("python C:\\Users\\git\\ssafy_project3\\s03p31a208\\Backend\\winism\\productRecommend.py "+obj+" "+arg);
@@ -297,32 +305,24 @@ public class RecommendController {
                 LAESTDEGREE.put(wl.getLAESTDEGREE()+"", LAESTDEGREE.get(wl.getLAESTDEGREE()) + 1);
             }
         }
-        
-        System.out.println(SWEETNESS);
-        System.out.println();
-        System.out.println(ACIDITY);
-        System.out.println();
-        System.out.println(BODY);
-        System.out.println();
-        System.out.println(TANNIN);
-        System.out.println();
-        System.out.println(COST);
-        System.out.println();
-        System.out.println(RECOMMANDATION);
-        System.out.println();
-        System.out.println(LAESTDEGREE);
-        System.out.println();
-
-        
+                
 
         JSONObject obj = new JSONObject();
-        obj.put("\"suger\"","\""+maxValue(SWEETNESS)+"\"");   
-        obj.put("\"acid\"","\""+maxValue(ACIDITY)+"\"");   
-        obj.put("\"body\"","\""+maxValue(BODY)+"\"");   
-        obj.put("\"tanin\"","\""+maxValue(TANNIN)+"\"");
-        obj.put("\"price\"","\""+maxValue(COST)+"\"");   
-        obj.put("\"food\"","\""+maxValue(RECOMMANDATION)+"\"");   
-        obj.put("\"alcoo\"","\""+maxValue(LAESTDEGREE)+"\"");   
+        // obj.put("\"suger\"","\""+maxValue(SWEETNESS)+"\"");   
+        // obj.put("\"acid\"","\""+maxValue(ACIDITY)+"\"");   
+        // obj.put("\"body\"","\""+maxValue(BODY)+"\"");   
+        // obj.put("\"tanin\"","\""+maxValue(TANNIN)+"\"");
+        // obj.put("\"price\"","\""+maxValue(COST)+"\"");   
+        // obj.put("\"food\"","\""+maxValue(RECOMMANDATION)+"\"");   
+        // obj.put("\"alcoo\"","\""+maxValue(LAESTDEGREE)+"\"");   
+
+        obj.put("suger",maxValue(SWEETNESS));   
+        obj.put("acid",maxValue(ACIDITY));   
+        obj.put("body",maxValue(BODY));   
+        obj.put("tanin",maxValue(TANNIN));   
+        obj.put("price",maxValue(COST));   
+        obj.put("food",maxValue(RECOMMANDATION));   
+        obj.put("alcoo",maxValue(LAESTDEGREE));  
         
 
         List<Object> result = new ArrayList<Object>();

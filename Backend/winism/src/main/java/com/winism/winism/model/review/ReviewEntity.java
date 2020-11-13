@@ -27,7 +27,7 @@ public class ReviewEntity {
     String title;
 
     @Column(name="rating")
-    String rating;
+    int rating;
     
     @Column(name="date")
     String date;

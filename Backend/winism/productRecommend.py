@@ -104,8 +104,8 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo,userdata):
     
     
 
-    csv = pd.read_csv("C:/Users/git/ssafy_project3/s03p31a208/Backend/winism/wine.csv")
-    # csv = pd.read_csv("/home/ubuntu/s03p31a208/Backend/winism/wine.csv")
+    # csv = pd.read_csv("C:/Users/git/ssafy_project3/s03p31a208/Backend/winism/wine.csv")
+    csv = pd.read_csv("/home/ubuntu/s03p31a208/Backend/winism/wine.csv")
 
     
 
@@ -150,18 +150,20 @@ def readcsv(suger,acid,body,tanin,price,food,alcoo,userdata):
 
 
     datalist = dataset["wid"].tolist()
-    print(datalist[0],datalist[1],datalist[2],datalist[3],datalist[4])
+    print(datalist[0],datalist[1],datalist[2],datalist[3])
     
 
 # print(sys.argv[2])
+
+print(sys.argv[1])
+print(sys.argv[2])
 jsonobj = json.loads(sys.argv[1])
 
 alcoo = jsonobj["alcoo"]
 if(alcoo == "None"):
     alcoo = 0
 price = jsonobj["price"]
-if(price == "가격정보없음") | (price == ""):
-    price = 0
+
 
 readcsv(float(jsonobj["suger"]),float(jsonobj["acid"]),float(jsonobj["body"]),float(jsonobj["tanin"]) , float(price) ,jsonobj["food"],float(alcoo),sys.argv[2])
 
