@@ -158,6 +158,8 @@
 <script>
 import {Progress} from '@/components'
 import Map from './Map.vue'
+const SERVER='http://k3a208.p.ssafy.io/api/'
+import axios from 'axios'
 export default {
   name: 'Recommend',
   bodyClass: 'index-page',
@@ -215,6 +217,14 @@ export default {
           },
         ]
       }
+  },
+  mounted(){
+    this.uid = this.$store.state.userid
+    axios.get(`${SERVER}recommend/byfavoandreview?uid=${this.uid}`)
+    .then(res=>{
+      console.log(res)
+
+    })
   }
 };
 </script>
