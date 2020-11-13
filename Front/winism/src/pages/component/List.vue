@@ -158,7 +158,7 @@
 
             <v-divider></v-divider>
 
-<div class="row text-center">
+<div class="row">
               <div class="col-12" :key="pro.id" v-for="pro in winelist">
                 <v-hover v-slot:default="{ hover }">
 
@@ -184,7 +184,7 @@
                      <h6>{{pro.koname}}</h6>
                       <h6>{{pro.enname}}</h6>
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="pb-0">
             <v-chip v-if="pro.type=='레드'" color="#882814"
       text-color="white" dark><strong>레드</strong></v-chip>
       <v-chip v-else-if="pro.type=='화이트'" color="#f9e8c0"
@@ -192,16 +192,20 @@
       <v-chip v-else-if="pro.type=='로제'" color="#d19492"
       text-color="black"><strong>로제</strong></v-chip>
       <v-chip v-else color="#f5ecc4"
-      text-color="black"><strong>{{pro.type}}</strong></v-chip>    </v-card-text>
-
-                      <h6 v-if="pro.laestdegree!=='None'">알코올 {{pro.laestdegree}}</h6>
+      text-color="black"><strong>{{pro.type}}</strong></v-chip></v-card-text>
+<v-card-title class="pb-0">
+                      <h6 v-if="pro.laestdegree!=='None'">알코올 {{pro.laestdegree}}</h6></v-card-title>
+                      <v-card-title>
                       <h6 v-if="pro.local.includes('칠레')">칠레(Chile)</h6>
                       <h6 v-else-if="pro.local.includes('프랑스')">프랑스(France)</h6>
                       <h6 v-else-if="pro.local.includes('미국')">미국(USA)</h6>
                       <h6 v-else-if="pro.local.includes('이탈리아')">이탈리아(Italy)</h6>
                       <h6 v-else-if="pro.local.includes('스페인')">스페인(Spain)</h6>
                       <h6 v-else-if="pro.local.includes('크로아티아')">크로아티아(Croatia)</h6>
-                    <v-chip v-if="pro.cost!=='0'"><strong>{{pro.cost}}&#8361;</strong></v-chip>
+                      <h6 v-else-if="pro.local.includes('뉴질랜드')">뉴질랜드(New Zealand)</h6>
+                      </v-card-title>
+            <v-card-text>
+                    <v-chip v-if="pro.cost!=='0'"><strong>&#8361;{{pro.cost}}</strong></v-chip></v-card-text>
 
                 </v-flex>
                 <v-flex xs4>
@@ -325,6 +329,7 @@ import axios from 'axios'
     	}
     })
       .then(res=>{
+        console.log(res)
         this.winelist=res.data.content
         })
       .catch(err=>console.log(err))
