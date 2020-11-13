@@ -34,6 +34,9 @@ export default {
       placeOverlay:'',
       contentNode:'',
       currCategory:'',
+      lat:'',
+      lon:'',
+      locPosition:'',
     }
   },
   props: {
@@ -49,13 +52,13 @@ export default {
         center: new kakao.maps.LatLng(37.500649, 127.036530),
         level: 5
       }
+    
       this.map = new kakao.maps.Map(container, mapOption) //마커추가하려면 객체를 아래와 같이 하나 만든다. 
+        
       this.marker = new kakao.maps.Marker({
         position: this.map.getCenter()
       })
       this.marker.setMap(this.map);
-      // 다각형을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 다각형을 표시합니다
-      
       
       this.ps = new kakao.maps.services.Places()
     },
@@ -157,7 +160,6 @@ export default {
       el.className = 'item';
       return el;
     },
-    // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
     addMarker(position, idx) {
       var imageSrc =
         'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
@@ -215,13 +217,31 @@ export default {
         el.removeChild(el.lastChild);
       }
     },
+displayMarker(locPosition, message) {
 
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: locPosition
+        });
+
+
+        map.setCenter(locPosition);
+    }
   
   },
   computed: {
   },
   created() {
-   
+      if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(getPosition);
+}
+function getPosition(position) {
+    // this.lat=position.coords.latitude
+    // this.lon=position.coords.longitude
+  console.log(position.coords.latitude, position.coords.longitude);
+}
+     
   },
   mounted() {
     if (window.kakao && window.kakao.maps) {
