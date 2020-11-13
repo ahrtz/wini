@@ -20,15 +20,41 @@
             <v-card outlined>
               <v-card-title>Filters</v-card-title>
               <v-divider></v-divider>
-              <template>
-                <v-treeview :items="items" :open="[1]" :selected-color="'#fff'" activatable open-on-click dense>
-                </v-treeview>
+            
+              <v-list flat>
+   
+           <v-list-group >
+              <template v-slot:activator>
+                <v-list-item-title>Type</v-list-item-title>
               </template>
+ <v-list-item-group v-model="type" color="primary">
+              <v-list-item v-for="item in items" :key="item.id" >
+                <v-list-item-content>
+            <v-list-item-title v-text="item"></v-list-item-title>
+          </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+ </v-list-group>
+          </v-list>
+               
+           
               <v-divider></v-divider>
-              <template>
-                <v-treeview :items="pairings" :open="[1]" :selected-color="'#fff'" activatable open-on-click dense>
-                </v-treeview>
+                <v-list flat>
+   
+           <v-list-group >
+              <template v-slot:activator>
+                <v-list-item-title>Pairing</v-list-item-title>
               </template>
+ <v-list-item-group v-model="pairing" color="primary">
+              <v-list-item v-for="item in pairings" :key="item.id" >
+                <v-list-item-content>
+            <v-list-item-title v-text="item"></v-list-item-title>
+          </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+ </v-list-group>
+          </v-list>
+               
               <v-divider></v-divider>
               <v-card-title>Price</v-card-title>
               <v-range-slider v-model="range" :max="max" :min="min" :height="10" class="align-center some" dense>
@@ -128,13 +154,7 @@
             </v-card>
           </div>
           <div class="col-md-8 col-sm-8 col-xs-12">
-            <v-row dense>
          
-              <v-col cols="12" sm="4">
-                <v-select class="pa-0" v-model="select" :items="options" style="margin-bottom: -20px;" outlined dense>
-                </v-select>
-              </v-col>
-            </v-row>
 
             <v-divider></v-divider>
 
@@ -151,25 +171,38 @@
         <v-flex xs12>
           
               <v-layout>
-                <v-flex xs3>
+                <v-flex xs2>
                   <v-img
                     src="../../../public/img/pngegg.png"
                     height="125px"
                     contain
                   ></v-img>
                 </v-flex>
-                <v-flex xs5>
-                  <v-card-title primary-title>
-                    <div>
-                      <div class="headline">{{pro.ename}}</div>
-                      <div>{{pro.koname}}</div>
-                      <div>{{pro.type}}</div>
-                      <div>{{pro.year}}</div>
-                      <div>{{pro.grape}}</div>
-                      <div>{{pro.temperature}}</div>
-                      <div v-if="pro.cost!=='가격정보없음'">{{pro.cost}}</div>
-                    </div>
-                  </v-card-title>
+                <v-flex xs6>
+                  <v-card-title class="headline">
+                    
+                     <h6>{{pro.koname}}</h6>
+                      <h6>{{pro.enname}}</h6>
+    </v-card-title>
+    <v-card-text>
+            <v-chip v-if="pro.type=='레드'" color="#882814"
+      text-color="white" dark><strong>레드</strong></v-chip>
+      <v-chip v-else-if="pro.type=='화이트'" color="#f9e8c0"
+      text-color="black"><strong>화이트</strong></v-chip>
+      <v-chip v-else-if="pro.type=='로제'" color="#d19492"
+      text-color="black"><strong>로제</strong></v-chip>
+      <v-chip v-else color="#f5ecc4"
+      text-color="black"><strong>{{pro.type}}</strong></v-chip>    </v-card-text>
+
+                      <h6 v-if="pro.laestdegree!=='None'">알코올 {{pro.laestdegree}}</h6>
+                      <h6 v-if="pro.local.includes('칠레')">칠레(Chile)</h6>
+                      <h6 v-else-if="pro.local.includes('프랑스')">프랑스(France)</h6>
+                      <h6 v-else-if="pro.local.includes('미국')">미국(USA)</h6>
+                      <h6 v-else-if="pro.local.includes('이탈리아')">이탈리아(Italy)</h6>
+                      <h6 v-else-if="pro.local.includes('스페인')">스페인(Spain)</h6>
+                      <h6 v-else-if="pro.local.includes('크로아티아')">크로아티아(Croatia)</h6>
+                    <v-chip v-if="pro.cost!=='0'"><strong>{{pro.cost}}&#8361;</strong></v-chip>
+
                 </v-flex>
                 <v-flex xs4>
                   <v-card-text>
@@ -214,7 +247,7 @@
               </div>
 </div>
             <div class="text-center mt-12">
-              <v-pagination v-model="page" :length="6"></v-pagination>
+              <v-pagination v-model="page" :length="10" :total-visible="7"></v-pagination>
             </div>
           </div>
         </div>
@@ -243,121 +276,27 @@ import axios from 'axios'
         input:'',
         winelist:[],
         namelist:[],
-
+        type:0,
+        pairing:0,
         //wine taste
-        sweetness:0,
-        body:0,
-        tannin:0,
-        acidity:0,
+        sweetness:1,
+        body:1,
+        tannin:1,
+        acidity:1,
         alcoholrange:[10,20],
 
-        range: [0, 10000],
+        range: [0, 100000],
         select: 'Popularity',
-        options: [
-          'Default',
-          'Popularity',
-          'Relevance',
-          'Price: Low to High',
-          'Price: High to Low',
-        ],
+      
         page: 1,
-        breadcrums: [{
-            text: 'Home',
-            disabled: false,
-            href: 'breadcrumbs_home',
-          },
-          {
-            text: 'Type',
-            disabled: false,
-            href: 'breadcrumbs_type',
-          },
-          {
-            text: 'Red',
-            disabled: true,
-            href: 'breadcrumbs_red',
-          },
-        ],
         min: 0,
-        max: 10000,
-        items: [{
-            id: 2,
-            name: 'Type',
-            children: [{
-                id: 2,
-                name: 'Red'
-              },
-              {
-                id: 3,
-                name: 'White'
-              },
-              {
-                id: 4,
-                name: 'Rose'
-              },
-              {
-                id: 5,
-                name: 'Sparkling'
-              },
-            ],
-          },
+        max: 100000,
+        items: ['Red','White','Rose','Sparkling'
 
         ],
-        pairings: [{
-            id: 2,
-            name: 'Pairing',
-            children: [
-              {
-                id: 1,
-                name: 'Cheese'
-              },
-              {
+        koreanitems:['레드','화이트','로제','스파클링'],
+        pairings: ['Cheese','Beef','Fish','Lamb','Vegetable','Pork','Western','Duck','Dessert','Poultry','Instant','etc'
             
-                id: 2,
-                name: 'Beef'
-              },
-              {
-                id: 3,
-                name: 'Fish'
-              },
-              {
-                id: 4,
-                name: 'Lamb'
-              },
-              {
-                id: 5,
-                name: 'Vegetable'
-              },
-              {
-                id: 6,
-                name: 'Pork'
-              },
-              {
-                id: 7,
-                name: 'Western'
-              },
-              {
-                id: 8,
-                name: 'Duck'
-              },
-              {
-                id: 9,
-                name: 'Dessert'
-              },
-              {
-                id: 10,
-                name: 'Poultry'
-              },
-               {
-                id: 11,
-                name: 'Instant'
-              },
-              {
-                id: 12,
-                name: 'Etc'
-              },
-            ],
-          },
-
         ],
 
 
@@ -379,7 +318,7 @@ import axios from 'axios'
     },
     methods:{
     submit(){
-      axios.get(`${SERVER}search?keyword=${this.input}`,{
+      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
@@ -391,6 +330,59 @@ import axios from 'axios'
       .catch(err=>console.log(err))
 
     },
+    changeto(){
+      if(this.input===null){
+        if(this.pairing===null){
+          axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}&price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(this.koreanitems[this.type])
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+        }
+        else{
+           
+          axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(this.koreanitems[this.type])
+      console.log(this.pairings[this.pairing])
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+        }
+
+
+      }
+    else{
+       axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
+      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(this.input)
+      console.log(res)
+      this.winelist=res.data.content
+    })
+
+
+    }
+    
+    }
     
  
   },
@@ -416,7 +408,50 @@ import axios from 'axios'
          
         })
       .catch(err=>console.log(err))
+    },
+    range:function(){
+      this.changeto()
+
+    },
+    sweetness:function(){
+    this.changeto()
+    },
+    body:function(){
+this.changeto()
+
+    },
+    tannin:function(){
+this.changeto()
+    },
+    acidity:function(){
+    this.changeto()
+
+    },
+    type:function(){
+      this.changeto()
+    
+    },
+    pairing:function(){
+this.changeto()
+
+    },
+    alcoholrange:function(){
+this.changeto()
     }
+
+  },
+   mounted(){
+    axios.get(`${SERVER}search?keyword= `,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+    .then(res=>{
+      console.log(res)
+      this.winelist=res.data.content
+
+    })
   }
   };
 </script>

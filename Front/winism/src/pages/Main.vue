@@ -8,8 +8,7 @@
       </parallax>
       <div class="container">
         <div class="content-center brand">
-          <img class="n-logo" src="img/winelogo.png" alt="" />
-
+          <img class="n-logo" src="img/winelogo_white.png">
 
           <h3>Wine site for wine newbie</h3>
         </div>

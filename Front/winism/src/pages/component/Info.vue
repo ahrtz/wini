@@ -3,13 +3,18 @@
 
 <v-app>
   <v-container class="pt-5">
+  
+
   <div style="margin-top:100px">
-    <h2>와인 상식</h2>
+  <v-card-title class="text-center justify-center">
+      <h3 class="font-weight-bold">
+        와인 상식
+      </h3>
+    </v-card-title>
   </div>
    <v-tabs
       v-model="tab"
-      background-color=#750049
-      color="white"
+      color="#750049"
       grow
     >
       <v-tab
@@ -20,7 +25,7 @@
       <v-tab
         
       >
-        How to read label
+        와인 라벨 읽는 법
       </v-tab>
         <v-tab
         
@@ -29,14 +34,15 @@
       </v-tab>
        <v-tab-item
       >
-      <h2>Red Wine</h2>
+      <h5 class="mt-2" style="color:#882814">Red Wine</h5>
+     
 <v-row>
 
       
       <br>
-      <v-col cols="3"
-        md="6" xs="12">
-      <v-btn   color="#750049" dark @click.native="modals.cabernet = true">
+      <v-col cols="6"
+        md="4" xs="12">
+      <v-btn  color="#750049" dark @click.native="modals.cabernet = true">
         까베르네 소비뇽(Cabernet Sauvignon)
       </v-btn>
       <modal :show.sync="modals.cabernet" headerClasses="justify-content-center">
@@ -65,8 +71,8 @@
         </template>
       </modal>
       </v-col>
-    <v-col cols="3"
-        sm="6" xs="12">
+    <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.malbec = true">
         말벡(Malbec)
       </v-btn>
@@ -88,8 +94,8 @@
         </template>
       </modal>
     </v-col>
-    <v-col cols="3"
-        sm="6" xs="12">
+    <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Carmenere = true">
         까르메네르(Carmenere)
       </v-btn>
@@ -115,8 +121,8 @@
         </template>
       </modal>
     </v-col>
-    <v-col cols="3"
-        sm="6" xs="12">
+    <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Merlot = true">
        멜롯(Merlot)
       </v-btn>
@@ -139,8 +145,8 @@
         </template>
       </modal>
     </v-col>
-    <v-col cols="3"
-        sm="6" xs="12">
+    <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Syrah = true">
        시라(Syrah) / 쉬라즈(Shiraz)
       </v-btn>
@@ -164,8 +170,8 @@
         </template>
       </modal>
     </v-col>
-     <v-col cols="3"
-        sm="6" xs="12">
+     <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Pinot = true">
        피노 누아(Pinot Noir)
       </v-btn>
@@ -193,8 +199,8 @@
         </template>
       </modal>
     </v-col>
-    <v-col cols="3"
-        sm="6" xs="12">
+    <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Sangiovese = true">
        산지오베제(Sangiovese)
       </v-btn>
@@ -216,8 +222,8 @@
         </template>
       </modal>
     </v-col>
-     <v-col cols="3"
-        sm="6" xs="12">
+     <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Tempranillo = true">
        템프라니요(Tempranillo)
       </v-btn>
@@ -239,8 +245,8 @@
         </template>
       </modal>
     </v-col>
-<v-col cols="3"
-        sm="6" xs="12">
+<v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Grenache = true">
        그르나슈(Grenache)
       </v-btn>
@@ -261,8 +267,8 @@
         </template>
       </modal>
     </v-col>
-<v-col cols="3"
-        sm="6" xs="12">
+<v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Zinfandel = true">
        진판델(Zinfandel)
       </v-btn>
@@ -282,8 +288,8 @@
         </template>
       </modal>
     </v-col>
-<v-col cols="3"
-        sm="6" xs="12">
+<v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Nebbiolo = true">
        네비올로(Nebbiolo)
       </v-btn>
@@ -309,8 +315,8 @@
         </template>
       </modal>
     </v-col>
-    <v-col cols="3"
-        sm="6" xs="12">
+    <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Barbera = true">
        바르베라(Barbera)
       </v-btn>
@@ -338,10 +344,10 @@
 
   
   </v-row>
-   <h2>White Wine</h2>
+<h5 class="mt-2" style="color:#eccd13">White Wine</h5>
   <v-row>
-   <v-col cols="3"
-        sm="6" xs="12">
+   <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Chardonnay = true">
        샤르도네(Chardonnay)
       </v-btn>
@@ -363,8 +369,8 @@
         </template>
       </modal>
     </v-col>
-  <v-col cols="3"
-        sm="6" xs="12">
+  <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Riesling = true">
        리슬링(Riesling)
       </v-btn>
@@ -388,8 +394,8 @@
         </template>
       </modal>
     </v-col>
-    <v-col cols="3"
-        sm="6" xs="12">
+    <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Blanc = true">
        소비뇽 블랑(Sauvignon Blanc)
       </v-btn>
@@ -415,8 +421,8 @@
         </template>
       </modal>
     </v-col>
-     <v-col cols="3"
-        sm="6" xs="12">
+     <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Semillon = true">
        세미용(Semillon)
       </v-btn>
@@ -440,8 +446,8 @@
         </template>
       </modal>
     </v-col>
-    <v-col cols="3"
-        sm="6" xs="12">
+    <v-col cols="6"
+        md="4" xs="12">
       <v-btn   color="#750049" dark @click.native="modals.Trebbiano = true">
        트레비아노(Trebbiano)
       </v-btn>
@@ -463,36 +469,54 @@
   </v-row>
  
       </v-tab-item>
-    <v-tab-item class="ma-3"
+    <v-tab-item class="ma-3 "
       >
-      <h2>프랑스 와인</h2>
+      <h4 style="font-weight:bold">프랑스 와인 라벨</h4>
+      <v-row justify="center">
+    
         <v-img
         src="../../../public/img/winelabel_france.png"
         class="slick-slide"
+        max-width="800"
+      max-height="600"
       >
-        
+       
       </v-img>
-      <h2>미국 와인</h2>
+         </v-row>
+      <v-divider></v-divider>
+      <h4 style="font-weight:bold">미국 와인 라벨</h4>
+       <v-row justify="center">
         <v-img
         src="../../../public/img/winelabel_america.png"
         class="slick-slide"
+        max-width="600"
+         max-height="800"
       >
         
       </v-img>
-      <h2>독일 와인</h2>
+       </v-row>
+      <v-divider></v-divider>
+       <h4 style="font-weight:bold">독일 와인 라벨</h4>
+       <v-row justify="center">
         <v-img
         src="../../../public/img/winelabel_german.png"
         class="slick-slide"
+        max-width="800"
       >
         
       </v-img>
-       <h2>이탈리아 와인</h2>
+       </v-row>
+      <v-divider></v-divider>
+        <h4 style="font-weight:bold">이탈리아 와인 라벨</h4>
+        <v-row justify="center">
        <v-img
         src="../../../public/img/winelabel_italy.png"
         class="slick-slide"
+        max-width="800"
       >
         
       </v-img>
+        </v-row>
        
  
       </v-tab-item>
