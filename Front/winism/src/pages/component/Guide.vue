@@ -1,64 +1,71 @@
 <template>
 <div>
- <div class="page-header clear-filter">
-      <parallax
-        class="page-header-image"
-        style="background-image:url('img/wine-bottle-grapes.jpg')"
-      >
-      </parallax>
-      <div class="container">
-        <div class="content-center brand">
-
-          <h3>Guide for Wine Choice</h3>
-        </div>
-       
-      </div>
-    </div>
 <v-app>
-
+<v-container class="pt-5">
+<v-row style='margin-top:150px' justify="center">
+    <h3 style="font-weight:bold">와인 선택 가이드</h3>
+</v-row>
+</v-container>
   <v-container>
   <div style="margin-top:10px">
   <v-row>
   <v-col cols="6">
-  <v-img src="../../../public/img/purple-grapes-553462_1920.jpg">
+  <v-img src="../../../public/img/wine-cheese-grapes.jpg" min-height="500">
   </v-img>
  
   
   </v-col>
     <v-col cols="6">
-   <h3 style="font-weight:bold; ">01 와인 타입을 선택하세요</h3>
+   <h3 style="font-weight:bold; ">와인 타입을 선택하세요</h3>
    <h5 class="text-m">
-      레드, 화이트, 로제, 스파클링 중 그날의 컨디션이나 같이 곁들이는 안주를 고려해서 와인 타입을 정해보세요.
+      먼저, 레드, 화이트, 로제, 스파클링 중 그날의 컨디션에 따라 와인 타입을 정해보세요
       <br><br>
-    <v-btn
-      rounded
+      어려우신가요? 
+      <br>그렇다면 WINISM에서 추천하는 단계별 와인을 만나보세요!
+      <br>
+        <v-btn
       color="#750049"
       dark
+      class="mt-5 mb-5" @click="goto"
     >
-      와알못을 위한 와인 단계별...경험?
+      와알못을 위한 와인 단계별 추천
     </v-btn>
-      </h5>
-            <div class="text-center mt-2">
-              <v-btn  href="/info" text>포도 품종이 궁금하다면? Go <v-icon>mdi-arrow-right</v-icon></v-btn>
+
+      <br>
+      <h5 style="font-weight:bold">Q. 와인 타입은 정했는데 그 안에서도 맛이 다 다르지 않나요?</h5>
+      A. 맞습니다! 포도 품종에 따라 와인의 맛이 좌우됩니다. <br>포도 품종에 대해 알고싶다면, 아래 버튼을 눌러주세요
+       <div class=" mt-2">
+
+              <v-btn 
+      color="#750049"
+      dark @click="$router.push({name:'Info'})">포도 품종이 궁금하다면? Go <v-icon>mdi-arrow-right</v-icon></v-btn>
             </div>
+  <br>
+  
+      </h5>
+            
   </v-col>
   
   
   </v-row> 
-  <v-row style="background-color:#FFDCFF">
+  <v-row >
   <v-col cols="6">
   
-  <h2>포도 품종을 골라보세요</h2>
+  <h3 style="font-weight:bold; ">와인과 같이 먹을 음식을 고려해보세요</h3>
    <h5 class="text-m">
-       포도 품종에 따라 wine type이 달라집니다!
+       와인별로 궁합이 잘 맞는 음식이 있습니다!
+       <br>
+       와인별 음식 궁합이 궁금하다면 아래 버튼을 눌러주세요
       </h5>
-            <div class="text-center mt-2">
-              <v-btn  href="/info" text>포도 품종이 궁금하다면? Go <v-icon>mdi-arrow-right</v-icon></v-btn>
+           <div class="mt-2">
+             <v-btn 
+      color="#750049"
+      dark @click="$router.push({name:'Info'})">와인별 음식 궁합이 궁금하다면? Go <v-icon>mdi-arrow-right</v-icon></v-btn>
             </div>
-  
   </v-col>
     <v-col cols="6">
-    <v-img src="../../../public/img/purple-grapes-553462_1920.jpg">
+    <v-img src="../../../public/img/winefood.jpg" max-width="600"
+      max-height="400">
   </v-img>
   
   </v-col>
@@ -68,6 +75,7 @@
 
 
   </div>
+  <h5 id="level" style="font-weight:bold" class="mt-5">단계별 와인 추천</h5>
    <v-card flat>
          
           <v-timeline
@@ -96,7 +104,7 @@
     </v-timeline-item>
   </v-timeline>
         </v-card>
-   
+
     </v-container>
 
  
@@ -156,7 +164,7 @@ export default {
           color: 'green lighten-1',
           icon: 'mdi-airballoon',
           title:'떫지 않은 가벼운 레드 와인',
-          content:'프랑스 버건디 지역 특히 보졸레 지방에서 생산되는 와인들이나 이태리 와인들이 좋스비다.'
+          content:'프랑스 버건디 지역 특히 보졸레 지방에서 생산되는 와인들이나 이태리 와인들이 좋습니다.'
         },
         {
           color: 'indigo',
@@ -172,6 +180,11 @@ export default {
         },
       ],
       }
+  },
+  methods:{
+    goto(){
+      document.getElementById('level').scrollIntoView({ behavior: 'smooth' });
+    }
   }
 };
 </script>
