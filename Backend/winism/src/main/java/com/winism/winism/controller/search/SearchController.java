@@ -72,7 +72,7 @@ public class SearchController {
             pageInt = Integer.parseInt(page);
         }
         Pageable pageable = PageRequest.of(pageInt,10);
-        Page<wineList> list = searchDao.findWithFilter(pageable,keyword,type,pairing,price1,price2,alcohol1,alcohol2,sweetness,acidity,tannin,body);
+        Page<wineList> list = searchDao.findWithFilter(pageable,keyword,type,pairing,price1,price2,alcohol1,alcohol2,rate,sweetness,acidity,tannin,body);
         return new ResponseEntity<>(list, HttpStatus.OK);
      }
 }
