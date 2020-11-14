@@ -166,7 +166,10 @@ export default {
             this.QCount++;
             if (this.QCount == 8) {
                 console.log(this.scores)
-                this.checkscore();
+                this.checkscore()
+                setTimeout(() => {
+                    this.$emit('submitResult', this.result)
+                }, 100);
                 //넘기는거 여기에 넣어주세요
             } else {
 
@@ -186,44 +189,101 @@ export default {
         },
         checkscore() {
             if (this.scores.sparkling == 2) {
-                if (this.scores.sweet > nosweet) {
+                if (this.scores.sweet > this.scores.nosweet) {
                     this.result = {
-                        0: "스파클링 달달한거"
+                        code: 0,
+                        msg: "톡톡 튀고 활동적이며 배려심이 많은 당신, 달콤한 스파클링와인이 잘 어울려요.",
+                        wine: {
+                            img: "img/startertest_img0.jpg",
+                            name_ko: "보시오 모스카토 다스티",
+                            name_en: "Bosio Moscato d'Asti",
+                            description: "과실향이 듬뿍 담긴 사랑스러운 맛. 치즈, 햄, 살라미와 같은 짭조름한 안주와 함께 즐겨보세요!"
+                        }
                     };
                 } else {
                     this.result = {
-                        1: "스파클링 안단거"
+                        code: 1,
+                        msg: "혼자보다는 함께가 좋은 당신, 생각보다 담백한 매력을 갖고 계시네요. 달지않은 스파클링 와인을 즐겨보는건 어때요?",
+                        wine: {
+                            img: "img/startertest_img1.jpg",
+                            name_ko: "산테로 피노 샤르도네 스푸만테",
+                            name_en: "Santero Pinot Chardonnay Spumante",
+                            description: "누구나 친해질 수 있는 캐주얼한 친화력의 맛. 어떤 음식과 즐기셔도 좋아요!"
+                        }
                     };
                 }
             } else {
                 if (this.scores.red > this.scores.white) {
-                    if (this.scores.sweet > nosweet) {
+                    if (this.scores.sweet > this.scores.nosweet) {
                         this.result = {
-                            2: "레드 달달한거"
+                            code: 2,
+                            msg: "열정적이고 따뜻한 마음의 소유자! 달콤한 레드와인으로 시작해보세요!",
+                            wine: {
+                                img: "img/startertest_img2.jpeg",
+                                name_ko: "모건 데이비드 콩코드",
+                                name_en: "Mogen David Concord",
+                                description: "달콤한 맛과 향, 매력적인 컬러를 가진 와인. 치즈나 스테이크와 함께 즐기시면 좋아요!"
+                            }
                         }
                     } else {
                         this.result = {
-                            3: "레드 안단거"
+                            code: 3,
+                            msg: "차분하지만 누구보다 뜨거운 가슴의 소유자, 달지 않은 레드와인을 추천드려요!",
+                            wine: {
+                                img: "img/startertest_img3.jpg",
+                                name_ko: "아발론 카베르네 소비뇽",
+                                name_en: "Avalon Cabernet Sauvignon",
+                                description: "블랙체리, 라즈베리, 블랙베리 등 과일 잼 같은 향이 진하게 풍기는 맛. 스테이크, 파스타, 치즈 등과 함께 즐겨보세요!"
+                            }
                         }
                     }
                 } else if (this.scores.red < this.scores.white) {
-                    if (this.scores.sweet > nosweet) {
+                    if (this.scores.sweet > this.scores.nosweet) {
                         this.result = {
-                            4: "화이트 달달한거"
+                            code: 4,
+                            msg: "상큼하고 시원한 성격의 당신, 달콤한 화이트와인으로 시작해보세요!",
+                            wine: {
+                                img: "img/startertest_img4.png",
+                                name_ko: "에밀리아나 에코발란스 소비뇽 블랑",
+                                name_en: "Emiliana Ecobalanced Sauvignon Blanc",
+                                description: "은은한 레몬향이 매력적인 와인. 해산물, 치즈와 함께 곁들여 보세요. 한식도 잘 어울려요!"
+                            }
                         }
                     } else {
                         this.result = {
-                            5: "화이트 안단거"
+                            code: 5,
+                            msg: "시원시원 담백한 성격의 소유자, 달지 않은 화이트와인 어때요?",
+                            wine: {
+                                img: "img/startertest_img5.jpeg",
+                                name_ko: "그리즐리 베어 샤도네이",
+                                name_en: "Grizzly Bear Chardonnay",
+                                description: "풍부한 아로마향과 실키한 텍스쳐, 마음을 사로잡는 부드럽고 감미로운 맛. 생선, 닭고기와 함께 음미해보세요!"
+                            }
                         }
                     }
                 } else {
-                    if (this.scores.sweet > nosweet) {
+                    if (this.scores.sweet > this.scores.nosweet) {
                         this.result = {
-                            6: "아무거나 달달한거"
+                            code: 6,
+                            msg: "누구보다 스윗한 감성을 가진 당신, 스위트 와인을 추천해요!",
+                            wine: {
+                                img: "img/startertest_img6.jpeg",
+                                name_ko: "모스카토 뿔리아",
+                                name_en: "Moscato Pulia",
+                                description: "복숭아향의 달콤한 스파클링 와인으로 케이크, 쿠키 등의 디저트와 잘 어울려요!"
+                            }
                         }
                     } else {
                         this.result = {
-                            7: "아무거나 안단거"
+                            msg: "아무거나 안단거",
+                            code: 7,
+                            msg: "누구보다 담백한 성격의 당신, 드라이 와인으로 시작해보세요!",
+                            wine: {
+                                img: "img/startertest_img7.png",
+                                name_ko: "브라운 브라더스 윈드밀 쉬라즈",
+                                name_en: "Grizzly Bear Chardonnay",
+                                description: "자두, 라즈베리와 초콜릿의 여운이 맴도는 와인. 치즈와 함께 즐겨보세요!"
+                            }
                         }
                     }
                 }

@@ -7,9 +7,6 @@
       </parallax>
       <div class="container">
         <div class="content-center brand">
-          <img class="n-logo" src="img/winelogo.png" alt="" />
-
-
           <h3>간단한 테스트로 와인 취향을 알아보자!</h3>
           <v-btn class="white--text" @click="gettingStarted()" outlined>Get start</v-btn>
         </div>

@@ -1,101 +1,34 @@
 <template>
-    <div class="page-header clear-filter">
-      <parallax
-        class="page-header-image"
-        style="background-image:url('img/wine-grapes-drink.jpg')"
-      >
-      </parallax>
-      <div class="container">
-        <div class="content-center brand">
-          <img class="n-logo" src="img/winelogo.png" alt="" />
-
-
-          <h3>가슴은 뜨겁지만 누구보다 스윗한 당신, 달콤한 레드와인을 추천합니다!</h3>
-          <v-btn class="white--text" @click="gettingStarted()" outlined>Get start</v-btn>
-        </div>
-       
+  <div class="page-header clear-filter">
+    <parallax class="page-header-image" style="background-image:url('img/startertest_bg.jpg')"></parallax>
+    <div class="container">
+      <div class="text-center">
+        <h3>{{ result.msg }}</h3>
+        <img :src="result.wine.img" alt="">
+        <h4>{{ result.wine.name_ko }}</h4>
+        <h5>({{ result.wine.name_en }})</h5>
+        <span>{{ result.wine.description }}</span>
       </div>
     </div>
+  </div>
 </template>
 <script>
-
 export default {
-  name: 'StarterTestResult',
-  bodyClass: 'index-page',
-  components: {
-
+  name: "StarterTestResult",
+  bodyClass: "index-page",
+  props: {
+    result: Object
   },
-  data(){
-      return{
-        //wine list slider data
-        show: false,
-        tab: null,
-        expand: false,
-        items: [
-        {
-          color: 'red lighten-2',
-          icon: 'mdi-star',
-          title:'Choose your Wine Type',
-          content:'먼저 자신이 화이트, 로제, 레드, 스파클링 중 어떤 와인을 원하는지 정하세요.'
-        },
-        {
-          color: 'purple darken-1',
-          icon: 'mdi-book-variant',
-          title:'Choose your Pairing',
-          content:'와인과 곁들일 음식 종류를 선택하세요. 음식 종류에 따라 어울리는 와인이 달라집니다.'
-        },
-        {
-          color: 'green lighten-1',
-          icon: 'mdi-airballoon',
-          title:'Choose your Price',
-          content:'가격대를 정하세요. 자신의 예산에 맞추어 그에 맞는 와인을 선택하세요.'
-        },
-        
-      ],
-      beginners: [
-        {
-          color: 'red lighten-2',
-          icon: 'mdi-star',
-          title:'달콤한 화이트 와인',
-          content:'독일 모젤지방의 리슬링 와인종류와 같은 달콤한 화이트 와인을 먼저 도전해보세요. 향기로운 과일 향에 매료되면서 맛있다고 생각하게 될 것입니다.'
-        },
-        {
-          color: 'purple darken-1',
-          icon: 'mdi-book-variant',
-          title:'약간 드라이한 화이트 와인',
-          content:'캘리포니아산 샤도네 혹은 호주산 샤도네를 즐겨보세요. 단맛을 싫어한다면 이 와인부터 시작해도 좋습니다.'
-        },
-        {
-          color: 'green lighten-1',
-          icon: 'mdi-airballoon',
-          title:'떫지 않은 가벼운 레드 와인',
-          content:'프랑스 버건디 지역 특히 보졸레 지방에서 생산되는 와인들이나 이태리 와인들이 좋스비다.'
-        },
-        {
-          color: 'indigo',
-          icon: 'mdi-buffer',
-          title:'부드럽고 약간 진하면서도 과일향이 풍부한 레드 와인',
-          content:'호주산 쉬라즈나 까베르네 소비뇽, 미국산 진판델이나 멜로종류 혹은 멜로 포도품종이 많이 들어간 프랑스의 쌩떼밀리용지역에서 생산되는 와인을 시도해보세요.'
-        },
-         {
-          color: 'pink',
-          icon: 'mdi-glass-tulip',
-          title:'타닌 맛이 강한 와인',
-          content:'프랑스 보르도 와인이나 까베르네 소비뇽과 같은 포도 품종이 많이 사용된 와인들을 접해보세요. 이런 종류의 와인에 익숙해지게 된다면 you are not beginner anymore'
-        },
-      ],
-      }
+  data() {
+    return {};
   }
 };
 </script>
 <style scoped>
-
-
 /* line 271, app/assets/stylesheets/home/theme.scss */
 .background-pale-green {
-  background-color: #E6F3E6;
+  background-color: #e6f3e6;
 }
-
 
 /* line 103, app/assets/stylesheets/home/home.scss */
 .home-main-section {
@@ -125,7 +58,7 @@ export default {
 
 /* line 119, app/assets/stylesheets/home/home.scss */
 .home-main-section .home-buttons .home-button {
-  background-color: #F1F3F5;
+  background-color: #f1f3f5;
   color: #212529;
   border: none;
   border-radius: 6px;
@@ -136,7 +69,7 @@ export default {
 
 /* line 127, app/assets/stylesheets/home/home.scss */
 .home-main-section .home-buttons .home-button:hover {
-  background-color: #E9ECEF;
+  background-color: #e9ecef;
 }
 
 /* line 132, app/assets/stylesheets/home/home.scss */
@@ -230,7 +163,7 @@ export default {
 #home-main-section-top {
   margin-top: 72px;
   padding-top: 24px;
-  background-color: #FBF7F2;
+  background-color: #fbf7f2;
 }
 
 /* line 196, app/assets/stylesheets/home/home.scss */
@@ -239,7 +172,7 @@ export default {
   height: 760px;
   margin: 0 auto;
   position: relative;
-  background-color: #FBF7F2;
+  background-color: #fbf7f2;
 }
 
 /* line 203, app/assets/stylesheets/home/home.scss */
@@ -258,7 +191,9 @@ export default {
   bottom: 0;
   width: 804px;
   height: 685px;
-  background: #FBF7F2 url(/assets/home/main/3x/image-top-4eb6b8642f61c5c012136597a25a7b72c705d6c6479a7270f3fb23726fddf585.png) no-repeat;
+  background: #fbf7f2
+    url(/assets/home/main/3x/image-top-4eb6b8642f61c5c012136597a25a7b72c705d6c6479a7270f3fb23726fddf585.png)
+    no-repeat;
   background-size: 804px 685px;
 }
 
@@ -304,5 +239,4 @@ export default {
 .home-keywords-content .top-keywords-list .keyword-item:hover {
   text-decoration: underline;
 }
-
 </style>
