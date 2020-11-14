@@ -5,19 +5,19 @@
                 <div
                     class="textbox"
                     v-bind:style="{fontSize:window.height*0.03+'px' , height:window.height*0.2+'px'}"
-                    v-html="'Q'+QCount+'. '+question"></div>
+                    v-html="'<br/>Q'+QCount+'. '+question"></div>
                 <div class="void" v-bind:style="{height:window.height*0.05+'px'}"></div>
                 <div class="selectArea">
                     <a v-on:click="clickans1()">
                         <div
                             class="selectBox1"
-                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px'}"/>
+                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px', backgroundImage:'url(' + imageA1 + ')'}"/>
                     </a>
 
                     <a v-on:click="clickans2()">
                         <div
                             class="selectBox2"
-                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px'}"/>
+                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px', backgroundImage:'url(' + imageA2 + ')'}"/>
                     </a>
             </div>
             <div class="selectArea">
@@ -86,33 +86,33 @@ export default {
             qList: [
                 '당신은 감옥에 갇혔습니다. <br/> 생존을 위해 두가지 음식중 하나를 먹어야 합니다.',
                 '오늘은 불타는 금요일의 퇴근길. <br/> 지금부터 무엇을 하지?',
-                '베스킨라빈스에서 아이스크림을 고르는 내 모습',
+                '민트초코맛 아이스크림에 대한 내 생각은?',
                 '길에서 괴한이 아는 사람을 위협하고있다. <br/>당신의 선택은?',
-                '인간이 가장 허기진다는 새벽1시. <br/>냉장고에는 과일밖에 없다. ',
+                '인간이 가장 허기진다는 새벽1시. <br/>냉장고에는 과일밖에 없다.',
                 '내 어린시절 꿈. 판검사 vs 의사',
                 '날씨가 너무 춥다.. <br/>무언가로 몸을 녹여야겠다.',
                 '오늘은 이성친구와 데이트날이다. <br/>친구의 신발끈이 풀려있네.',
                 '오랜 친구들과 간만에 소주한잔, <br/>소주 맛이',
-                '여러 사람과 즐기는 팀게임에서 나는?',
+                '다양한 사람과 팀을 매칭할때, <br/>나의 주 역할은?',
                 '아주 슬픈 영화를 봤다. 모두들 펑펑 울었다.'
             ],
             ans1List: [
                 '밥에 오렌지주스를 비벼먹는다.',
                 '집으로 돌진. 자유시간을 즐긴다',
-                '저거랑 저거 주세요.',
+                '>ㅠ< 구웨에에에엨',
                 '괴한을 제압하고 지인을 구한다.',
                 '배달앱을 켠다. 치킨을 주문한다.',
-                '검사',
+                '판검사',
                 '따뜻~한 커피 한잔',
                 '풀린 신발끈을 묶어준다.',
                 '크으.. 오늘따라 소주가 쓰네..',
                 '팀을 지원하는 지원가',
-                '어헣허헣헣 ㅠㅠ'
+                '어헣허헣헣 ㅠㅠ - 펑펑 운다.'
             ],
             ans2List: [
                 '밥에 콜라를 비벼먹는다.',
                 '폰을 켜서 연락처를 본다. 일단 친구들에게 연락.',
-                '어떤 맛이 제일 잘 나가요?',
+                '민트초코의 맛을 모르다니..<br/> 불쌍해.',
                 '차분하고 냉정하게 지나간다.',
                 '과일로 허기를 체운다.',
                 '의사',
@@ -120,7 +120,7 @@ export default {
                 '그게뭐?',
                 '크으.. 소주가 달다 달아.',
                 '팀을 이끄는 리더',
-                '아 눈에 먼지 들어갔어.'
+                '아 눈에 먼지 들어갔어. - 안울기 위해 노력한다.'
             ],
 
             scores: {
@@ -181,6 +181,9 @@ export default {
                 this.question = this.qList[this.QNum];
                 this.ans1 = this.ans1List[this.QNum];
                 this.ans2 = this.ans2List[this.QNum];
+                this.imageQ = "'img/questIMG/Quest"+this.QNum+".jpg'";
+                this.imageA1 = "'img/questIMG/Ans1-"+this.QNum+".jpg'";
+                this.imageA2 = "'img/questIMG/Ans2-"+this.QNum+".jpg'";
             }
 
         },
@@ -272,7 +275,6 @@ export default {
                         }
                     } else {
                         this.result = {
-                            msg: "아무거나 안단거",
                             code: 7,
                             msg: "누구보다 담백한 성격의 당신, 드라이 와인으로 시작해보세요!",
                             wine: {
@@ -307,6 +309,7 @@ export default {
     width: 70%;
     align-content: center;
     color: white;
+    background-color: rgba(0,0,0,0.5);
 }
 .selectArea {
     margin: auto;
@@ -324,11 +327,13 @@ export default {
     float: left;
 }
 .selectBox1 {
+    background-size: 100% 100%;
     float: left;
     margin-left: 3em;
     background-color: white;
 }
 .selectBox2 {
+    background-size: 100% 100%;
     float: right;
     margin-right: 3em;
     background-color: white;
@@ -336,6 +341,6 @@ export default {
 .seltext{
     color: white;
     text-align: center;
-    background-color: transparent;
+    background-color: rgba(0,0,0,0.5);
 }
 </style>
