@@ -44,6 +44,16 @@
             <p class="display-4 mb-0">{{wineData.wine.koname}} <br> ({{wineData.wine.enname}}) <br> {{wineData.wine.year}}</p>
             <v-card-actions class="pa-0">
               <v-spacer></v-spacer>
+                <v-btn
+      fab
+      dark
+      small
+      color="#750049"
+      @click="CopyUrlToClipboard"
+    >
+      <v-icon dark>
+        mdi-share-variant
+      </v-icon></v-btn>
               <!-- <v-rating v-model="rating" class="" background-color="warning lighten-3"
                         color="warning" dense></v-rating> -->
               <span class="body-2	font-weight-thin " style="display: inline-block; width: 95%; text-align: right;"> <v-rating v-model="wineData.wine.rating"></v-rating>  {{reviews.length}}  REVIEWS</span>
@@ -338,6 +348,17 @@ export default {
 
       }
       //리뷰데이터 넣기
+,
+      //공유하기 버튼
+      CopyUrlToClipboard() {
+      const tmpInput = document.createElement('textarea');
+      document.body.appendChild(tmpInput);
+      tmpInput.value = window.document.location.href;
+      tmpInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tmpInput);
+      alert("URL이 클립보드에 복사되었습니다")
+    },
     },
     computed:{
     islogin(){
