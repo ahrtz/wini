@@ -97,13 +97,7 @@ this.ps.categorySearch(this.currCategory, this.placesSearchCB, {useMapBounds:tru
         console.log(data)
         this.displayPlaces(data);
       } 
-    //   else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-    //     alert('검색 결과가 존재하지 않습니다.');
-    //     return;
-    //   } else if (status === kakao.maps.services.Status.ERROR) {
-    //     alert('검색 결과 중 오류가 발생했습니다.');
-    //     return;
-    //   }
+ 
     },
     // 검색 결과 목록과 마커를 표출하는 함수입니다
     displayPlaces(places) {
@@ -113,9 +107,7 @@ this.ps.categorySearch(this.currCategory, this.placesSearchCB, {useMapBounds:tru
         }
         this.placelist=[]
       for (var i = 0; i < places.length; i++) {
-          console.log(places[i])
-          console.log(this.placelist)
-          
+         
         // 마커를 생성하고 지도에 표시합니다
         if(places[i].place_name.includes(this.store)){
             this.placelist.push(places[i])
@@ -128,15 +120,7 @@ this.ps.categorySearch(this.currCategory, this.placesSearchCB, {useMapBounds:tru
                 });
             })(marker, this.placelist[j],this);
              }
-        //     var 
-        //   marker = this.addMarker(new kakao.maps.LatLng(places[i].y, places[i].x),order);
- 
-        //   // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해 LatLngBounds 객체에 좌표를 추가합니다
-        //   (function(marker, place,abc) {
-        //         kakao.maps.event.addListener(marker, 'click', function() {
-        //             abc.displayPlaceInfo(place);
-        //         });
-        //     })(marker, places[i],this);
+       
 
         }
         
@@ -167,7 +151,7 @@ this.ps.categorySearch(this.currCategory, this.placesSearchCB, {useMapBounds:tru
 },
     // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
    addMarker(position, order) {
-    console.log(order)
+
     var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
         imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
         imgOptions =  {
@@ -204,7 +188,6 @@ onClickCategory() {
     else{
         children[0].className=''
     }
-    console.log(children[0].className)
     this.placeOverlay.setMap(null);
         this.removeMarker();
         this.currCategory = id;
