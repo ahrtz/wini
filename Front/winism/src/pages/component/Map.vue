@@ -37,6 +37,8 @@ export default {
       lat:'',
       lon:'',
       locPosition:'',
+      textContent:'',
+      
     }
   },
   props: {
@@ -48,8 +50,11 @@ export default {
 
    initMap() {
       const container = document.getElementById('map')
+      console.log(this.lat)
+      console.log(this.lon)
+    
       const mapOption = {
-        center: new kakao.maps.LatLng(37.500649, 127.036530),
+        center: new kakao.maps.LatLng(this.lat, this.lon),
         level: 5
       }
     
@@ -233,17 +238,24 @@ displayMarker(locPosition, message) {
   computed: {
   },
   created() {
-      if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(getPosition);
-}
-function getPosition(position) {
-    // this.lat=position.coords.latitude
-    // this.lon=position.coords.longitude
-  console.log(position.coords.latitude, position.coords.longitude);
-}
-     
+    
+
   },
   mounted() {
+      if(!("geolocation" in navigator)) {
+            this.textContent = 'Geolocation is not available.';
+            return;
+            }
+            this.textContent = 'Locating...'
+            
+            // get position
+            navigator.geolocation.getCurrentPosition(pos => {
+            this.lat = pos.coords.latitude;
+            this.lon = pos.coords.longitude;
+            this.textContent = 'Your location data is ' + this.lat + ', ' + this.lon
+            }, err => {
+            this.textContent = err.message;
+            })
     if (window.kakao && window.kakao.maps) {
       setTimeout(() => {
         this.initMap()
