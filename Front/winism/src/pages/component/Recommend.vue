@@ -9,7 +9,7 @@
       <div class="container">
         <div class="content-center brand">
 
-          <h3>Recommend for You</h3>
+          <h3>나에게 맞는 와인을 추천받아보세요!</h3>
         </div>
        
       </div>
@@ -111,22 +111,34 @@
               </div>
 <v-row>
 <v-col cols="12">
-<h4>마트별 가성비가 좋은 와인</h4>
+<h4 style='font-weight:bold'>마트별 가성비가 좋은 와인</h4>
+<h5>추천 목록 밑의 편의점 버튼을 누르면 내 위치 주변의 편의점이 보입니다!</h5>
 
-<v-container fluid>
-      <v-row dense>
-        <v-col
-          v-for="card in pick"
-          :key="card.title"
-          cols="12"
-          sm="6"
-          md="3"
-        >
-          <v-card max-width="374">
+
+<Map :store="store"/>
+</v-col>
+
+<v-col cols="12">
+
+ <v-sheet
+    class="mx-auto"
+    max-width="700"
+  >
+    <v-slide-group
+      multiple
+      show-arrows
+    >
+      <v-slide-item
+        v-for="card in pick"
+        :key="card.id"
+        v-slot="{ active, toggle }"
+      >
+      
+        <v-card max-width="374" @click="toggle" :input-value="active">
             <v-img
               :src="card.src"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              class="align-end"
+
               height="400px"
             >
               <v-card-title v-text="card.title"></v-card-title>
@@ -136,30 +148,26 @@
       <v-chip-group
         column
       >
-         <v-chip v-if="card.type==='red'" color="red"
+         <v-chip v-if="card.type==='red'" color="#882814"
       text-color="white">Red</v-chip>
-      <v-chip v-else color="white"
+      <v-chip v-else color="#f9e8c0"
       text-color="black">White</v-chip>
 
-         <v-chip v-if="card.store==='emart'" color="yellow"
+         <v-chip v-if="card.store==='emart'" color="#FFB900"
       text-color="black" @click="changestore('emart')">emart</v-chip>
-      <v-chip v-else-if="card.store==='GS25'" color="blue"
-      text-color="black" @click="changestore('GS25')">GS25</v-chip>
-       <v-chip v-else color="pink"
-      text-color="black" @click="changestore('CU')">CU</v-chip>
+      <v-chip v-else-if="card.store==='GS25'" color="#0064FF"
+      text-color="#50C2FF" @click="changestore('GS25')">GS25</v-chip>
+       <v-chip v-else color="#800080"
+      text-color="#64CD3C" @click="changestore('CU')">CU</v-chip>
 
-        <v-chip>{{card.price}}</v-chip>
+        <v-chip>&#8361;{{card.price}}</v-chip>
       </v-chip-group>
     </v-card-text>
           </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-
-<Map :store="store"/>
+      </v-slide-item>
+    </v-slide-group>
+  </v-sheet>
 </v-col>
-
-
 </v-row>
   </div>
     </v-container>
@@ -191,91 +199,85 @@ export default {
         acidity:0,
         winelist:[],
         uid:null,
-        store:'',
+        store:'GS25',
+             model: null,
 
-       products: [{
-            id: 1,
-            name: 'Alvaro Palacios Villa de Corullon',
-            type: 'Red',
-            price: '18.00',
-            src: require('../../../public/img/wine-bottle-grapes.jpg')
-          },
-        ],
+       
         pick:[
           {title:'알베르 비쇼 부르고뉴 파스투그랭 2018',
-          src:'../../../public/img/AlbertBichotBourgognePassetoutgrain.png',
+          src:require('../../../public/img/AlbertBichotBourgognePassetoutgrain.png'),
           price:'20,000',
           store:'emart',
           type:'red'
           },
           {title:'미켈레 키아를로 바르베라 다스티레 오르메 2016',
-          src:'../../../public/img/michele.jpg',
+          src:require('../../../public/img/michele.jpg'),
           price:'20,000',
           store:'emart',
           type:'red'
           },
           {title:'핀카 엘 오리헨 말벡 그랑 리제르바 2016',
-          src:'../../../public/img/finca.jpg',
+          src:require('../../../public/img/finca.jpg'),
           price:'20,000',
           store:'emart',
           type:'red'
           },
           {title:'샤또 뿌피유 2013',
-          src:'../../../public/img/poupille.jpg',
+          src:require('../../../public/img/poupille.jpg'),
           price:'25,800',
           store:'emart',
           type:'red'
           },
           {title:'하디스 빈 619 카베르네 소비뇽 2019',
-          src:'../../../public/img/hadis.JPG',
+          src:require('../../../public/img/hadis.jpg'),
           price:'14,900',
           store:'GS25',
           type:'red'
           },
           {title:'알파카 카베르네 메를로',
-          src:'../../../public/img/apk.JPG',
+          src:require('../../../public/img/alpaca.jpg'),
           price:'11,000',
           store:'CU',
           type:'red'
           },
            {title:'칸티 모스카토 콜레지오네 디 파밀리아',
-          src:'../../../public/img/canti.JPG',
+          src:require('../../../public/img/canti.jpg'),
           price:'15,000',
           store:'emart',
           type:'white'
           },
           {title:'에라주리즈, 맥스 리제르바 카베르네 소비뇽',
-          src:'../../../public/img/errazuriz.JPG',
+          src:require('../../../public/img/errazuriz.jpg'),
           price:'25,900',
           store:'GS25',
           type:'red'
           },
           {title:'카멜 로드, 몬테레이 피노누아',
-          src:'../../../public/img/camelroad.JPG',
+          src:require('../../../public/img/camelroad.jpg'),
           price:'35,000',
           store:'GS25',
           type:'red'
           },
           {title:'네이처 사운드',
-          src:'../../../public/img/naturesound.JPG',
+          src:require('../../../public/img/naturesound.jpg'),
           price:'9,900',
           store:'GS25',
           type:'red'
           },
           {title:'세크레토 말벡',
-          src:'../../../public/img/secreto.JPG',
+          src:require('../../../public/img/secreto.jpg'),
           price:'19,900',
           store:'CU',
           type:'red'
           },
            {title:'발데파블로 상그리아 레드',
-          src:'../../../public/img/sangria.JPG',
+          src:require('../../../public/img/sangria.jpg'),
           price:'3,700',
           store:'GS25',
           type:'red'
           },
           {title:'솔데빠냐스 비노 블랑코',
-          src:'../../../public/img/soldepenas.jpg',
+          src:require('../../../public/img/soldepenas.jpg'),
           price:'3,700',
           store:'GS25',
           type:'red'

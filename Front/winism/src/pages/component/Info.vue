@@ -521,88 +521,110 @@
  
       </v-tab-item>
       <v-tab-item>
-       <v-btn
+      <v-row justify="center">
+      <v-col>
+      <v-btn
       depressed
-      color="error"
+      color="#882814"
+      dark
+      @click="goto('red')"
     >
       Red Wine
     </v-btn>
-
-       <v-btn
-      depressed
-      color="error"
-    >
-      The best 안주
-    </v-btn>
-      <h1>진한 레드 와인</h1>
-      <p>쇠고기, 파스타, 등심·안심·갈비·철판구이 등 쇠고기 요리, 생등심 불고기</p>
-      <h1>미디엄 레드 와인</h1>
-      <p>양념 불고기, 주물럭 등 약간 단맛이 나는 쇠고기 요리</p>
-      <h1>라이트 레드 와인</h1>
-      <p>가금류, 양고기, 닭, 오리, 삼겹살</p>
-      <h1>레드 와인의 포도 품종에 따른 와인별 매치 </h1>
-<h3>시라</h3>
-      <p>양념이 풍부한 고기요리</p>
-      <h3>멜롯</h3>
-      <p>소스가 부드러운 고기요리</p>
-      <h3>카베르네 소비뇽</h3>
-      <p>진한 소스를 사용한 고기요리</p>
+      
+      </v-col>
+      <v-col>
       <v-btn
       depressed
-      color="primary"
+      color="#f9e8c0"
+       @click="goto('white')"
     >
       White Wine
     </v-btn>
-    <h1>드라이 화이트 와인</h1>
-      <p>생선회, 생선구이, 조개요리, 갑각류, 야채버섯 등 나물류</p>
-       <h1>스위트 화이트 와인</h1>
-      <p>떡, 과자 등 단맛이 많은 음식</p>
-<h1>가벼운 화이트 와인</h1>
-      <p>조개, 새우, 바닷가재</p>
-      <h1>진한 화이트 와인</h1>
-      <p>연어, 고등어, 닭고기</p>
-<h1>화이트 와인의 포도 품종에 따른 와인별 매치 </h1>
-<h3>샤르도네</h3>
-      <p>생굴·조개·연어와 같은 해산물, 닭고기 요리</p>
-      <h3>소비뇽 블랑</h3>
-      <p>생선회, 담백한 생선요리</p>
-      <h3>리슬링</h3>
-      <p>크림소스나 단맛이 가미된 생선요리</p>
-       <v-btn
+      
+      </v-col>
+       <v-col>
+      <v-btn
       depressed
-      color="error"
+      color="#f5ecc4"
+       @click="goto('sparkling')"
     >
-      Sparkling Wine
+      Sparkling
     </v-btn>
-    <h1>드라이한 맛의 스파클링 와인</h1>
-    <p>굴, 캐비어, 훈제연어</p>
-   <v-btn
+      
+      </v-col>
+      <v-col>
+      <v-btn
       depressed
-      color="error"
+      color="#750049"
+      dark
+       @click="goto('cheese')"
     >
       Cheese
     </v-btn>
-    <h3>푸른 곰팡이 타입</h3>
+      
+      </v-col>
+      </v-row>
+      <h3 id="red" style="font-weight:bold">레드 와인</h3>
+      <h4  style="font-weight:bold">진한 레드 와인</h4>
+      <p>쇠고기, 파스타, 등심·안심·갈비·철판구이 등 쇠고기 요리, 생등심 불고기</p>
+      <h4 style="font-weight:bold">미디엄 레드 와인</h4>
+      <p>양념 불고기, 주물럭 등 약간 단맛이 나는 쇠고기 요리</p>
+      <h4 style="font-weight:bold">라이트 레드 와인</h4>
+      <p>가금류, 양고기, 닭, 오리, 삼겹살</p>
+      <v-divider></v-divider>
+      <h3 style="font-weight:bold">레드 와인의 포도 품종에 따른 와인별 매치 </h3>
+<h4 style="font-weight:bold">시라</h4>
+      <p>양념이 풍부한 고기요리</p>
+      <h4 style="font-weight:bold">멜롯</h4>
+      <p>소스가 부드러운 고기요리</p>
+      <h4 style="font-weight:bold">카베르네 소비뇽</h4>
+      <p>진한 소스를 사용한 고기요리</p>
+     <v-divider></v-divider>
+      <h3 id="white" style="font-weight:bold">화이트 와인</h3>
+    <h4 style="font-weight:bold">드라이 화이트 와인</h4>
+      <p>생선회, 생선구이, 조개요리, 갑각류, 야채버섯 등 나물류</p>
+       <h4 style="font-weight:bold">스위트 화이트 와인</h4>
+      <p>떡, 과자 등 단맛이 많은 음식</p>
+<h4 style="font-weight:bold">가벼운 화이트 와인</h4>
+      <p>조개, 새우, 바닷가재</p>
+      <h4 style="font-weight:bold">진한 화이트 와인</h4>
+      <p>연어, 고등어, 닭고기</p>
+      <v-divider></v-divider>
+<h3 style="font-weight:bold">화이트 와인의 포도 품종에 따른 와인별 매치 </h3>
+<h4 style="font-weight:bold">샤르도네</h4>
+      <p>생굴·조개·연어와 같은 해산물, 닭고기 요리</p>
+      <h4 style="font-weight:bold">소비뇽 블랑</h4>
+      <p>생선회, 담백한 생선요리</p>
+      <h4 style="font-weight:bold">리슬링</h4>
+      <p>크림소스나 단맛이 가미된 생선요리</p>
+       <v-divider></v-divider>
+       <h3 id="sparkling" style="font-weight:bold">스파클링 와인</h3>
+    <h4  style="font-weight:bold">드라이한 맛의 스파클링 와인</h4>
+    <p>굴, 캐비어, 훈제연어</p>
+  <v-divider></v-divider>
+   <h3 id="cheese" style="font-weight:bold">치즈</h3>
+    <h4 style="font-weight:bold">푸른 곰팡이 타입</h4>
       <p>치즈 속에 푸른 곰팡이를 넣어 만든 것으로서 '로크포르', '고르곤졸라', '스틸턴' 등이 있다. 
       짠맛이 풍부하고 자극성이 있어, 치즈 초보자용은 아니다. 
       이 치즈는 깊은 맛을 내는 레드 와인이나 스위트한 와인과 어울린다</p>
-      <h3>흰 곰팡이 타입</h3>
+      <h4 style="font-weight:bold">흰 곰팡이 타입</h4>
       <p>치즈 표면에 흰 곰팡이를 바른 것으로서 '브리', '쿨로미에', '카망베르' 등이 있다. 
       부드럽고 냄새가 없다. 산뜻한 맛의 와인과 어울리며, 일반적으로 가장 먹기 편한 종류이다.</p>
-      <h3>약간 단단한 타입</h3>
+      <h4 style="font-weight:bold">약간 단단한 타입</h4>
       <p>치즈를 압착해 물을 빼서 보관성을 높인 것으로서 '고다', '체다', '에담' 등이 있다. 
       쫄깃한 질감과 부드러운 맛으로 가벼운 타입의 와인이 어울린다.</p>
-      <h3>단단한 타입</h3>
+      <h4 style="font-weight:bold">단단한 타입</h4>
       <p>치즈에 수분이 적고, 숙성기간이 긴 것으로서 '그뤼예르', '파르미자노 레자노' 등이 있다. 
       잘 숙성시킨 것은 아미노산이 증가해서 감칠맛이 높다. 깊은 맛의 와인과 신맛이 있는 와인이 어울린다.</p>
-      <h3>워시 타입</h3>
+      <h4 style="font-weight:bold">워시 타입</h4>
       <p>치즈의 표면을 소금물이나 브랜디로 씻어 내고 만든 것으로서, '퐁 레베크', '뮌스터', '에푸아스' 등이 있다. 
       강한 향이 나지만 깊고 부드러운 맛이 특징이다. 프루티한 레드 와인이 어울린다.</p>
-      <h3>셰브르 타입</h3>
+      <h4 style="font-weight:bold">셰브르 타입</h4>
       <p>산양 젖으로 만든 치즈로서 '생 모르', '발랑세', '피코동' 등이 있다. 
       산양 젖 특유의 냄새가 난다. 
       숙성이 덜 된 것은 신맛과 크리미한 맛이 있고, 숙성이 진행되면 신맛이 연해지고 깊은 감칠맛이 난다. 드라이 화이트 와인과 가벼운 레드 와인이 어울린다.</p>
-       <h3>프레시 타입</h3>
+       <h4 style="font-weight:bold">프레시 타입</h4>
       <p>우유를 유산균과 효소로 굳혀 물을 빼기만 하고 숙성시키지 않은 것으로서 '크림 치즈', '모차렐라', '코타주' 등이 있다. 
       프루티한 와인과 어울린다.</p>
       </v-tab-item>
@@ -665,7 +687,13 @@ export default {
 
           }
       }
-  }
+  },
+  methods:{
+   goto(one){
+     console.log(one)
+      document.getElementById(one).scrollIntoView({ behavior: 'smooth' });
+    }
+}
 };
 </script>
 <style scoped>
