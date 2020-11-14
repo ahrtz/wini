@@ -277,7 +277,7 @@ export default {
           type:'red'
           },
           {title:'솔데빠냐스 비노 블랑코',
-          src:require('../../../public/img/soldepenas.jpg'),
+          // src:require('../../../public/img/soldepenas.jpg'),
           price:'3,700',
           store:'GS25',
           type:'red'

@@ -32,7 +32,7 @@
           </div>
           <tabs
             pills
-            class="nav-align-center"
+            class="nav-align-center ml-auto mr-auto"
             tab-content-classes="gallery"
             tab-nav-classes="nav-pills-just-icons"
             type="primary"
@@ -93,7 +93,7 @@
                                 <v-card-actions>
                                 <v-spacer></v-spacer>
                                 <v-btn
-                                  
+                                  primary
                                   outlined tile
                                   @click="dialog = false;updateReview(item)"
                                 >
@@ -127,7 +127,7 @@
               <i slot="label" class="now-ui-icons location_world"></i>
               <h5 class="title text-center">위시리스트</h5>
               <!-- 호버 먹이기 위랑 아래 둘다  -->
-              <div class="col-md-10 ml-auto mr-auto" >
+              <div class="col-md-10 " >
                 <div class="row collections">
                   <div class="col-md-6" v-for="item in wishes" :key="item.id">
                     <img src="img/bg1.jpg" alt="" class="img-raised" @click="$router.push({name:'product',params:{wid:item.wine.wid}})"/>
@@ -139,6 +139,7 @@
                 </div>
               </div>
             </tab-pane>
+            
             <tab-pane title="Home" >
               <i slot="label" class="now-ui-icons location_world"></i>
               <h5 class="title text-center">you might also like</h5>

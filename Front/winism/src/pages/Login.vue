@@ -24,6 +24,7 @@
               class="no-border input-lg my-0"
               addon-left-icon="now-ui-icons text_caps-small"
               placeholder="password"
+              type='password'
               v-model="loginData.password"
             >
             </fg-input>

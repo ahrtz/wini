@@ -69,6 +69,7 @@
               class="no-border input-lg py-4"
               addon-left-icon="now-ui-icons text_caps-small"
               placeholder="Age"
+              type="number"
               v-model="signupData.age"
             >
             </fg-input>
