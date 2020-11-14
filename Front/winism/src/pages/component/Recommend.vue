@@ -136,19 +136,19 @@
       <v-chip-group
         column
       >
-         <v-chip v-if="card.type==='red'" color="red"
+         <v-chip v-if="card.type==='red'" color="#882814"
       text-color="white">Red</v-chip>
-      <v-chip v-else color="white"
+      <v-chip v-else color="#f9e8c0"
       text-color="black">White</v-chip>
 
-         <v-chip v-if="card.store==='emart'" color="yellow"
+         <v-chip v-if="card.store==='emart'" color="#FFB900"
       text-color="black" @click="changestore('emart')">emart</v-chip>
-      <v-chip v-else-if="card.store==='GS25'" color="blue"
-      text-color="black" @click="changestore('GS25')">GS25</v-chip>
-       <v-chip v-else color="pink"
-      text-color="black" @click="changestore('CU')">CU</v-chip>
+      <v-chip v-else-if="card.store==='GS25'" color="#0064FF"
+      text-color="#50C2FF" @click="changestore('GS25')">GS25</v-chip>
+       <v-chip v-else color="#800080"
+      text-color="#64CD3C" @click="changestore('CU')">CU</v-chip>
 
-        <v-chip>{{card.price}}</v-chip>
+        <v-chip>&#8361;{{card.price}}</v-chip>
       </v-chip-group>
     </v-card-text>
           </v-card>
