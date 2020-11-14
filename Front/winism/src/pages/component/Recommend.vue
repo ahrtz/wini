@@ -9,7 +9,7 @@
       <div class="container">
         <div class="content-center brand">
 
-          <h3>Recommend for You</h3>
+          <h3>나에게 맞는 와인을 추천받아보세요!</h3>
         </div>
        
       </div>
@@ -115,14 +115,30 @@
 
 <v-container fluid>
       <v-row dense>
-        <v-col
-          v-for="card in pick"
-          :key="card.title"
-          cols="12"
-          sm="6"
-          md="3"
-        >
-          <v-card max-width="374">
+      
+      </v-row>
+    </v-container>
+
+<Map :store="store"/>
+</v-col>
+
+<v-col>
+
+ <v-sheet
+    class="mx-auto"
+    max-width="700"
+  >
+    <v-slide-group
+      multiple
+      show-arrows
+    >
+      <v-slide-item
+        v-for="card in pick"
+        :key="card"
+        v-slot="{ active, toggle }"
+      >
+      
+        <v-card max-width="374" @click="toggle" :input-value="active">
             <v-img
               :src="card.src"
               class="white--text align-end"
@@ -152,14 +168,10 @@
       </v-chip-group>
     </v-card-text>
           </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-
-<Map :store="store"/>
+      </v-slide-item>
+    </v-slide-group>
+  </v-sheet>
 </v-col>
-
-
 </v-row>
   </div>
     </v-container>
@@ -192,6 +204,7 @@ export default {
         winelist:[],
         uid:null,
         store:'',
+             model: null,
 
        products: [{
             id: 1,
