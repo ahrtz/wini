@@ -5,19 +5,19 @@
                 <div
                     class="textbox"
                     v-bind:style="{fontSize:window.height*0.03+'px' , height:window.height*0.2+'px'}"
-                    v-html="'Q'+QCount+'. '+question"></div>
+                    v-html="'<br/>Q'+QCount+'. '+question"></div>
                 <div class="void" v-bind:style="{height:window.height*0.05+'px'}"></div>
                 <div class="selectArea">
                     <a v-on:click="clickans1()">
                         <div
                             class="selectBox1"
-                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px'}"/>
+                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px', backgroundImage:'url(' + imageA1 + ')'}"/>
                     </a>
 
                     <a v-on:click="clickans2()">
                         <div
                             class="selectBox2"
-                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px'}"/>
+                            v-bind:style="{height:max*0.15+'px',width:max*0.15+'px', backgroundImage:'url(' + imageA2 + ')'}"/>
                     </a>
             </div>
             <div class="selectArea">
@@ -178,6 +178,9 @@ export default {
                 this.question = this.qList[this.QNum];
                 this.ans1 = this.ans1List[this.QNum];
                 this.ans2 = this.ans2List[this.QNum];
+                this.imageQ = "'img/questIMG/Quest"+this.QNum+".jpg'";
+                this.imageA1 = "'img/questIMG/Ans1-"+this.QNum+".jpg'";
+                this.imageA2 = "'img/questIMG/Ans2-"+this.QNum+".jpg'";
             }
 
         },
@@ -247,6 +250,7 @@ export default {
     width: 70%;
     align-content: center;
     color: white;
+    background-color: rgba(0,0,0,0.5`);
 }
 .selectArea {
     margin: auto;
@@ -264,11 +268,13 @@ export default {
     float: left;
 }
 .selectBox1 {
+    background-size: 100% 100%;
     float: left;
     margin-left: 3em;
     background-color: white;
 }
 .selectBox2 {
+    background-size: 100% 100%;
     float: right;
     margin-right: 3em;
     background-color: white;
