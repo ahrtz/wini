@@ -442,6 +442,9 @@ this.changeto()
     },
     alcoholrange:function(){
 this.changeto()
+    },
+    page:function(){
+this.changeto()
     }
 
   },

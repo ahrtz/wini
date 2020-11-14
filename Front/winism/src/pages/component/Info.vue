@@ -565,6 +565,15 @@
       
       </v-col>
       </v-row>
+      <v-row>
+      <v-col cols="6">
+  <v-img src="../../../public/img/pngwing.com.png" min-height="500">
+  </v-img>
+ 
+  
+  </v-col>
+
+  <v-col cols="6">
       <h3 id="red" style="font-weight:bold">레드 와인</h3>
       <h4  style="font-weight:bold">진한 레드 와인</h4>
       <p>쇠고기, 파스타, 등심·안심·갈비·철판구이 등 쇠고기 요리, 생등심 불고기</p>
@@ -580,7 +589,11 @@
       <p>소스가 부드러운 고기요리</p>
       <h4 style="font-weight:bold">카베르네 소비뇽</h4>
       <p>진한 소스를 사용한 고기요리</p>
+           </v-col>
+             </v-row>
      <v-divider></v-divider>
+<v-row>
+<v-col cols="6">
       <h3 id="white" style="font-weight:bold">화이트 와인</h3>
     <h4 style="font-weight:bold">드라이 화이트 와인</h4>
       <p>생선회, 생선구이, 조개요리, 갑각류, 야채버섯 등 나물류</p>
@@ -598,11 +611,24 @@
       <p>생선회, 담백한 생선요리</p>
       <h4 style="font-weight:bold">리슬링</h4>
       <p>크림소스나 단맛이 가미된 생선요리</p>
-       <v-divider></v-divider>
-       <h3 id="sparkling" style="font-weight:bold">스파클링 와인</h3>
+      </v-col>
+       <v-col cols="6">
+  <v-img src="../../../public/img/pngwing.comm.png" min-height="500">
+  </v-img>
+ 
+  
+  </v-col>
+      </v-row>
+       <v-divider id="sparkling"></v-divider>
+       <h3  style="font-weight:bold">스파클링 와인</h3>
     <h4  style="font-weight:bold">드라이한 맛의 스파클링 와인</h4>
     <p>굴, 캐비어, 훈제연어</p>
   <v-divider></v-divider>
+  <v-row >
+  <v-col cols="6">
+  
+  <v-img src="../../../public/img/winecheese.jpg" min-height="500"></v-img></v-col>
+  <v-col cols="6">
    <h3 id="cheese" style="font-weight:bold">치즈</h3>
     <h4 style="font-weight:bold">푸른 곰팡이 타입</h4>
       <p>치즈 속에 푸른 곰팡이를 넣어 만든 것으로서 '로크포르', '고르곤졸라', '스틸턴' 등이 있다. 
@@ -627,6 +653,8 @@
        <h4 style="font-weight:bold">프레시 타입</h4>
       <p>우유를 유산균과 효소로 굳혀 물을 빼기만 하고 숙성시키지 않은 것으로서 '크림 치즈', '모차렐라', '코타주' 등이 있다. 
       프루티한 와인과 어울린다.</p>
+      </v-col>
+      </v-row>
       </v-tab-item>
     </v-tabs>
     </v-container>
