@@ -114,20 +114,16 @@
       <div class="row">
         <div class="col-sm-12 col-xs-12 col-md-12">
           <v-tabs>
-            <v-tab >Description</v-tab>
+            <v-tab >설명</v-tab>
             <v-tab >추천 음식</v-tab>
-            <v-tab>REVIEWS</v-tab>
+            <v-tab>리뷰</v-tab>
             <v-tab-item>
-              <p class="pt-10 subtitle-1 font-weight-thin">
-                {{wineData.wine.description}}
-                <br>
-                원산지 : {{wineData.wine.local}}
-                <br>
-                추천 음용 온도 : {{wineData.wine.temperature}}
-                <br>
-               
-                
-              </p>
+            <h5 class="pt-3">{{wineData.wine.description}}</h5>
+            <h5 style="font-weight:bold">원산지</h5>
+            <p>{{wineData.wine.local}}</p>
+            <h5 style="font-weight:bold">추천 음용 온도</h5>
+            <p>{{wineData.wine.temperature}}</p>
+             
                 <br>
                   <template>sweetness
                     <n-progress :value="parseInt(wineData.wine.sweetness)" type="primary" :height="15" show-value>{{wineData.wine.sweetness}}</n-progress>
@@ -143,9 +139,9 @@
                   </template>
             </v-tab-item>
             <v-tab-item>
-              <p class="pt-10 subtitle-1 font-weight-thin">
-                {{wineData.wine.recommandation}}
-              </p>
+              <h5 class="pt-3">
+               {{korean[wineData.wine.recommandation]}} 
+              </h5>
             </v-tab-item>
             <v-tab-item>
               <v-card v-for="review in reviews" :key="review.reviewid" class="row">
@@ -287,6 +283,21 @@ export default {
           content:'',
           rating:0
         },
+        korean:{
+          'pork':'돼지고기',
+          'cheese':'치즈',
+          'etc':'모든 음식',
+          'dessert':'디저트',
+          'lamb':'양',
+          'fish':'생선',
+          'poultry':'닭고기',
+          'beef':'소고기',
+          'vegetable':'채소',
+          'instant':'인스턴트 식품',
+          'duck':'오리고기',
+          'western':'양식'
+
+        }
         }
     },
     methods:{
@@ -408,14 +419,7 @@ export default {
         }).catch(e=>console.log(e))
       
       
-      await axios.post(`${SERVER}review/getbywine`,form,{
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'multipart/form-data; charset = utf-8'
-        }
-      }).then(res=>{
-        console.log(res.data)
-      })
+     
       var form = new FormData();
       form.append("wid",this.wineid)
       form.append('uid',this.uid)
