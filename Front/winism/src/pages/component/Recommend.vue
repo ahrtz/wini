@@ -30,13 +30,9 @@
           
               <v-layout>
                 <v-flex xs2>
-                  <v-img v-if="pro['image']!=='null'"
-                    :src="pro.image"
-                    height="125px"
-                    contain
-                  ></v-img>
-                  <v-img v-else
-                    src="../../../public/img/AlbertBichotBourgognePassetoutgrain.png"
+                
+                  <v-img
+                    src="/img/whitewinesample.gif"
                     height="125px"
                     contain
                   ></v-img>
@@ -56,6 +52,7 @@
       text-color="black"><strong>로제</strong></v-chip>
       <v-chip v-else color="#f5ecc4"
       text-color="black"><strong>{{pro['wine'].type}}</strong></v-chip>    </v-card-text>
+<v-card-text >
 
                       <h6 v-if="pro['wine'].laestdegree!=='None'">알코올 {{pro['wine'].laestdegree}}</h6>
                       <h6 v-if="pro['wine'].local.includes('칠레')">칠레(Chile)</h6>
@@ -65,7 +62,7 @@
                       <h6 v-else-if="pro['wine'].local.includes('스페인')">스페인(Spain)</h6>
                       <h6 v-else-if="pro['wine'].local.includes('크로아티아')">크로아티아(Croatia)</h6>
                     <v-chip v-if="pro['wine'].cost!=='0'"><strong>&#8361;{{pro['wine'].cost}}</strong></v-chip>
-
+</v-card-text>
                 </v-flex>
                 <v-flex xs4>
                   <v-card-text>
