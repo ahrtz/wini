@@ -89,14 +89,7 @@
                   </v-text-field>
                 </v-col>
               </v-row>
-              <v-divider></v-divider>
-              <v-card-title class="pb-0">Customer Rating</v-card-title>
-              <v-container class="pt-0" fluid>
-                <v-checkbox append-icon="mdi-star" label="4 & above" hide-details dense></v-checkbox>
-                <v-checkbox append-icon="mdi-star" label="3 & above" hide-details dense></v-checkbox>
-                <v-checkbox append-icon="mdi-star" label="2 & above" hide-details dense></v-checkbox>
-                <v-checkbox append-icon="mdi-star" label="1 & above" hide-details dense></v-checkbox>
-              </v-container>
+              
               <v-divider></v-divider>
               <v-card-title class="pb-0">Sweetness</v-card-title>
               <v-slider
@@ -172,8 +165,13 @@
           
               <v-layout>
                 <v-flex xs2>
-                  <v-img
-                    src="../../../public/img/pngegg.png"
+                  <v-img v-if="pro.type=='레드'"
+                    src="img/redwine2.gif"
+                    height="125px"
+                    contain
+                  ></v-img>
+                  <v-img v-else
+                    src="img/whitewine.gif"
                     height="125px"
                     contain
                   ></v-img>
@@ -274,6 +272,7 @@ import axios from 'axios'
     components: {
       [Slider.name]: Slider,
        [Progress.name]: Progress
+       
     },
     data() {
       return {
@@ -283,10 +282,10 @@ import axios from 'axios'
         type:0,
         pairing:0,
         //wine taste
-        sweetness:1,
-        body:1,
-        tannin:1,
-        acidity:1,
+        sweetness:0,
+        body:0,
+        tannin:0,
+        acidity:0,
         alcoholrange:[10,20],
 
         range: [0, 100000],
@@ -321,8 +320,29 @@ import axios from 'axios'
       }
     },
     methods:{
+      getImg(pro){
+        axios.get(`http://k3a208.p.ssafy.io/images/${pro}`,{
+    	headers: {
+    		'Access-Control-Allow-Origin': '*',
+    		'Content-Type': 'application/json; charset = utf-8'
+    	}
+    })
+        .then(res=>{
+          if(res===null){
+            return "img/pngwing.com.png"
+
+          }
+          else{
+            return res.data
+          }
+
+        }
+          
+        )
+
+      },
     submit(){
-      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}`,{
+      axios.get(`${SERVER}search?keyword=${this.input}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
@@ -330,62 +350,61 @@ import axios from 'axios'
     })
       .then(res=>{
         console.log(res)
-        this.winelist=res.data.content
+        this.winelist=res.data.content  
         })
       .catch(err=>console.log(err))
 
     },
-    changeto(){
-      if(this.input===null){
-        if(this.pairing===null){
-          axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}&price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(this.koreanitems[this.type])
-      console.log(res)
-      this.winelist=res.data.content
-    })
-
-        }
-        else{
-           
-          axios.get(`${SERVER}search?keyword= &page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`,{
-    	headers: {
-    		'Access-Control-Allow-Origin': '*',
-    		'Content-Type': 'application/json; charset = utf-8'
-    	}
-    })
-    .then(res=>{
-      console.log(this.koreanitems[this.type])
-      console.log(this.pairings[this.pairing])
-      console.log(res)
-      this.winelist=res.data.content
-    })
-
-        }
-
-
+    checknull(some){
+      if(some===null || some===0){
+        return false
       }
-    else{
-       axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}&type=${this.koreanitems[this.type]}&pairing=${this.pairings[this.pairing]}&
-      price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`,{
+      else{
+        return true
+      }
+
+    },
+    changeto(){
+      var url=`${SERVER}search?page=${this.page}&price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`
+      if(this.checknull(this.input)){
+        url+=`&keyword=${this.input}`
+      }
+       if(this.checknull(this.type)){
+        url+=`&type=${this.koreanitems[this.type]}`
+      }
+      if(this.checknull(this.pairing)){
+        url+=`&pairing=${this.pairings[this.pairing]}`
+      }
+      if(this.checknull(this.sweetness)){
+        url+=`&sweetness=${this.sweetness}`
+      }
+      if(this.checknull(this.acidity)){
+        url+=`&acidity=${this.acidity}`
+      }
+      if(this.checknull(this.tannin)){
+        url+=`&tannin=${this.tannin}`
+      }
+      if(this.checknull(this.body)){
+        url+=`&body=${this.body}`
+      }
+      console.log(url)
+     axios.get(url,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
     	}
     })
     .then(res=>{
-      console.log(this.input)
-      console.log(res)
-      this.winelist=res.data.content
+      if(res.data.content.length==0){
+        alert('nothing matches')
+      }
+      else{
+this.winelist=res.data.content
+      }
+      
+      
     })
-
-
-    }
+ 
     
     }
     
