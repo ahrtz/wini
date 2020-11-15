@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="page-header clear-filter" filter-color="orange">
+
+    <div class="page-header clear-filter">
       <parallax
         class="page-header-image"
         style="background-image:url('img/bg_profile.png')"
@@ -122,12 +123,12 @@
                 </div>
               </div>
             </tab-pane>
-
+<v-app>
             <tab-pane title="Home" v-if="wishes.length > 0">
-              <i slot="label" class="now-ui-icons location_world"></i>
+              <i slot="label" class="mdi mdi-glass-tulip"></i>
               <h5 class="title text-center">위시리스트</h5>
               <!-- 호버 먹이기 위랑 아래 둘다  -->
-              <div class="col-md-10 " >
+              <div class="col-md-10 ml-auto mr-auto" >
                 <div class="row collections">
                   <div class="col-md-6" v-for="item in wishes" :key="item.id">
                     <img src="img/bg1.jpg" alt="" class="img-raised" @click="$router.push({name:'product',params:{wid:item.wine.wid}})"/>
@@ -141,13 +142,13 @@
             </tab-pane>
             
             <tab-pane title="Home" >
-              <i slot="label" class="now-ui-icons location_world"></i>
-              <h5 class="title text-center">you might also like</h5>
+              <i slot="label" class="mdi mdi-glass-flute"></i>
+              <h5 class="title text-center">You might also like</h5>
               <!-- 호버 먹이기 위랑 아래 둘다  -->
               <div class="col-md-10 ml-auto mr-auto" >
                 <div class="row collections">
                   <div class="col-md-6" v-for="item in recommends" :key="item.id">
-                    <img src="img/bg1.jpg" alt="" class="img-raised" @click="$router.push({name:'product',params:{wid:item.wine.wid}})"/>
+                    <img src="img/winesample.gif" alt="" class="img-raised" @click="$router.push({name:'product',params:{wid:item.wine.wid}})"/>
                       
                     {{item.wine.koname}}
                     
@@ -156,7 +157,7 @@
                 </div>
               </div>
             </tab-pane>
-
+</v-app>
             
 
             
