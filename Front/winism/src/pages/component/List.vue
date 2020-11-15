@@ -89,14 +89,7 @@
                   </v-text-field>
                 </v-col>
               </v-row>
-              <v-divider></v-divider>
-              <v-card-title class="pb-0">Customer Rating</v-card-title>
-              <v-container class="pt-0" fluid>
-                <v-checkbox append-icon="mdi-star" label="4 & above" hide-details dense></v-checkbox>
-                <v-checkbox append-icon="mdi-star" label="3 & above" hide-details dense></v-checkbox>
-                <v-checkbox append-icon="mdi-star" label="2 & above" hide-details dense></v-checkbox>
-                <v-checkbox append-icon="mdi-star" label="1 & above" hide-details dense></v-checkbox>
-              </v-container>
+              
               <v-divider></v-divider>
               <v-card-title class="pb-0">Sweetness</v-card-title>
               <v-slider
@@ -349,7 +342,7 @@ import axios from 'axios'
 
       },
     submit(){
-      axios.get(`${SERVER}search?keyword=${this.input}&page=${this.page}`,{
+      axios.get(`${SERVER}search?keyword=${this.input}`,{
     	headers: {
     		'Access-Control-Allow-Origin': '*',
     		'Content-Type': 'application/json; charset = utf-8'
@@ -357,7 +350,7 @@ import axios from 'axios'
     })
       .then(res=>{
         console.log(res)
-        this.winelist=res.data.content
+        this.winelist=res.data.content  
         })
       .catch(err=>console.log(err))
 
@@ -372,9 +365,12 @@ import axios from 'axios'
 
     },
     changeto(){
-      var url=`${SERVER}search?page=${this.page}&type=${this.koreanitems[this.type]}&price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`
+      var url=`${SERVER}search?page=${this.page}&price1=${this.range[0]}&price2=${this.range[1]}&alcohol1=${this.alcoholrange[0]}&alcohol2=${this.alcoholrange[1]}`
       if(this.checknull(this.input)){
         url+=`&keyword=${this.input}`
+      }
+       if(this.checknull(this.type)){
+        url+=`&type=${this.koreanitems[this.type]}`
       }
       if(this.checknull(this.pairing)){
         url+=`&pairing=${this.pairings[this.pairing]}`
