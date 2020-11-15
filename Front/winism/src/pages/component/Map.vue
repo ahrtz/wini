@@ -28,8 +28,8 @@ export default {
       placeOverlay:'',
       contentNode:'',
       currCategory:'',
-      lat:'',
-      lon:'',
+      lat:'37.5009759',
+      lon:'127.03735019999999',
       locPosition:'',
       textContent:'',
       placelist:[],
@@ -209,20 +209,20 @@ onClickCategory() {
         this.initMap();
     }},
   mounted() {
-      if(!("geolocation" in navigator)) {
-            this.textContent = 'Geolocation is not available.';
-            return;
-            }
-            this.textContent = 'Locating...'
+    //   if(!("geolocation" in navigator)) {
+    //         this.textContent = 'Geolocation is not available.';
+    //         return;
+    //         }
+    //         this.textContent = 'Locating...'
             
-            // get position
-            navigator.geolocation.getCurrentPosition(pos => {
-            this.lat = pos.coords.latitude;
-            this.lon = pos.coords.longitude;
-            this.textContent = 'Your location data is ' + this.lat + ', ' + this.lon
-            }, err => {
-            this.textContent = err.message;
-            })
+    //         // get position
+    //         navigator.geolocation.getCurrentPosition(pos => {
+    //         this.lat = pos.coords.latitude;
+    //         this.lon = pos.coords.longitude;
+    //         this.textContent = 'Your location data is ' + this.lat + ', ' + this.lon
+    //         }, err => {
+    //         this.textContent = err.message;
+    //         })
     if (window.kakao && window.kakao.maps) {
       setTimeout(() => {
         this.initMap()
