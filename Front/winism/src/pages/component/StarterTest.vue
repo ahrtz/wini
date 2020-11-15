@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       //wine list slider data
-      current: 0,
+      current: 1,
       show: false,
       tab: null,
       expand: false,
