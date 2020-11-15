@@ -180,7 +180,7 @@
                     <v-img
                       class="white--text align-center col-md-12 col-xs-12"
                       
-                      src="img/hero-image-2.png"
+                      src="img/redwine.gif"
                       
                       
                     >
