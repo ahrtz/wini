@@ -41,7 +41,8 @@
         </div>
         <div class="col-md-7 col-sm-12 col-xs-12">
           <div class="pl-6 ">
-            <p class="display-4 mb-0">{{wineData.wine.koname}} <br> ({{wineData.wine.enname}}) <br> {{wineData.wine.year}}</p>
+            <h2 style="font-weight:bold" class="mb-0">{{wineData.wine.koname}} </h2>
+            <h3>({{wineData.wine.enname}})</h3>  <h5> Year {{wineData.wine.year}}</h5>
             <v-card-actions class="pa-0">
               <v-spacer></v-spacer>
                 <v-btn
