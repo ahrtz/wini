@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="page-header clear-filter" filter-color="orange">
+
+    <div class="page-header clear-filter">
       <parallax
         class="page-header-image"
         style="background-image:url('img/bg_profile.png')"
@@ -23,69 +24,63 @@
         </div>
       </div>
     </div>
-    <div class="section">
       <div class="container">
         
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
             <h4 class="title text-center">My Wine Cellar</h4>
           </div>
+           
           <tabs
             pills
-            class="nav-align-center ml-auto mr-auto"
-            tab-content-classes="gallery"
+            class="nav-align-center ml-auto mr-auto row"
             tab-nav-classes="nav-pills-just-icons"
             type="primary"
+            tabContentClasses="tab-subcategories"
+        centered 
           >
-            <tab-pane title="Profile" v-if="reviews.length > 0">
-              <i slot="label" class="now-ui-icons design_image"></i>
-              <h5 class="title text-center">리뷰리스트</h5>
-              <div class="col-md-10 ml-auto mr-auto">
-                <div class="row collections">
+      <v-app>
+            <tab-pane title="Home" v-if="reviews.length > 0">
+              <i slot="label" class="mdi mdi-cloud"></i>
+              <h5 class="title text-center">Review List</h5>
+              <v-row>
+        <v-col
+          v-for="card in reviews"
+          :key="card.id"
+          cols="6"
+        >
+          <v-card>
+            <v-img
+              src="img/redwine2.gif"
+              height="300px"
+            >
+             
+            </v-img>
 
-                  <div class="col-md-4" v-for="item in reviews" :key="item.id">
-                    <img src="img/bg6.jpg" class="img-raised" />
-                    <v-card
-                      title="Card Title"
-                      img-src="img/bg6.jpg"
-                      img-alt="Image"
-                      img-top
-                      tag="article"
-                      
-                      class="img-raised"
-                    >
-                      <v-card-text>
-                        <h5>{{item.review.winename}}</h5>
+               <v-card-text>
+                        <h5 style="font-weight:bold">{{card.review.winename}}</h5>
                         <br>
-                        {{item.review.content}}
+                        {{card.review.content}}
                         <br>
-                        {{item.review.rating}}
+                        {{card.review.rating}}
                       </v-card-text>
-                      <!-- <v-btn class="pull-right">삭제</v-btn>
-                      <v-btn class="pull-right">수정</v-btn> -->
-                      
-                      
-                      
-                    </v-card>
-                      <div class="pull-right row">
-                        
-                          
-                          <v-app id="app" class="col-6 p-0 m-0">
-                            <v-dialog v-model="dialog" persistent>
-                              <template v-slot:activator="{on,attrs}">
-                                <v-btn  v-bind="attrs" v-on="on"  > 수정</v-btn>
-                              </template>
-                              <v-card class="mx-auto">
+            <v-card-actions>
+              <v-spacer></v-spacer>
+               <v-dialog v-model="dialog" persistent>
+             <template v-slot:activator="{on,attrs}">
+                                <v-btn  color="#750049" dark v-bind="attrs" v-on="on" > 수정</v-btn>
+                                  </template>
+                                  <v-card class="mx-auto">
                                 <v-card-title>
-                                  <v-text-field label="제목"  hide-details="auto" v-model="item.review.title"></v-text-field>
+                                  <v-text-field label="제목"  hide-details="auto" v-model="card.review.title"></v-text-field>
                                 </v-card-title>
                                 <v-divider></v-divider>
                                 <v-card-actions> 
                                   <v-spacer></v-spacer>
-                                  <v-rating v-model="item.review.rating"></v-rating> 
+                                  <v-rating v-model="card.review.rating"></v-rating> 
                                 </v-card-actions>
                                 <v-card-text>
-                                  <v-textarea label="내용" v-model="item.review.content" 
+                                  <v-textarea label="내용" v-model="card.review.content" 
                                   no-resize
                                   height="140"
                                   ></v-textarea>
@@ -95,7 +90,7 @@
                                 <v-btn
                                   primary
                                   outlined tile
-                                  @click="dialog = false;updateReview(item)"
+                                  @click="dialog = false;updateReview(card)"
                                 >
                                   리뷰 수정
                                 </v-btn>
@@ -104,66 +99,93 @@
                                   outlined tile
                                   @click="dialog = false"
                                 >
-                                  취소
+                                  삭제
                                 </v-btn>
 
                               </v-card-actions>
                               </v-card>
 
-                            </v-dialog>
-                          </v-app>
-                          <v-btn class="col-6 px-1" @click="deleteReview(item)"> 삭제 </v-btn>
-                          
-                        
-                      </div>
-                    <!-- <img src="img/bg11.jpg" alt="" class="img-raised" /> -->
-                  </div>
-                  
-                </div>
-              </div>
+                              </v-dialog>
+                                <v-btn color="#750049" dark @click="deleteReview(card)"> 삭제 </v-btn>
+                            
+            </v-card-actions>
+            
+          </v-card>
+        </v-col>
+      </v-row>
             </tab-pane>
 
-            <tab-pane title="Home" v-if="wishes.length > 0">
-              <i slot="label" class="now-ui-icons location_world"></i>
-              <h5 class="title text-center">위시리스트</h5>
+<tab-pane title="Home" v-if="wishes.length > 0">
+              <i slot="label" class="mdi mdi-heart"></i>
+              <h5 class="title text-center">Wish List</h5>
+<v-row dense>
+        <v-col
+          v-for="card in wishes"
+          :key="card.id"
+          cols="6"
+        >
+          <v-card>
+            <v-img
+              src="img/whitewine.gif"
+              class="white--text align-end"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              height="300px"
+            >
+              <v-card-title>{{card.wine.koname}}</v-card-title>
+            </v-img>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+
+             <v-btn color="#750049" dark @click="$router.push({name:'product',params:{wid:card.wine.wid}})">Go Detail</v-btn>
+              <v-btn color="#750049" dark @click="removeWish(card)">위시리스트에서 삭제</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+            
               <!-- 호버 먹이기 위랑 아래 둘다  -->
-              <div class="col-md-10 " >
-                <div class="row collections">
-                  <div class="col-md-6" v-for="item in wishes" :key="item.id">
-                    <img src="img/bg1.jpg" alt="" class="img-raised" @click="$router.push({name:'product',params:{wid:item.wine.wid}})"/>
-                      
-                    {{item.wine.koname}}
-                    <v-btn @click="removeWish(item)">취소</v-btn>
-                  </div>
-                  
-                </div>
-              </div>
+             
             </tab-pane>
             
             <tab-pane title="Home" >
-              <i slot="label" class="now-ui-icons location_world"></i>
-              <h5 class="title text-center">you might also like</h5>
-              <!-- 호버 먹이기 위랑 아래 둘다  -->
-              <div class="col-md-10 ml-auto mr-auto" >
-                <div class="row collections">
-                  <div class="col-md-6" v-for="item in recommends" :key="item.id">
-                    <img src="img/bg1.jpg" alt="" class="img-raised" @click="$router.push({name:'product',params:{wid:item.wine.wid}})"/>
-                      
-                    {{item.wine.koname}}
-                    
-                  </div>
-                  
-                </div>
-              </div>
-            </tab-pane>
+              <i slot="label" class="mdi mdi-glass-flute"></i>
+              <h5 class="title text-center">You might also like</h5>
+              <v-row dense>
+        <v-col
+          v-for="card in recommends"
+          :key="card.id"
+          cols="6"
+        >
+          <v-card>
+            <v-img
+              src="img/redwine.gif"
+              class="white--text align-end"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              height="300px"
+            >
+              <v-card-title>{{card.wine.koname}}</v-card-title>
+            </v-img>
 
+            <v-card-actions>
+              <v-spacer></v-spacer>
+
+             <v-btn color="#750049" dark @click="$router.push({name:'product',params:{wid:card.wine.wid}})">Go Detail</v-btn>
+
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+              
+            </tab-pane>
+</v-app>
             
 
             
           </tabs>
         </div>
       </div>
-    </div>
+
   </div>
 </template>
 <script>
