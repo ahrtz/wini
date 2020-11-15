@@ -36,14 +36,14 @@
             class="nav-align-center ml-auto mr-auto row"
             tab-nav-classes="nav-pills-just-icons"
             type="primary"
-            tabContentClasses="tab-subcategories"
         centered 
           >
-      <v-app>
+              <v-app> 
             <tab-pane title="Home" v-if="reviews.length > 0">
               <i slot="label" class="mdi mdi-cloud"></i>
               <h5 class="title text-center">Review List</h5>
-              <v-row>
+     
+              <v-row dense>
         <v-col
           v-for="card in reviews"
           :key="card.id"
@@ -52,9 +52,12 @@
           <v-card>
             <v-img
               src="img/redwine2.gif"
+              
+               class="white--text align-end"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="300px"
             >
-             
+             <v-card-title>{{card.review.winename}}</v-card-title>
             </v-img>
 
                <v-card-text>
@@ -118,6 +121,7 @@
 <tab-pane title="Home" v-if="wishes.length > 0">
               <i slot="label" class="mdi mdi-heart"></i>
               <h5 class="title text-center">Wish List</h5>
+               <highcharts :options="chartOptions" ref="pieChart"/>
 <v-row dense>
         <v-col
           v-for="card in wishes"
@@ -206,7 +210,48 @@ export default {
       reviews:{},
       wishes:{},
       dialog:false,
-      recommends:{}
+      recommends:{},
+      rednum:0,
+      whitenum:0,
+      sparklingnum:0,
+      rosenum:0,
+      chartOptions:{
+ title:'Your wine preference',
+        tooltip: {
+            headerFormat: 'Proportion of currency turnover <br>',
+                  pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+              },
+              plotOptions: {
+                  pie: {
+                      allowPointSelect: true,
+                      cursor: 'pointer',
+                      dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            },
+            showInLegend: true // Set whether the pie chart is displayed in the legend
+                  }
+              },
+              series: [{
+                  type: 'pie',
+                  data:[{
+            name: 'Red',
+            y:0,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'White',
+            y:0
+        }, {
+            name: 'Sparkling',
+            y: 0
+        }, {
+            name: 'Rose',
+            y: 0
+        }],
+              }]
+
+            },
     }
   },
   async created(){
@@ -231,6 +276,29 @@ export default {
     		'Content-Type': 'multipart/form-data; charset = utf-8'
       }}).then(res=>{
         this.wishes=res.data
+        for(var i=0;i<this.wishes.length;i++){
+          if(this.wishes[i].wine.type=='레드'){
+            this.rednum+=1
+          }
+          if(this.wishes[i].wine.type=='화이트'){
+            this.whitenum+=1
+          }
+          if(this.wishes[i].wine.type=='로제'){
+            this.rosenum+=1
+          }
+          if(this.wishes[i].wine.type=='스파클링'){
+            this.sparkling+=1
+          }
+        }
+        this.rednum=(this.rednum/this.wishes.length)*100
+        this.whitenum=(this.whitenum/this.wishes.length)*100
+        this.rosenum=(this.rosenum/this.wishes.length)*100
+        this.sparklingnum=(this.sparklingnum/this.wishes.length)*100
+        this.chartOptions.series[0].data[0]['y']=this.rednum
+        this.chartOptions.series[0].data[1]['y']=this.whitenum
+        this.chartOptions.series[0].data[2]['y']=this.sparklingnum
+        this.chartOptions.series[0].data[3]['y']=this.rosenum
+
       })
     
     axios.get(`${SERVER}recommend/byfavoandreview?userid=${this.userid}`,{
