@@ -157,6 +157,7 @@
        <v-chip v-else color="#800080"
       text-color="#64CD3C" @click="changestore('CU')">CU</v-chip>
 
+
         <v-chip>&#8361;{{card.price}}</v-chip>
       </v-chip-group>
     </v-card-text>
